@@ -14,19 +14,20 @@ const counterSlice = createSlice({ //slice global state for small of piece
             state.counter--;
         },
         increase(state, action) {
-            state.counter = state.counter + action.amount;
+            state.counter = state.counter + action.payload; // action.payload --> Extra date props 
         },
-        toggleHandler(state) {
+        toggleCounter(state) {
             state.showCounter = !state.showCounter;
         }
     }
 });
 
 const store = configureStore({
-    reducer: {
-        counter: counterSlice.reducer
-    }
+    reducer: counterSlice.reducer // added  counter reducer to global reducer 
 });
+
+export const counterActions = counterSlice.actions; //increment(), decrement()...
+
 export default store;
 
 //! Approach when we use only Redux library
