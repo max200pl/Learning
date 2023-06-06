@@ -1,12 +1,12 @@
+import { counterActions } from "../store/counter";
 import classes from "./Counter.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { counterActions } from "../store";
 
 
 const Counter = () => {
     const dispatch = useDispatch();
-    const counter = useSelector((state) => state.counter); // when component update we have receive latest version store
-    const show = useSelector(state => state.showCounter);
+    const counter = useSelector((state) => state.counter.counter); // when component update we have receive latest version store
+    const show = useSelector(state => state.counter.showCounter);
 
     const incrementHandler = () => {
         // dispatch({ type: "increment" });

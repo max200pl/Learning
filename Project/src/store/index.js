@@ -1,36 +1,26 @@
 
-import { createSlice, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
+import counterSlice from './counter';
+import authSlice from './auth';
 
-const initialState = { counter: 0, showCounter: true }
-
-const counterSlice = createSlice({ //slice global state for small of piece
-    name: 'counter',
-    initialState,
-    reducers: {
-        increment(state) {
-            state.counter++;
-        },
-        decrement(state) {
-            state.counter--;
-        },
-        increase(state, action) {
-            state.counter = state.counter + action.payload; // action.payload --> Extra date props 
-        },
-        toggleCounter(state) {
-            state.showCounter = !state.showCounter;
-        }
-    }
-});
 
 const store = configureStore({
-    reducer: counterSlice.reducer // added  counter reducer to global reducer 
+    reducer: { counter: counterSlice, auth: authSlice } // added  counter reducer to global reducer 
 });
 
-export const counterActions = counterSlice.actions; //increment(), decrement()...
+
 
 export default store;
 
-//! Approach when we use only Redux library
+
+
+
+
+
+
+
+
+// ! Approach when we use only Redux library
 // const counterReducer = ((state = initialState, action) => {
 // if (action.type === "increment") {
 //     //! state.counter++  never use this approach because you mutated state!
