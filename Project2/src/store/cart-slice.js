@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { uiActions } from "./ui-slice";
 
 const cartSlice = createSlice({
     name: "cart",
@@ -24,7 +25,7 @@ const cartSlice = createSlice({
                 existingItem.totalPrice = existingItem.totalPrice + newItem.price;
             }
         },
-        removeItemFromCart(state, action) {
+        removeItemFromCart(state, action) { // reducer faction name 
             const id = action.payload;
             const existingItem = state.items.find((item) => item.id === id);
             state.totalQuantity--;
@@ -37,6 +38,51 @@ const cartSlice = createSlice({
         },
     },
 });
+
+export const sendCartData = (cart) => {
+    return async (dispatch) => { // redux toolkit принимает не только объект но и функцию и вызывает внутри этой функции другие dispatch 
+        dispatch(
+            uiActions.showNotification({
+                status: "pending",
+                title: "Sending",
+                message: "Sending cart data!",
+            })
+        );
+
+        const sendRequest = async () => {
+            const response = await fetch(
+                "https://portfolio-react-5b7d3-default-rtdb.firebaseio.com/cart.json",
+                {
+                    method: "PUT",
+                    body: JSON.stringify(cart),
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error("Sending cart data failed.");
+            }
+        }
+        dispatch(
+            uiActions.showNotification({
+                status: "success",
+                title: "Success!",
+                message: "Sending cart data successfully!",
+            })
+        );
+
+        try {
+            await sendRequest()
+        } catch (e) {
+            dispatch(
+                uiActions.showNotification({
+                    status: "error",
+                    title: "Error!",
+                    message: "Sending cart data failed!",
+                })
+            );
+        }
+    }
+}
 
 export const cartActions = cartSlice.actions;
 
