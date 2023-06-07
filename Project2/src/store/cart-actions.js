@@ -1,7 +1,7 @@
 import { cartActions } from "./cart-slice";
 import { uiActions } from "./ui-slice";
 
-export const fetchCartData = (req, res, next) => {
+export const fetchCartData = () => {
     return async (dispatch) => {
         const fetchData = async () => {
             const response = await fetch("https://portfolio-react-5b7d3-default-rtdb.firebaseio.com/cart.json");
