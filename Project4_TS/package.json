@@ -1,0 +1,23 @@
+{
+  "name": "reduxcourse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/max200pl/ReduxCourse.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/max200pl/ReduxCourse/issues"
+  },
+  "homepage": "https://github.com/max200pl/ReduxCourse#readme",
+  "dependencies": {
+    "typescript": "^5.1.3"
+  }
+}
