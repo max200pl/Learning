@@ -1,4 +1,4 @@
-import { Form, useActionData, useNavigate, useNavigation } from 'react-router-dom';
+import { Form, json, redirect, useActionData, useNavigate, useNavigation } from 'react-router-dom';
 
 import classes from './EventForm.module.css';
 
@@ -14,10 +14,14 @@ function EventForm({ method, event }) {
     }
 
     return (
-        <Form method='post' className={classes.form}> {/* // method='post' not request into backend it only action  */}
-            {data && data.errors && <ul>
-                {Object.values(data.errors).map((err) => <li key={err}>{err}</li>)}
-            </ul>}
+        <Form method={method} className={classes.form}>
+            {/* // method='post' not request into backend it only action  */}
+            {/* // method='patch' use for editing form */}
+            {
+                data && data.errors && <ul>
+                    {Object.values(data.errors).map((err) => <li key={err}>{err}</li>)}
+                </ul>
+            }
             <p>
                 <label htmlFor="title">Title</label>
                 <input id="title" type="text" name="title" required defaultValue={event ? event.title : ''} />
@@ -40,8 +44,45 @@ function EventForm({ method, event }) {
                 </button>
                 <button disabled={isSubmitted}>{isSubmitted ? "Submitting.." : "Save"}</button>
             </div>
-        </Form>
+        </Form >
     );
 }
 
 export default EventForm;
+
+export async function action({ request, params }) {
+    const method = request.method;
+    const data = await request.formData() // from From react-router-dom get data from form
+    // const enteredTitle = data.get('title');
+
+    const eventData = {
+        title: data.get('title'),
+        image: data.get('image'),
+        date: data.get('date'),
+        description: data.get('description')
+    }
+    let url = 'http://localhost:8080/events';
+
+    if (method === 'PATCH') {
+        const eventId = params.eventId
+        url = `http://localhost:8080/events/${eventId}`;
+    }
+
+    const response = await fetch(url, {
+        method: method,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(eventData)
+    })
+
+    if (response.status === 422) { // error response
+        return response
+    }
+
+    if (!response.ok) {
+        throw json({ message: 'Could not save event' }, { status: 500 })
+    }
+
+    return redirect('/events')
+}
