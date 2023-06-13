@@ -1,8 +1,8 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from "./pages/Home";
 import EventsPage, { loader as eventsLoader } from "./pages/Events";
-import EventDetailPage from "./pages/EventDetail";
-import NewEventPage from "./pages/NewEvent";
+import EventDetailPage, { loader as eventDetailLoader } from "./pages/EventDetail";
+import NewEventPage, { action as newEventAction } from "./pages/NewEvent";
 import EditEventPage from "./pages/EditEvent";
 import RootLayout from "./pages/Root";
 import EventsRootLayout from "./pages/EventsRoot";
@@ -21,18 +21,26 @@ const router = createBrowserRouter([
             {
                 path: "events",
                 element: <EventsRootLayout />,
-
                 children: [
                     {
                         index: true,
                         element: <EventsPage />,
                         loader: eventsLoader,
-                        // эта функция будет вызываться при каждом посещении страницы перед рендером
-                        // async возвращает промис и реакт чекает этот промис и возвращает дату через хук  useLoaderData()
+
                     },
-                    { path: ":eventId", element: <EventDetailPage /> },
-                    { path: "new", element: <NewEventPage /> },
-                    { path: ":eventId/edit", element: <EditEventPage /> },
+                    {
+                        path: ":eventId",
+                        id: "event-detail",
+                        loader: eventDetailLoader,
+                        children: [
+                            {
+                                index: true,
+                                element: <EventDetailPage />,
+                            },
+                            { path: "edit", element: <EditEventPage /> },
+                        ]
+                    },
+                    { path: "new", element: <NewEventPage />, action: newEventAction },
                 ],
             },
         ],
