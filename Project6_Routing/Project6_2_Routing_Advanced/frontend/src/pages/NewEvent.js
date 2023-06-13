@@ -11,8 +11,6 @@ export default NewEventPage
 export async function action({ request, params }) {
     const data = await request.formData() // from From react-router-dom
     // const enteredTitle = data.get('title');
-    console.log("asasdsadds");
-    console.log(data);
 
     const eventData = {
         title: data.get('title'),
@@ -28,6 +26,10 @@ export async function action({ request, params }) {
         },
         body: JSON.stringify(eventData)
     })
+
+    if (response.status === 422) { // error response
+        return response
+    }
 
     if (!response.ok) {
         throw json({ message: 'Could not save event' }, { status: 500 })
