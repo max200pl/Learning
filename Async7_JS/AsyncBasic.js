@@ -62,4 +62,8 @@ calculateSquare(1, function (err, result) {
 
 //* __________ // Order result and timeout __________
 
+//* TESTING CALLBACKS 
+
+module.exports = calculateSquare;
+
 
