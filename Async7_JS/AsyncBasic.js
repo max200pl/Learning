@@ -74,6 +74,8 @@ module.exports = calculateSquare;
 // PromiseValue is contained value if successful 
 // PromiseStatus has 3 status: pending, fulfilled, rejected
 
+// catch method it takes one argument if only need catch error 
+
 const myPromise = new Promise(function (resolve, reject) { // create instance of this class. Promise has one argument executor function
     resolve("Hello World"); // only one status have to be fulfilled or rejected 
     resolve("value2"); //! not working 
@@ -121,39 +123,89 @@ calculateSquarePromise("2")
         console.log("Error: " + reason);
     })
 
-function capitalize(str) {
-    return new Promise((resolve, reject) => {
-        if (typeof str !== "string") {
-            return reject(new Error("Not a string"));
-        }
-        const result = str.charAt(0).toUpperCase();
-        return resolve(result)
-    })
-}
+// function capitalize(str) {
+//     return new Promise((resolve, reject) => {
+//         if (typeof str !== "string") {
+//             return reject(new Error("Not a string"));
+//         }
+//         const result = str.charAt(0).toUpperCase();
+//         return resolve(result)
+//     })
+// }
 
-function successesAction(action) {
-    return new Promise((resolve, reject) => {
-        if (action === "success") {
-            return resolve(action)
-        }
-        if (action == "fail") {
-            return reject(new Error("Fail" + action))
-        }
-    })
-}
+// function successesAction(action) {
+//     return new Promise((resolve, reject) => {
+//         if (action === "success") {
+//             return resolve(action)
+//         }
+//         if (action == "fail") {
+//             return reject(new Error("Fail" + action))
+//         }
+//     })
+// }
 
 calculateSquarePromise(1)
-    .then((value1) => {
-        console.log("Success" + value1)
+    .then((value) => {
+        console.log("Success" + value)
         // return 24
         // throw new Error("error");
+        // return calculateSquarePromise("2");
         // return calculateSquarePromise(2);
-        return calculateSquarePromise("2");
+        return new Promise((resolve, reject) => {
+            return reject(new Error("Something went wrong"));
+        });
     })
-    .then((value2) => {
-        console.log("Previous then" + value2)
+    .then((value) => {
+        console.log("Previous then" + value)
+        return calculateSquarePromise(3);
     }, (reason) => {
         console.log("Error" + reason)
-    });
+    })
+    .then((value) => {
+        console.log("Next then" + value)
+        return calculateSquarePromise(3);
+    })
+    .then((value) => { // use only fulfilled promise 
+        console.log("Next then" + value)
+        return calculateSquarePromise(4);
+    })
+    // .then(undefined, (reason) => {  // use only rejection promise 
+    //     console.log("Error" + reason)
+    // })
+    .catch((reason) => { // use only rejection promise 
+        console.log("Error" + reason)
+    })
 
 //* __________ // Promise and promisify function  __________
+
+//* ========= FetchPromise ========= 
+fetch(`https://www.omdbapi.com/?s=batman&apikey=1a42baf`)
+    .then(response => response.json())
+    .then(data => console.log(data))
+//* __________ // FetchPromise  __________
+
+
+// * ================= Convert object to promise =================
+
+console.log("============================================================")
+
+// const resolvePromise = Promise.resolve(anyValue); // return Promise object if value a Promise just returns a Promise
+// const resolvePromise = Promise.reject(value);  
+
+function logToConsole(somPromise) {
+    somPromise.then((value) => console.log(value));
+}
+
+const somPromise = new Promise((resolve, reject) => {
+    return resolve("==============hello world==============");
+})
+
+
+logToConsole(somPromise);
+
+const value = "========string=========";
+const promisify = Promise.resolve(value);
+
+logToConsole(promisify);
+
+const rejectedPromisify = Promise.reject(new Error("Error: "));
