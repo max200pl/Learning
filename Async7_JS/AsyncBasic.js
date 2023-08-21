@@ -321,11 +321,11 @@ promiseAll([1, "", true])
 //2) Returns array of objects {status: "fulfilled" | "rejected", value: any}[]
 //3) Need use if executed multiple promises, but nothing critical if one promise returned rejected
 
-// Promise.allSettled([
-//     askFirstDealer(),
-//     askSecondDealer(),
-//     askThirdDealer()
-// ])
+Promise.allSettled([
+    askFirstDealer(),
+    askSecondDealer(),
+    askThirdDealer()
+])
 
 Promise.allSettled([
     12, "12313", true
