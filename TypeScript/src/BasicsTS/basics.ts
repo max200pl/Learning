@@ -46,14 +46,12 @@ type Person = {
 let personD: Person; // object type definitions
 let peopleD: Person[]; // array of Person
 
-// Type combaines
-
 // Functions & types
 
-function add(a: number, b: number): number {
+function add1(a: number, b: number): number {
     return a + b;
 }
-let result: number = add(10, 20);
+let result: number = add1(10, 20);
 
 function add2(a: number, b: number): void {
     const sum = a + b;
@@ -98,14 +96,14 @@ enum Role {
     AUTHOR = 2,
 }
 
-const cat = {
+const cat1 = {
     eyes: 2,
     tail: 1,
     legs: 4,
     role: Role.ADMIN,
 };
 
-if (cat.role === Role.ADMIN) {
+if (cat1.role === Role.ADMIN) {
     console.log("Ok");
 }
 
