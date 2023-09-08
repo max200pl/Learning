@@ -55,6 +55,10 @@ class Queue1<T> {
 let queue: Queue1<number> = new Queue1();
 
 
+let hello: unknown
+
+let timed = (hello as string).trim()
+hello = 0; // now see !ErrorTS
 
 
 

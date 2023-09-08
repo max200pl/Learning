@@ -37,3 +37,6 @@ class Queue1 {
     ;
 }
 let queue = new Queue1();
+let hello;
+let timed = hello.trim();
+hello = 0; // now see !ErrorTS
