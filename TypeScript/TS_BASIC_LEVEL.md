@@ -1,8 +1,6 @@
 # CONCEPTS TypeScript
 
-## BASIC LEVEL
-
-### Basic npm commands for TS project
+## Basic npm commands for TS project
 
 ```powershell
 npm init -y
@@ -12,7 +10,7 @@ npx tsc --init --rootdir src --outdir lib
 npx tsc --watch
 ```
 
-### New JS type Bigint
+## New JS type Bigint
 
 ```typescript
 // new type
@@ -22,14 +20,14 @@ let bigint: bigint = 24n;
 let tuple: [number, number] = [0, 0];
 ```
 
-### Tuple type
+## Tuple type
 
 ```typescript
 // Tuple type
 let tuple: [number, number] = [0, 0];
 ```
 
-### Duck type annotation
+## Duck type annotation
 
 ```typescript
 type Point2d = { x: number; y: number };
@@ -50,7 +48,7 @@ function takesPoint3d(point3d: Point3d) {}
 takesPoint3d(point2d); // Error
 ```
 
-### Unknown type
+## Unknown type
 
 1. If you don't know what type you are looking
 
@@ -66,7 +64,7 @@ if (typeOf exampleUnknown === "boolean") {
 }
 ```
 
-### Assertions type
+## Assertions type
 
 1. We are telling the type script compiler "I now what is a type"
 2. don't use angel brackets &lt;string&gt;
@@ -79,7 +77,7 @@ const timed = (hello as string).trim();
 hello = 0; // now can't see !ErrorTS
 ```
 
-### +(Casting) type
+## +(Casting) type
 
 1. We are telling the type script compiler "I now what is a type"
 
@@ -89,7 +87,7 @@ hello = 0; // now can't see !ErrorTS
    console.log(number === 123123);
    ```
 
-### Declaration type
+## Declaration type
 
 1. Declaration new global variable `env.d.ts`
 
@@ -101,7 +99,7 @@ hello = 0; // now can't see !ErrorTS
    process.env.User; // can access
    ```
 
-### Preparation for work with TS
+## Preparation for work with TS
 
 1. Working with node.js files
 
@@ -137,7 +135,7 @@ hello = 0; // now can't see !ErrorTS
 
 ## INTERMEDIATE level
 
-### Readonly modifier
+## Readonly modifier
 
 1. When need only read in object keys and values
 
@@ -152,7 +150,7 @@ hello = 0; // now can't see !ErrorTS
    point.x = 1; //!Not working
    ```
 
-### Union type
+## Union type
 
 1. => | pipe operator
 
@@ -162,7 +160,7 @@ hello = 0; // now can't see !ErrorTS
    type Union = number | string;
    ```
 
-### Literal type
+## Literal type
 
 1. If need use uniq type string
 
@@ -177,7 +175,7 @@ hello = 0; // now can't see !ErrorTS
    let direction: "North" | "East" | "West" | "South";
    ```
 
-### Narrowing type (Compare to type "instanceof" operator)
+## Narrowing type (Compare to type "instanceof" operator)
 
 1. Compare primitive type "string" or "number" we can use <ins>typeOf</ins>
 
@@ -231,7 +229,7 @@ hello = 0; // now can't see !ErrorTS
    }
    ```
 
-### Class parameters property
+## Class parameters property
 
 Omit unnecessary type declared properties
 
@@ -250,7 +248,7 @@ const adam = new Person("Adam", 12000);
 adam.name, adam.age;
 ```
 
-### .filter() value is possible undefined
+## .filter() value is possible undefined
 
 Fixed this TS error
 
@@ -281,7 +279,7 @@ function getUserAge(name: string): number {
 }
 ```
 
-### using == equal operator for
+## using == equal operator for
 
 1. Use double equal (==) for check null or undefined values
 
@@ -330,7 +328,7 @@ function getUserAge(name: string): number {
    }
    ```
 
-### Intersection type
+## Intersection type
 
 1. Extend one type to other type
 
@@ -370,7 +368,7 @@ function getUserAge(name: string): number {
    });
    ```
 
-### Option modifier
+## Option modifier
 
 ```typescript
 type Person = {
@@ -398,7 +396,7 @@ point.x = 0;
 point.x = null; // added union type null
 ```
 
-### Non-null Assertion Operator => point!.x
+## Non-null Assertion Operator => point!.x
 
 1. Whe I now this variable wont be null
 
@@ -438,3 +436,126 @@ point.x = null; // added union type null
      sendEmail(person.email!); // use =>> !
    }
    ```
+
+## Difference between Intersection type and interface
+
+1. If need extend interfaces || use Intersection type
+
+```typescript
+    type PointIntersection = {
+        x: number,
+        y: number,
+    }
+
+    type Point2DIntersection = PointIntersection & {
+        z: number
+    }
+
+    interface PointInterface {
+        x: number,
+        y: number,
+    }
+
+    type Point2DInterface extend PointInterface {
+        z: number
+    }
+
+    export const point: Point2DInterface = {
+        x: 0,
+        y: 0,
+        // z: 0, !Error
+    }
+```
+
+## interface Declaration merging
+
+1. It is possible to combine two interfaces.
+
+```typescript
+export interface Request {
+  body: any;
+}
+
+export interface Request {
+  json: any;
+}
+
+function handleRequest(req: Request) {
+  req.body = req.body;
+  // you will get access to jason property of instance Request interface
+  req.json = req.json;
+}
+```
+
+## Benefits Type then Interfaces
+
+1. Type:
+
+   1. Unions
+   2. Intersections
+   3. Primitives
+   4. Shorthand functions
+   5. Advanced type functions
+
+   ```typescript
+   type InputOnChange = (newValue: InputValue) => void;
+   type InputValue = string;
+   type InputType = "text" | "email";
+
+   export type InputProps = {
+     type: InputType;
+     value: InputValue;
+     onChange: InputOnChange;
+   };
+   ```
+
+1. Interfaces:
+
+   1. Declaration Merging
+   2. Familiarity (extends interfaces)
+
+   ```typescript
+        export interface InputProps = {
+            type: "text"| "email",
+            value: string,
+            onChange:  (new: InputValue) => void,
+        }
+   ```
+
+## Newer type
+
+1. If need handle ERROR if we not have all successfully handle cases
+2. If on the future we decide to support new types will be ERROR
+
+```typescript
+type Square = {
+  kind: "Square";
+  size: number;
+};
+
+type Rectangle = {
+  kind: "Rectangle";
+  width: number;
+  height: number;
+};
+
+type Circle = {
+  kind: "Circle";
+  radius: number;
+};
+
+type Shape = Square | Rectangle | Circle;
+
+function area(s: Shape) {
+  if (s.kind === "Square") {
+    return s.size * s.size;
+  } else if (s.kind === "Rectangle") {
+    return s.width * s.height;
+  }
+  // NEED added statement
+
+  const _ensureAllCaseAreHandle: never = s; // Circle ERROR
+
+  return _ensureAllCaseAreHandle; // ensure type will be return number
+}
+```
