@@ -13,18 +13,13 @@ npx tsc --watch
 ## New JS type Bigint
 
 ```typescript
-// new type
-let bigint: bigint = 24n;
-
-// Tuple type
-let tuple: [number, number] = [0, 0];
+let bigint: bigint = 24n; // new type
 ```
 
 ## Tuple type
 
 ```typescript
-// Tuple type
-let tuple: [number, number] = [0, 0];
+let tuple: [number, number] = [0, 0]; // Tuple type
 ```
 
 ## Duck type annotation
@@ -38,7 +33,7 @@ let point3d: Point3d = { x: 0, y: 0, z: 0 };
 
 /* EXTRA info ok */
 
-point2d = Point3d;
+point2d = Point3d; // Not error here because Duck type annotation
 function takesPoint2d(point2d: Point2d) {}
 takesPoint2d(point3d);
 

@@ -263,7 +263,7 @@ point.x = null; // added union type null
 
 ## Non-null Assertion Operator => point!.x
 
-1. Whe I now this variable wont be null
+1. Whe I now this variable wont be null use point!.x
 
    ```typescript
    type Point = {
@@ -276,8 +276,14 @@ point.x = null; // added union type null
      point = { x: 0, y: 0 };
    }
    initialize();
-
+   //ERROR if we try to get access to the value (Need use Assertion type point!.x)
    console.log("After Initialized", point!.x, point!.y);
+   ```
+
+2. Also we can use assertion operator in variables
+
+   ```typescript
+   let dice!: number;
    ```
 
    ```typescript
