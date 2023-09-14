@@ -191,3 +191,106 @@ console.log("Date of Birth:", maybePerson.dateOfBirth.toISOString());
      debugName: string;
    };
    ```
+
+## Abstract classes
+
+1. Use only when need creates prepare methods to real class
+2. Can't create install of abstract classes
+
+```typescript
+abstract class Command {
+  abstract commandLine(): string;
+
+  execute() {
+    console.log("Executing:", this.commandLine());
+  }
+}
+
+class GitResetCommand extends Command {
+  commandLine() {
+    return "git reset --hard";
+  }
+}
+
+class GitFetchCommand extends Command {
+  commandLine() {
+    return "git fetch --all";
+  }
+}
+
+new GitResetCommand().execute();
+new GitFetchCommand().execute();
+
+new Command(); // Error: cannot create an instance of an abstract class
+```
+
+## Index Signatures
+
+```typescript
+type Dictionary = {
+  [key: string]: boolean;
+};
+```
+
+```typescript
+type Person = {
+  displayName: string;
+  email: string;
+};
+
+type PersonDictionary = {
+  [userName: string]: Person | undefined;
+};
+
+const persons: PersonDictionary = {
+  john: { displayName: "John", email: "jon@gmail.com" },
+};
+
+person["john"] = { displayName: "John", email: "jon@gmail.com" };
+
+console.log(persons["john"]);
+
+delete persons["john"];
+const result = persons["missing"];
+console.log(result, result.email); // undefined
+```
+
+## Readonly array and tuples
+
+1. If need block modified array
+
+   ```typescript
+   function reverseSorted(input: readonly number[]): number[] {
+     return input
+       .slice() // use this method because we don't want to modify the array passed
+       .sort() // modifier current array
+       .reverse(); // modifier current array
+   }
+
+   const start = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+   const result = reverseSorted(start);
+
+   console.log(result); // [9,8,7,6,...]
+   console.log(start); // [1,2,3,4,5,6,7,8,9]
+   ```
+
+   ```typescript
+   type Neat = readonly number[];
+   type Long = ReadonlyArray<number>;
+   ```
+
+2. Readonly Tuples array
+
+```typescript
+type Point = readonly [number, number];
+
+function move(point: Point, x: number, y: number): Point {
+  return [point[0] + x, point[1] + y];
+}
+
+const point: Point = [0, 0];
+const moved = move(point, 10, 10);
+
+console.log(moved); // [10, 10],
+console.log(point); // [10, 10],
+```
