@@ -6,6 +6,7 @@
 npm init -y
 npm i typescript
 npx tsc --init
+// --rootdir (from where) => --outdir(where put js files)
 npx tsc --init --rootdir src --outdir lib
 npx tsc --watch
 ```

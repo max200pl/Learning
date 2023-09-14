@@ -294,3 +294,140 @@ const moved = move(point, 10, 10);
 console.log(moved); // [10, 10],
 console.log(point); // [10, 10],
 ```
+
+## Double Assertion
+
+```typescript
+type Point2D = { x: number; y: number };
+type Point3D = { x: number; y: number; z: number };
+type Person = { name: string; age: number };
+
+let point2: Point2D = { x: 10, y: 10 };
+let point3: Point3D = { x: 10, y: 10, z: 10 };
+let person = (Person = { name: "Jon", age: 12 });
+
+point2 = point3;
+point3 = point2; //!ERROR
+
+point3 = point2 as Point3D; // Ok: I trust you
+
+person = point3; //!ERROR
+point3 = person; //!ERROR
+
+point3 = person as Point3D; // Error: I don't trust you enough
+point3 = person as unknown as Point3D; // Ok: I Double trust you
+```
+
+## const Assertion
+
+1. If need block mutable object use =>>> as const
+
+```typescript
+const king = "elvis";
+king = "john"; //!ERROR
+const upperCased = king.toUpperCase(); // king === "elvis;
+
+const dave = {
+    nama: "dave",
+    role: "drummer",
+    skills: ['drumming', 'headbanging],
+} as const
+
+dave = { //!ERROR as const!!
+    nama: "geol",
+    role: "singer",
+    skills: ['singer', 'drumming']
+};
+
+dave.name = "max" //!ERROR as const
+```
+
+```typescript
+function layout(settings: {
+  align: "center" | "left" | "right";
+  number: number;
+}) {
+  console.log("Performing layout", settings);
+}
+
+const example = {
+  align: "center" as const,
+  padding: 0,
+} as const; // not needed if align as const
+
+layout(example); //ERROR type of property "center" are incompatible.
+```
+
+## this parameter
+
+```typescript
+function double(this: { value: number }) {
+  // only for TS ==>> this: {value: number}
+  this.value = this.value * 2;
+}
+
+const valid = {
+  value: 10,
+  double,
+};
+
+valid.double();
+console.log(valid.value); // 20
+
+const invalid = {
+  valuessss: 10,
+  double,
+};
+
+invalid.double(); //!ERROR
+```
+
+## Generic Constrains
+
+```typescript
+type NameFields = { firstName: string; lastName: string };
+
+function addFullName<T extends NameFields>(obj: T): T & { fullName: string } {
+  return {
+    ...obj,
+    fullName: `${obj.firstName}${obj.lastName}`,
+  };
+
+  const john = addFullName({
+    email: "john@example.com",
+    firstName: "John",
+    lastName: "Doe",
+  });
+
+  console.log(john.email); // john@example.com
+  console.log(john.fullName); // Jon Doe
+
+  const jane = addFullName({ firstName: "Jane", lastName: "Austen" });in
+```
+
+## Dealing with Temporal Uncertainty
+
+1. Need use local variables if TS will not now what variable will be.
+
+```typescript
+let suffix: string | null = getSuffix();
+
+if (suffix != null) {
+    const suffixLocal = suffix; // this local variable
+    let exampleOne: string = "jane" + suffixLocal.toUpperCase();
+    ["jane", "jon"].forEach(name => {
+        let exampleTwo: string =name + suffixLocal.toUpperCase();
+    });
+}
+
+let example: string | null = forExample();
+
+let (example != null) {
+    const exampleLocal = example; // this local variable
+    setTimeout(() => {
+        console.log(exampleLocal.toUpperCase());
+    });
+}
+
+example = null;
+```
