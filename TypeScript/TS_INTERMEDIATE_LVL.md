@@ -327,7 +327,7 @@ point.x = null; // added union type null
         y: number,
     }
 
-    type Point2DInterface extend PointInterface {
+    interface Point2DInterface extend PointInterface {
         z: number
     }
 
