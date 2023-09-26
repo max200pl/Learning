@@ -329,7 +329,7 @@ console.log(obj.value);//1
    }
    ```
 
-## Sting Manipulation
+## String Manipulation
 
 1. Basic example
 
@@ -359,3 +359,31 @@ console.log(obj.value);//1
    type GetName = Getter<Name>; // getName
    type SetName = Setter<Name>; // getName
    ```
+
+## Mapped types
+
+```typescript
+type State = {
+  name: string;
+  age: number;
+};
+
+/**
+ * {
+ *  setName: (value: string) => void;
+ *  setAge: (value: number) => void;
+ * }
+ */
+
+type Setters = {
+  [k in keyof State as `set${Capitalized<K>}`]: (value: State[K]) => void;
+};
+```
+
+```typescript
+type Setters<State> = {
+  [k in keyof State & string as `set${Capitalized<K>}`]: (
+    value: State[K]
+  ) => void;
+};
+```
