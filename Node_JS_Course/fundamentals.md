@@ -1,3 +1,5 @@
+# Fundamentals
+
 ![Alt text](image.png)
 
 Use one tread in V8 but with libuv can use multiple treads
@@ -6,5 +8,8 @@ Use one tread in V8 but with libuv can use multiple treads
 Use one tread for one request
 ![Apachi PHP](image-2.png)
 
-
 ![Alt text](image-3.png)
+
+## Streaming
+
+1. take a pice of data
