@@ -20,3 +20,33 @@
    3. redirects 300 ... 399
    4. client errors 400 ... 499
    5. Server errors 500 ... 599
+
+## ORIGIN <https://www.example.com:443/map>
+
+1. combination of 3 things
+
+   1. Protocol-> https:
+   2. Host -> www.example.com // which sever will be handling in request
+   3. Prot -> :443
+
+2. Same origin policy
+   1. ![Alt text](image-2.png)
+
+## CORS
+
+1. C -> Cross
+2. O -> origin
+3. R -> resource
+4. S -> sharing
+
+Response header -> access-control-origin: \*
+// white list:
+Access-Control-Allow-Origin: <https://www.google.com> || \* (allow all)
+
+## Submit data to server
+
+1. Use POST or PUT methods
+
+## Request and Response as Stream
+
+1. User req.pipe(response) ![Alt text](image-3.png)
