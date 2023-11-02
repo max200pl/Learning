@@ -31,3 +31,5 @@ How to organize various different pieces of code
 
 This approach allows use reade, updated, and remove code more easier.
 Each lear is responsible for one thing.
+
+## local host -> ::1 ip version 6

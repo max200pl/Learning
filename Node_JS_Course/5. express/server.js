@@ -1,6 +1,7 @@
 const express = require("express");
-const friendsController = require("./controllers/friends.controller")
-const messagesController = require("./controllers/messages.controller")
+
+const friendsRouter = require("./routes/friends.router");
+const messagesRouter = require("./routes/messages.router");
 
 const app = express()
 
@@ -12,17 +13,13 @@ app.use((req, res, next) => { // first middleware
     next();
 
     const delta = Date.now() - start;
-    console.log(`${req.method} ${req.url} ${delta}ms`);
+    console.log(`${req.method} ${req.baseUrl}${req.url} ${delta}ms`);
 })
 
 app.use(express.json()); // JSON parsing middleware
 
-app.post('/friends', friendsController.postFiend)
-app.get('/friends', friendsController.getFiends)
-app.get('/friends/:friendId', friendsController.getFriend);
-
-app.get('/messages', messagesController.getMessages)
-app.post("/messages", messagesController.postMessage);
+app.use("/friends", friendsRouter);   // mounting the friends router
+app.use("/messages", messagesRouter); // mounting this router
 
 app.listen(PORT, () => {
     console.log(`Listening on ${PORT}`);
