@@ -33,3 +33,26 @@ This approach allows use reade, updated, and remove code more easier.
 Each lear is responsible for one thing.
 
 ## local host -> ::1 ip version 6
+
+## REST FULL API
+
+1. Representational
+2. State
+3. Transfer
+
+4. /messages -> call these plural nouns collections, or list
+5. /messages/2
+
+- http, JSON, URL use existing standard
+- Endpoints are collections of data
+- Use GET, POST, PUT and DELETE
+- Client and server
+- Stateless and cacheable
+
+## CRUD
+
+- Create -> POST
+- Read -> GET
+- Updated/Replace -> PUT
+- Updated/Modify -> PATCH
+- Delete -> DELETE
