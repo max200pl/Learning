@@ -28,3 +28,9 @@
     "build": "BUILD_PATH=../server/public react-scripts build" // build in server folder ^4.0.0.0
   },
 ```
+
+## morgan package
+
+1. npm package
+2. if need logging requests
+3.
