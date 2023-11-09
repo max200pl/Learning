@@ -30,7 +30,12 @@
    3. Prot -> :443
 
 2. Same origin policy
+
    1. ![Alt text](image-2.png)
+
+3. Browser by default block cross origin requests
+   3.1 Allow www.example.com -> http://example.com
+   3.2 Denied www.example.com -> http://facebook.com
 
 ## CORS
 
@@ -39,9 +44,10 @@
 3. R -> resource
 4. S -> sharing
 
-Response header -> access-control-origin: \*
-// white list:
-Access-Control-Allow-Origin: <https://www.google.com> || \* (allow all)
+5. Allow www.example.com -> http://facebook.com set special header: Access-Control-Allow-Origin: \*
+   Response header -> access-control-origin: \*
+   // white list:
+   Access-Control-Allow-Origin: <https://www.google.com> || \* (allow all)
 
 ## Submit data to server
 
