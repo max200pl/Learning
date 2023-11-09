@@ -9,3 +9,5 @@ https://www.youtube.com/watch?v=lkbm-zlcFvs&t=332s&ab_channel=%D0%92%D0%BB%D0%B0
 ## Если нужно переключаться между табками
 
 <https://claritydev.net/blog/display-warning-for-unsaved-form-data-on-page-exit>
+
+## Задать порты на разных операционных система <https://www.npmjs.com/package/cross-env>
