@@ -33,4 +33,10 @@
 
 1. npm package
 2. if need logging requests
-3.
+
+## layered Architecture ![Alt text](image.png)
+
+## Separation of concerns
+
+1. <https://nalexn.github.io/separation-of-concerns/>
+2. <https://en.wikipedia.org/wiki/Separation_of_concerns>

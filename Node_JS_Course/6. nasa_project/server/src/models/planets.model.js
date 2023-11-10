@@ -63,7 +63,11 @@ function loadPlanetsData() {
 
 // parse(); // returns event emitter
 
+function getAllPlanets() {
+    return habitablePlanets;
+}
+
 module.exports = {
     loadPlanetsData,
-    planets: habitablePlanets,
+    getAllPlanets
 }
