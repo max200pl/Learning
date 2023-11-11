@@ -15,21 +15,35 @@ const launch = {
 
 launches.set(launch.flightNumber, launch);
 
+function existsLaunchWithId(launchId) {
+    return launches.has(launchId); // return current launch
+}
+
 function getAllLaunches() {
     return Array.from(launches.values())
 }
 
 function addNewLaunch(launch) {
     latestFlightNumber++;
-    launches.set(launch.flightNumber, Object.assign(launch, {
+    launches.set(latestFlightNumber, Object.assign(launch, {
+        flightNumber: latestFlightNumber,
         success: true,
         upcoming: true,
         customers: ["Zero to Mastery", "NASA"],
-        flightNumber: latestFlightNumber,
     }));
 }
 
+function abortLaunchById(launchId) {
+    const aborted = launches.get(launchId);
+
+    aborted.upcoming = false;
+    aborted.success = false;
+    return aborted;
+}
+
 module.exports = {
+    existsLaunchWithId,
     getAllLaunches,
     addNewLaunch,
+    abortLaunchById
 }

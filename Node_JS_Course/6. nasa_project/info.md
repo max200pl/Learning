@@ -40,3 +40,11 @@
 
 1. <https://nalexn.github.io/separation-of-concerns/>
 2. <https://en.wikipedia.org/wiki/Separation_of_concerns>
+
+## Architecture diagram
+
+![Architecture diagram](Architecture_diagram.png)
+
+## Don't be a junior
+
+Link: <https://zerotomastery.io/blog/dont-be-a-junior-developer-the-roadmap>
