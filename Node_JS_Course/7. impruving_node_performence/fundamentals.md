@@ -23,3 +23,9 @@ Run your code side by side in parallel
    First first worker take first request, second worker take second request.
    Third request take first worker.3
    ![Alt text](image.png)
+
+Notice behavior browsers that:
+
+If you try send 2 same request at nearly the same time.
+It waits for the first request to complete before it even tries to make the second request.
+So that it can potentially reuse their response if the response is saved to your browser's cache.
