@@ -31,7 +31,7 @@ app.get('/timer', (req, res) => {
 
 app.get('/timer1', (req, res) => {
     delay(9000); // server can't do anything while delay is running
-    res.send(`Ding ding ding ! ${process.pid}`);
+    res.send(`Beep beep beep ! ${process.pid}`);
 });
 
 /*

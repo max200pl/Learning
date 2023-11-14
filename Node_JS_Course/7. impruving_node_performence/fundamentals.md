@@ -57,6 +57,7 @@ Base commands:
 2. pm2 list || pm2 ls || pm2 status -> get current status server
    ![Alt text](image-4.png)
 3. pm2 stop server -> stop our server process
+   pm2 stop 0 -> stop individual processes
 4. pm2 delete server
 
 5. pm2 start server.js -i 2 <----> -i it measures the amount of worker processes that will be created in our cluster.
@@ -66,4 +67,12 @@ Base commands:
 
 6. pm2 logs -> get a real time view of what's being logged in our server right now.
    pm2 logs --lines 200 -> for the last 200 saved lines if logs
+
 7. pm2 restart server
+
+8. pm2 start server.js -l logs.txt -i max -> send logs to logs.txt
+
+9. pm2 show 0 -> get information about each of these processes
+
+10. pm2 monit ->
+    ![Alt text](image-5.png)
