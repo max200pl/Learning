@@ -76,3 +76,11 @@ Base commands:
 
 10. pm2 monit ->
     ![Alt text](image-5.png)
+
+## Zero Downtime Restart
+
+If need update the server without stop working server
+
+Use commands:
+
+1. pm2 reload server -> restart process one by one, keeping at least one process all times
