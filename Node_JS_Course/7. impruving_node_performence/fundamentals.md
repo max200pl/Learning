@@ -24,8 +24,46 @@ Run your code side by side in parallel
    Third request take first worker.3
    ![Alt text](image.png)
 
-Notice behavior browsers that:
+   Notice behavior browsers that:
 
-If you try send 2 same request at nearly the same time.
-It waits for the first request to complete before it even tries to make the second request.
-So that it can potentially reuse their response if the response is saved to your browser's cache.
+   If you try send 2 same request at nearly the same time.
+   It waits for the first request to complete before it even tries to make the second request.
+   So that it can potentially reuse their response if the response is saved to your browser's cache.
+
+2. Randomized static approach:
+   Each new request is assigned to one of the processes at random
+
+Use "os" Module
+If need create correct number of worker processes
+Each process needs to use a separate processor in your computer in your CPU
+NUM_WORKERS = os.cpus().length;
+
+## Load balancing![Alt text](image-1.png)
+
+1. Vertical scaling -> add more speed CPU
+2. Horizontal scaling -> adding more servers (more node processes)
+   ![Alt text](image-2.png)
+
+## PM2 Tool <https://pm2.keymetrics.io/docs/usage/cluster-mode/>
+
+Running in production
+Running in a background process
+Cant create cluster process
+
+Base commands:
+
+1. pm2 start server -> start our server process
+   ![Alt text](image-3.png)
+2. pm2 list || pm2 ls || pm2 status -> get current status server
+   ![Alt text](image-4.png)
+3. pm2 stop server -> stop our server process
+4. pm2 delete server
+
+5. pm2 start server.js -i 2 <----> -i it measures the amount of worker processes that will be created in our cluster.
+   pm2 start server.js -i 2 -> 2 workers
+   pm2 start server.js -i max -> maximum number of workers
+   ![Alt text](image-6.png)
+
+6. pm2 logs -> get a real time view of what's being logged in our server right now.
+   pm2 logs --lines 200 -> for the last 200 saved lines if logs
+7. pm2 restart server
