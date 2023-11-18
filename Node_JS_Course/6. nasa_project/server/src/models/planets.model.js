@@ -75,7 +75,11 @@ async function getAllPlanets() {
     //     keplerName: "Kepler-62 f", // only documents matching those properties would be returned
     // }, "-keplerName anotherField"); // if you want to include another field and exclude  keplerName set --> -
 
-    return await planets.find({}); //! Find all planets
+    return await planets.find({},
+        { // which fields are included in the response
+            "_id": 0, "__v": 0, // exclude fields
+        }
+    ); //! Find all planets
 }
 
 async function savePlanet(planet) {

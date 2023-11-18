@@ -1,5 +1,7 @@
 # Fundamentals
 
+- node best practice <https://github.com/goldbergyoni/nodebestpractices>
+
 Type DataBase:
 
 1. Relational -> SQL, MySQL, and PostgresSQL
@@ -40,3 +42,18 @@ Type DataBase:
 ![Mongoose model](image.png)
 
 - Schema validation: String | Number | ...
+
+## Data structure in mongoDbo
+
+![Alt text](image.png)
+
+- ObjectId -> uniq id
+- __v -> version key :
+  1. If need updated Schema
+  2. manage document with old data -> in sequel db need use database migration
+
+## Referential integrity in a Sequel
+
+![Alt text](image-1.png)
+
+1. If foreign key was broken

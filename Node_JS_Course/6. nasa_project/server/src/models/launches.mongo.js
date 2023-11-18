@@ -37,4 +37,4 @@ const launchesSchema = new mongoose.Schema({
 });
 
 // Connects launches schema with the "launches" collection
-module.exports = mongoose.model('Launch', launchSchema); // first name is a singular name
+module.exports = mongoose.model('Launch', launchesSchema); // first name is a singular name
