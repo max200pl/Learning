@@ -38,3 +38,5 @@ Type DataBase:
 
 1. Elegant mongoDb object modeling node.js
 ![Mongoose model](image.png)
+
+- Schema validation: String | Number | ...
