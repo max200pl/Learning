@@ -7,7 +7,7 @@ const path = require("path");
 
 const { parse } = require("csv-parse");
 
-const habitablePlanets = [];
+const planets = require('./planets.mongo');
 
 function isHabitablePlanet(planet) {
     return planet['koi_disposition'] === "CONFIRMED"
@@ -40,9 +40,9 @@ function loadPlanetsData() {
                     }
                 )
             )
-            .on("data", (data) => {
+            .on("data", async (data) => {
                 if (isHabitablePlanet(data)) {
-                    habitablePlanets.push(data);
+                    savePlanet(data);
                 }
             })
 
@@ -52,8 +52,9 @@ function loadPlanetsData() {
                 reject(err);
             })
 
-            .on("end", () => {
-                console.log(`${habitablePlanets.length} habitable planets`);
+            .on("end", async () => {
+                const countPlanetsFound = (await getAllPlanets()).length
+                console.log(`${countPlanetsFound} habitable planets`);
                 console.log("done");
                 //*** RESOLVE FUNCTION */
                 resolve() // whe now when are planets data has been successfully loaded
@@ -63,8 +64,33 @@ function loadPlanetsData() {
 
 // parse(); // returns event emitter
 
-function getAllPlanets() {
-    return habitablePlanets;
+async function getAllPlanets() {
+    // return planet.find({
+    //     keplerName: "Kepler-62 f", // only documents matching those properties would be returned
+    // }, { // list of fields
+    //      "keplerName": 1 // 1-> show kepler name 0 -> exclude field
+    // });
+
+    // return planet.find({
+    //     keplerName: "Kepler-62 f", // only documents matching those properties would be returned
+    // }, "-keplerName anotherField"); // if you want to include another field and exclude  keplerName set --> -
+
+    return await planets.find({}); //! Find all planets
+}
+
+async function savePlanet(planet) {
+    try {
+        // insert + update = upsert
+        await planets.updateOne({ // find all documents
+            keplerName: planet.kepler_name,
+        }, {
+            keplerName: planet.kepler_name, // if it does in already exist update
+        }, {
+            upsert: true // if it does in already exist
+        });
+    } catch (error) {
+        console.error(`Could not save planet ${error}`)
+    }
 }
 
 module.exports = {
