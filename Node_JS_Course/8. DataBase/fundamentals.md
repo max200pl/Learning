@@ -57,3 +57,13 @@ Type DataBase:
 ![Alt text](image-1.png)
 
 1. If foreign key was broken
+2. Mongo don't support foreignKey -> ned use additional verifications
+
+## Auto_increment support
+
+1. easy implementation in sequel databases <https://dev.mysql.com/doc/refman/8.0/en/example-auto-increment.html>
+2. In mongo db not easy
+
+## $setOnInsert in mongoDb ![Alt text](image-2.png)
+
+![Alt text](image-3.png)
