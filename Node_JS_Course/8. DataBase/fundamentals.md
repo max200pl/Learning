@@ -66,4 +66,9 @@ Type DataBase:
 
 ## $setOnInsert in mongoDb ![Alt text](image-2.png)
 
-![Alt text](image-3.png)
+![setOnInsert](image-3.png)
+
+## Post method
+
+1. If need use in request body some additional data for receive data from server
+![Post method](image-4.png)
