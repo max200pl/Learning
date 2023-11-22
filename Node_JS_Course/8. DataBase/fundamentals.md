@@ -72,3 +72,7 @@ Type DataBase:
 
 1. If need use in request body some additional data for receive data from server
 ![Post method](image-4.png)
+
+## dotenv package
+
+1. In file .env take values and insert into process.env -> process.env.PORT  || 8000
