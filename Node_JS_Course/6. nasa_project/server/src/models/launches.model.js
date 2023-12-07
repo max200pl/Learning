@@ -70,7 +70,6 @@ async function loadLaunchData() {
     } else {
         await populateLaunches()
     }
-
 }
 
 async function findLaunch(filter) {

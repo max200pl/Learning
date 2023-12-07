@@ -7,7 +7,7 @@ const path = require("path");
 
 const { parse } = require("csv-parse");
 
-const planets = require('./planets.mongo');
+const planetsSchema = require('./planets.mongo');
 
 function isHabitablePlanet(planet) {
     return planet['koi_disposition'] === "CONFIRMED"
@@ -75,7 +75,7 @@ async function getAllPlanets() {
     //     keplerName: "Kepler-62 f", // only documents matching those properties would be returned
     // }, "-keplerName anotherField"); // if you want to include another field and exclude  keplerName set --> -
 
-    return await planets.find({},
+    return await planetsSchema.find({},
         { // which fields are included in the response
             "_id": 0, "__v": 0, // exclude fields
         }
@@ -85,7 +85,7 @@ async function getAllPlanets() {
 async function savePlanet(planet) {
     try {
         // insert + update = upsert
-        await planets.updateOne({ // find all documents
+        await planetsSchema.updateOne({ // find all documents
             keplerName: planet.kepler_name,
         }, {
             keplerName: planet.kepler_name, // if it does in already exist update
