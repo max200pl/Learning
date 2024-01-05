@@ -68,3 +68,27 @@ Authorization server -> goole service
 <https://www.passportjs.org/packages/passport-google-oauth20/>
 ![Alt text](image-11.png)
 Provide authenticate for node
+
+## Cookies
+
+1. string of data storing in our browser
+![difference between Cookies and Token ](image-12.png)
+
+Two type of using cookies
+
+1. stateful cookies
+   1.1 store session in DB and send to client only reference (changes when a lot of users )
+   1.2 if need keep in our session in a secret
+2. stateless cookies
+   2.1 all the session data lives in the client
+
+size cookies limited  about 40 kilobytes
+
+## Session
+
+1. Are a way of storing data about the current active user.
+
+Storing session data:
+
+1. Server side session -> where user data lives in the server
+2. client side session -> when user data lives in the site (cookies)
