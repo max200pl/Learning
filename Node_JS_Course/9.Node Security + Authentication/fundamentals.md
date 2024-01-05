@@ -77,10 +77,10 @@ Provide authenticate for node
 Two type of using cookies
 
 1. stateful cookies
-   1.1 store session in DB and send to client only reference (changes when a lot of users )
-   1.2 if need keep in our session in a secret
+   1. store session in DB and send to client only reference (changes when a lot of users )
+   2. if need keep in our session in a secret
 2. stateless cookies
-   2.1 all the session data lives in the client
+   1. all the session data lives in the client
 
 size cookies limited  about 40 kilobytes
 
@@ -92,3 +92,12 @@ Storing session data:
 
 1. Server side session -> where user data lives in the server
 2. client side session -> when user data lives in the site (cookies)
+
+npm packages:
+
+ 1. Server side session -> express-session
+    1. only saves the Session ID in the cookie
+    2. and session data save in DB and permission
+
+ 2. client side session -> cookies-session
+    1. storing all actual data in a cookies in a browser
