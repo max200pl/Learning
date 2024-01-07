@@ -63,8 +63,10 @@ app.use(passport.initialize()); // initialize passport session
 app.use(passport.session()); // authenticate the session that's being sent to our server
 
 function checkLoggedIn(req, res, next) {
-    if (req.user) {
-    } else {
+    console.log("Current user", req.user);
+    const isLoggedIn = req.IsAuthenticated() && req.user;
+
+    if (!isLoggedIn) {
         res.status(401).send('Not authenticated');
     }
     next();
