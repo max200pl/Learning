@@ -104,3 +104,10 @@ npm packages:
 
 Serialize its mean saving our user data to a cookie.
 Deserialize loading that user data from that cookie into a value that we can read.
+
+## Role-based access control
+
+That allows them to do some specific set of task in our API
+Store that role inside a session
+
+[Node.js Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Nodejs_Security_Cheat_Sheet.html)

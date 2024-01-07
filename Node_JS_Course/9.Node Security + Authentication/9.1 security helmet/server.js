@@ -64,7 +64,7 @@ app.use(passport.session()); // authenticate the session that's being sent to ou
 
 function checkLoggedIn(req, res, next) {
     console.log("Current user", req.user);
-    const isLoggedIn = req.IsAuthenticated() && req.user;
+    const isLoggedIn = req.isAuthenticated() && req.user;
 
     if (!isLoggedIn) {
         res.status(401).send('Not authenticated');
@@ -89,7 +89,10 @@ app.get("/auth/google/callback",
     }
 );
 
-app.get("/auth/logout", (req, res) => { });
+app.get("/auth/logout", (req, res) => {
+    req.logout(); // Removes req.user and clears the login session.
+    return res.redirect('/');
+});
 
 app.get('/secret', checkLoggedIn, (req, res) => {
     return res.send('Secret page');
