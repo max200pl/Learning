@@ -15,6 +15,8 @@ const PORT = 3000;
 const config = {
     CLIENT_ID: process.env.CLIENT_ID,
     CLIENT_SECRET: process.env.CLIENT_SECRET,
+    COOKIE_KEY_1: process.env.COOKIE_KEY_1,
+    COOKIE_KEY_2: process.env.COOKIE_KEY_2,
 }
 
 const AUTH_OPTIONS = {
@@ -30,17 +32,42 @@ function verifyCallback(accessToken, refreshToken, profile, done) {
 
 passport.use(new Strategy(AUTH_OPTIONS, verifyCallback));
 
+// Save the session to the cookie
+passport.serializeUser((
+    user, // take the user profile from google
+    done
+) => {
+
+    done(null, user.id); // first parameter is error and second is the user id that we want to save
+});
+
+// Read the session from the cookie
+passport.deserializeUser((id, done) => {
+    // example of how to get the user from the database
+    // User.findById(id).then((user) => {
+    //     done(null, user);
+    // });
+    done(null, id); // first parameter is error and second is the user id that we want to save
+})
+
 const app = express();
 app.use(helmet());
 
-app.use(passport.initialize());
+app.use(cookieSession({
+    name: 'session', // name of the cookie
+    maxAge: 24 * 60 * 60 * 1000, // time live in milliseconds
+    keys: [config.COOKIE_KEY_1, config.COOKIE_KEY_2] // key to encrypt
+}))
+
+app.use(passport.initialize()); // initialize passport session
+app.use(passport.session()); // authenticate the session that's being sent to our server
 
 function checkLoggedIn(req, res, next) {
     if (req.user) {
-        next();
     } else {
         res.status(401).send('Not authenticated');
     }
+    next();
 }
 
 app.get("/auth/google",
@@ -53,7 +80,7 @@ app.get("/auth/google/callback",
     passport.authenticate('google', {
         successRedirect: '/',
         failureRedirect: '/failure',
-        session: false,
+        session: true, // save the session  and serialize it to the cookie
     }),
     (req, res) => {
         console.log("Google called us back");
