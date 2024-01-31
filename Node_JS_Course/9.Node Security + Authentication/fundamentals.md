@@ -100,7 +100,6 @@ npm packages:
     2. and session data save in DB and permission
 
  2. client side session -> cookies-session
-    1. storing all actual data in a cookies in a browser
 
 Serialize its mean saving our user data to a cookie.
 Deserialize loading that user data from that cookie into a value that we can read.
