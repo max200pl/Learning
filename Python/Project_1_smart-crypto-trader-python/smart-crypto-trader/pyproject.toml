@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "smart-crypto-trader"
+version = "0.1.0"
+description = ""
+authors = ["max200pl <max2000pl@gmail.com>"]
+readme = "README.md"
+packages = [{include = "smart_crypto_trader", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+schedule = "^1.2.1"
+
+[tool.poetry.scripts]
+script = "smart_crypto_trader.script:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

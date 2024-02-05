@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./smart-crypto-trader/src/smart_crypto_trader"
+    ]
+}
