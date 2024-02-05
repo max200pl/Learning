@@ -110,3 +110,20 @@ That allows them to do some specific set of task in our API
 Store that role inside a session
 
 [Node.js Security Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Nodejs_Security_Cheat_Sheet.html)
+
+## Github authentication
+
+![flow Github authentication](image-13.png)
+
+1. go to settings -> Developer Settings -> OAuth apps -> Register a new application
+2. remove react strict mode
+   1. Renders our application twice
+   2. We get the one time code
+
+Flow:
+
+1. Forward the user to the github login screen. (we pass in the client ID)
+2. User is now on the github side and logs in (github.com/login)
+3. When user decide to login... they get forward back to local host :3000
+4. BUT localhost:3000/?code=adsdasdad
+5. Use the code to get the access token (code can only use once)
