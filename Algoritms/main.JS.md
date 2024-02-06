@@ -69,6 +69,12 @@
 ## Regular Expressions
 
 - Creating and using regular expressions
+  1. - найти элемент строки в строке и вернуть новую строку;
+
+    ``` javascript
+        str.replace(/([&<>\"'])/g, match => characterEntries[match])
+    ```
+
 - Matching patterns in strings
 - Replacing and extracting substrings
 
