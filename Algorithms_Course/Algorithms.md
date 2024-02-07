@@ -67,3 +67,33 @@ uniteUnique([1, 3, 2, 2, 2], [5, 2, 1, 4]);
         return str.replace(/([&<>\"'])/g, match => characterEntries[match]);
     }
     ```
+
+## ======= Numbers ========
+
+1. Sum All Odd Fibonacci Numbers
+   - нужно посчитать сумму фибоначчи чисел
+    0,1,1,2,3,5,8,13,21,34,55
+    Решение один:
+    1. получить предыдущее значение ->  prev = current - prev;
+    2. получить текущее значение -> current += prev;
+    3. создать цикл ->  while(current <= num)
+    4. если текущее значение является не четным -> current % 2 !== 0 ->>  fibonacci += current;
+
+    ```javascript
+        function sumFibs(num) {
+            let prev = 0;
+            let current = 1;
+            let fibonacci = 0;
+
+            while(current <= num){
+                if(current % 2 !== 0 ) {
+                    fibonacci += current;
+                }
+
+                current += prev
+                prev = current - prev;
+            }
+
+            return fibonacci;
+        }
+    ```
