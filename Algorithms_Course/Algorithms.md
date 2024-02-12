@@ -125,6 +125,42 @@ function dropElements(arr, func) {
 dropElements([1, 2, 3, 4], function(n) {return n >= 3;});
 ```
 
+### 1. Steamroller  -> Сложность 3/5
+
+**Условие:**
+Исключить вложенные массивы не применяя Array.prototype.flat() Array.prototype.flatMap(). И не использую глобальные переменную
+*Пример:* [[["a"]], [["b"]]] ==> ["a", "b"]
+
+**Info:**
+
+**Алгоритм:**
+
+1. перебрать массив
+2. проверить вложенные элемент массива на массив
+3. применить рекурсию
+4. если нет вложенного массив вернуться на следующий элемент родителя
+
+```javascript
+    function steamrollArray(arr){
+        let result = [];
+
+        arr.forEach(item =>{
+            if(Array.isArray(item)){
+                result = result.concat(SteamrollArray(item));
+            } else {
+                result.push(item);
+            }
+        })
+
+        return result;
+    }
+
+    function steamrollArray(arr){
+        const flat = [].concat(...arr);
+        return flat.some(Array.isArray)? SteamrollArray(flat) : flat;
+    }
+```
+
 ## ======= Strings ========
 
 ### 1. Compare strings -> Сложность 3/5
