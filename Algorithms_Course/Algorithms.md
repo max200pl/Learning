@@ -163,6 +163,11 @@ dropElements([1, 2, 3, 4], function(n) {return n >= 3;});
 
 ## ======= Strings ========
 
+1. Базовый Алгоритм работы со словами в стоке  "aasdsda adasd"
+   1. разбить строку на массив через str.split(" ")
+   2. сделать работу с каждой буквой for(), forEach()
+   3. собрать назад все назад в строку arr.join("")
+
 ### 1. Compare strings -> Сложность 3/5
 
 **Условие:**
@@ -219,6 +224,44 @@ function convertHTML(str) {
   };
   return str.replace(/([&<>\"'])/g, (match) => characterEntries[match]);
 }
+```
+
+### 3. Binary Agents  -> Сложность 1/5
+
+**Условие:**
+На основе бинарной строки вернуть английскую строку
+"01000001 01110010 01100101..." -> "Aren't bonfires..."
+
+**Info:**
+"1101".parseInt("1101", 2) -> 13 второй аргумент для определения основания счисления
+fromCharCode(13) -> "A"
+**Алгоритм:**
+
+1. разбить на массив строк
+2. создать массив аккумулятор
+3. проходится по элементу массива
+4. ковертировать двоичный коды в число parseInt("1101", 2) -> 13
+5. конвертировать unicode в символ fromCharCode(code)
+6. пушить все в аккумулятор
+7. собрать аккумулятор в строку arr.join("")
+
+```javascript
+    function binaryAgent(str){
+        const biString = str.split(" "); // 1.
+        let uniString = []; //2.
+
+        for(let i = 0; i< biString.length; i++){
+            let code,
+                convertChar
+
+            unicode = parseInt(biString[i],2)
+            convertChar = String.fromCharCode(code)
+            uniString.push(convertChar);
+        }
+
+        return uniString.join("");
+    }
+
 ```
 
 ## ======= Numbers ========
