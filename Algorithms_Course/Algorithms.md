@@ -1,5 +1,22 @@
 # Algorithms
 
+## Table of contents
+
+- [Algorithms](#algorithms)
+  - [Table of contents](#table-of-contents)
+  - [Arrays](#arrays)
+    - [Recommendation](#recommendation)
+    - [1. Smallest Common Multiple -\> Сложность 5/5](#1-smallest-common-multiple---сложность-55)
+    - [2. Drop it -\> Сложность 2/5](#2-drop-it---сложность-25)
+    - [3. Steamroller -\> Сложность 3/5](#3-steamroller---сложность-35)
+  - [Strings](#strings)
+    - [1. Compare strings -\> Сложность 3/5](#1-compare-strings---сложность-35)
+    - [2. Convert the characters -\> Сложность 2/5](#2-convert-the-characters---сложность-25)
+    - [3. Binary Agents -\> Сложность 1/5](#3-binary-agents---сложность-15)
+  - [Numbers](#numbers)
+    - [1. Sum All Odd Fibonacci Numbers -\> Сложность 4/5](#1-sum-all-odd-fibonacci-numbers---сложность-45)
+    - [2. Sum all Primes -\> Сложность 5/5](#2-sum-all-primes---сложность-55)
+
 <!--
 ### 1. Smallest Common Multiple  -> Сложность 1/5
 **Условие:**
@@ -12,9 +29,11 @@
 ```
 -->
 
-## ======= Arrays ========
+## Arrays
 
-## Recommendation
+========== Arrays ==========
+
+### Recommendation
 
 Отбить основной цикл и внутренний разделителями
 
@@ -81,7 +100,7 @@ function smallestCommons(arr) {
 smallestCommons([1, 5]);
 ```
 
-### 1. Drop it -> Сложность 2/5
+### 2. Drop it -> Сложность 2/5
 
 **Условие:**
 По заданному условию отфильтровывать массив
@@ -125,7 +144,7 @@ function dropElements(arr, func) {
 dropElements([1, 2, 3, 4], function(n) {return n >= 3;});
 ```
 
-### 1. Steamroller  -> Сложность 3/5
+### 3. Steamroller -> Сложность 3/5
 
 **Условие:**
 Исключить вложенные массивы не применяя Array.prototype.flat() Array.prototype.flatMap(). И не использую глобальные переменную
@@ -161,7 +180,7 @@ dropElements([1, 2, 3, 4], function(n) {return n >= 3;});
     }
 ```
 
-## ======= Strings ========
+## Strings
 
 1. Базовый Алгоритм работы со словами в стоке  "aasdsda adasd"
    1. разбить строку на массив через str.split(" ")
@@ -226,7 +245,7 @@ function convertHTML(str) {
 }
 ```
 
-### 3. Binary Agents  -> Сложность 1/5
+### 3. Binary Agents -> Сложность 1/5
 
 **Условие:**
 На основе бинарной строки вернуть английскую строку
@@ -264,7 +283,7 @@ fromCharCode(13) -> "A"
 
 ```
 
-## ======= Numbers ========
+## Numbers
 
 ### 1. Sum All Odd Fibonacci Numbers -> Сложность 4/5
 
