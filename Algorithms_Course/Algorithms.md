@@ -13,6 +13,7 @@
     - [1. Compare strings -\> Сложность 3/5](#1-compare-strings---сложность-35)
     - [2. Convert the characters -\> Сложность 2/5](#2-convert-the-characters---сложность-25)
     - [3. Binary Agents -\> Сложность 1/5](#3-binary-agents---сложность-15)
+    - [4. Everything Be True -\> Сложность 3/5](#4-everything-be-true---сложность-35)
   - [Numbers](#numbers)
     - [1. Sum All Odd Fibonacci Numbers -\> Сложность 4/5](#1-sum-all-odd-fibonacci-numbers---сложность-45)
     - [2. Sum all Primes -\> Сложность 5/5](#2-sum-all-primes---сложность-55)
@@ -259,7 +260,7 @@ fromCharCode(13) -> "A"
 1. разбить на массив строк
 2. создать массив аккумулятор
 3. проходится по элементу массива
-4. ковертировать двоичный коды в число parseInt("1101", 2) -> 13
+4. конвертировать двоичный коды в число parseInt("1101", 2) -> 13
 5. конвертировать unicode в символ fromCharCode(code)
 6. пушить все в аккумулятор
 7. собрать аккумулятор в строку arr.join("")
@@ -281,6 +282,43 @@ fromCharCode(13) -> "A"
         return uniString.join("");
     }
 
+```
+
+### 4. Everything Be True -> Сложность 3/5
+
+```javascript
+    truthCheck(
+    [
+        {key:[{key: ""}]},
+        {key:{}},
+        {key:[]},
+        {}
+    ],
+    "предикат")
+```
+
+**Условие:**
+Являются ли предикат верным для всех элементов коллекции
+
+**Info:**
+
+**Алгоритм:**
+
+1. перебрать массив .every
+2. если элемент коллекции с значением предикат false вернуть false
+
+```javascript
+function truthCheck(collection, pre) {
+    return collection.every(obj => obj[pre]);
+}
+
+function truthCheck(collection, pre) {
+  return collection.every(function (element) {
+    return element.hasOwnProperty(pre) && Boolean(element[pre]);
+  });
+}
+
+ruthCheck([{ name: "Quincy", role: "Founder", isBot: false }, { name: "Naomi", role: "", isBot: false }, { name: "Camperbot", role: "Bot", isBot: true }], "isBot");
 ```
 
 ## Numbers
@@ -373,4 +411,6 @@ function sumPrimes(num) {
 
   return primes.reduce((sum, prime) => sum + prime, 0);
 }
+
+sumPrimes(assad)
 ```
