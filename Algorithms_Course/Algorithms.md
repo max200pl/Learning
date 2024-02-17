@@ -17,6 +17,8 @@
   - [Numbers](#numbers)
     - [1. Sum All Odd Fibonacci Numbers -\> Сложность 4/5](#1-sum-all-odd-fibonacci-numbers---сложность-45)
     - [2. Sum all Primes -\> Сложность 5/5](#2-sum-all-primes---сложность-55)
+  - [Function](#function)
+    - [1. Arguments Optional  -\> Сложность 3/5](#1-arguments-optional----сложность-35)
 
 <!--
 ### 1. Smallest Common Multiple  -> Сложность 1/5
@@ -413,4 +415,62 @@ function sumPrimes(num) {
 }
 
 sumPrimes(assad)
+```
+
+## Function
+
+### 1. Arguments Optional  -> Сложность 3/5
+
+**Условие:**
+
+1. вызвать функцию с которая будет суммировать текущий аргумент и предыдущее если это число.
+2. Если один оргумент число то возвращать function
+3. Если не число возвращать undefined
+
+**пример:** *addTogether(2, 3) should return 5, and addTogether(2) should return a function.*
+
+**Info:**
+
+**Алгоритм:**
+
+1. получить аргументы функции
+2. сохранить в переменную
+3. проверить на число (если не число вернуть undefined)
+4. получить второй аргумент
+5. проверить на число (если число продолжить)
+6. сложить два аргумета через рекурсию
+
+```javascript
+function addTogether(){
+    const [first, second] = arguments;
+
+    const isFirstNumber = typeof first === "number";
+    const isSecondNumber = typeof second === "number";
+
+    if (isFirstNumber) {
+        if (arguments.length === 1) {
+            return (second) => addTogether(first, second);
+        }
+
+        if (isSecondNumber) {
+            return first + second;
+        }
+    }
+}
+
+function addTogether(){
+    const [first, second] = arguments;
+
+    function addSecond(second){
+        if (typeof second === "number") {
+            return first + second;
+        }
+    }
+
+    if (typeof first === "number") {
+        if (arguments.length === 1) return addSecond;
+        if (arguments.length === 2) return addSecond(second);
+    }
+}
+
 ```
