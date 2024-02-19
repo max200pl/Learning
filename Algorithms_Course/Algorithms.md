@@ -19,6 +19,7 @@
     - [2. Sum all Primes -\> Сложность 5/5](#2-sum-all-primes---сложность-55)
   - [Function](#function)
     - [1. Arguments Optional  -\> Сложность 3/5](#1-arguments-optional----сложность-35)
+    - [2. Make a Person  -\> Сложность 3/5](#2-make-a-person----сложность-35)
 
 <!--
 ### 1. Smallest Common Multiple  -> Сложность 1/5
@@ -424,7 +425,7 @@ sumPrimes(assad)
 **Условие:**
 
 1. вызвать функцию с которая будет суммировать текущий аргумент и предыдущее если это число.
-2. Если один оргумент число то возвращать function
+2. Если один аргумент число то возвращать function
 3. Если не число возвращать undefined
 
 **пример:** *addTogether(2, 3) should return 5, and addTogether(2) should return a function.*
@@ -438,7 +439,7 @@ sumPrimes(assad)
 3. проверить на число (если не число вернуть undefined)
 4. получить второй аргумент
 5. проверить на число (если число продолжить)
-6. сложить два аргумета через рекурсию
+6. сложить два аргумента через рекурсию
 
 ```javascript
 function addTogether(){
@@ -473,4 +474,58 @@ function addTogether(){
     }
 }
 
+```
+
+### 2. Make a Person  -> Сложность 3/5
+
+**Условие:**
+
+1. Создать объект Person который будет принимать два аргумента first, last
+2. Создать метод getFullName который будет возвращать полное имя
+3. Создать метод setFirstName который будет устанавливать имя
+
+**пример:**
+
+**Info:**
+
+Замыкания (Closures) - *это функция внутри функции которая имеет доступ к переменным внешней функции*
+
+**Алгоритм:**
+
+1. создать две переменные с во внутренней области видимости функции
+2. установить методы для получения и установки имени
+3. создать метод для установки полного имени
+4. вернуть полное имя
+
+```javascript
+const Person = function(first, last) {
+    let firstName = first;
+    let lastName = last;
+
+    this.getFullName = function() {
+        return this.getFirstName() + " " + this.getLastName();
+    };
+
+    this.getFirstName = function() {
+        return firstName = first;
+    };
+
+    this.getLastName = function() {
+        return lastName = last;
+    };
+
+    this.setFirstName = function(first) {
+        firstName = first;
+    };
+
+    this.setLastName = function(last) {
+        lastName = last;
+    };
+
+    this.setFullName = function(first,last){
+        this.setFirstName(first);
+        this.setLastName(last);
+        return this.getFullName();
+    }
+};
 ```
