@@ -9,6 +9,7 @@
     - [1. Smallest Common Multiple -\> Сложность 5/5](#1-smallest-common-multiple---сложность-55)
     - [2. Drop it -\> Сложность 2/5](#2-drop-it---сложность-25)
     - [3. Steamroller -\> Сложность 3/5](#3-steamroller---сложность-35)
+    - [4. Map the Debris  -\> Сложность 1/5](#4-map-the-debris----сложность-15)
   - [Strings](#strings)
     - [1. Compare strings -\> Сложность 3/5](#1-compare-strings---сложность-35)
     - [2. Convert the characters -\> Сложность 2/5](#2-convert-the-characters---сложность-25)
@@ -182,6 +183,42 @@ dropElements([1, 2, 3, 4], function(n) {return n >= 3;});
         const flat = [].concat(...arr);
         return flat.some(Array.isArray)? SteamrollArray(flat) : flat;
     }
+```
+
+### 4. Map the Debris  -> Сложность 1/5
+
+**Условие:**
+
+1. вернуть новый массив объектов с обновленными свойствами
+2. преобразовать высоту в круговую орбиту
+*orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]);*
+*return [{name: "sputnik", orbitalPeriod: 86400}]*
+
+**Info:**
+
+**Алгоритм:**
+
+1. создать новый массив
+2. перебрать массив
+3. перебирая массив создать новый объект
+4. добавить новый объект в массив
+5. вернуть массив
+
+*Kepler's Third Law*
+![Kepler's Third Law](image.png)
+
+```javascript
+function orbitalPeriod(arr) {
+    const GM = 398600.4418;
+  const earthRadius = 6367.4447;
+
+  return arr.map(({ name, avgAlt }) => {
+    const earth = earthRadius + avgAlt;
+    const orbitalPeriod = Math.round(2 * Math.PI * Math.sqrt(Math.pow(earth, 3) / GM));
+    return { name, orbitalPeriod };
+  });
+}
+
 ```
 
 ## Strings
