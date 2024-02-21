@@ -10,11 +10,12 @@
     - [2. Drop it -\> Сложность 2/5](#2-drop-it---сложность-25)
     - [3. Steamroller -\> Сложность 3/5](#3-steamroller---сложность-35)
     - [4. Map the Debris  -\> Сложность 1/5](#4-map-the-debris----сложность-15)
+    - [5. Everything Be True -\> Сложность 3/5](#5-everything-be-true---сложность-35)
   - [Strings](#strings)
     - [1. Compare strings -\> Сложность 3/5](#1-compare-strings---сложность-35)
     - [2. Convert the characters -\> Сложность 2/5](#2-convert-the-characters---сложность-25)
     - [3. Binary Agents -\> Сложность 1/5](#3-binary-agents---сложность-15)
-    - [4. Everything Be True -\> Сложность 3/5](#4-everything-be-true---сложность-35)
+    - [4. Palindrome Checker  -\> Сложность 1/5](#4-palindrome-checker----сложность-15)
   - [Numbers](#numbers)
     - [1. Sum All Odd Fibonacci Numbers -\> Сложность 4/5](#1-sum-all-odd-fibonacci-numbers---сложность-45)
     - [2. Sum all Primes -\> Сложность 5/5](#2-sum-all-primes---сложность-55)
@@ -183,6 +184,8 @@ dropElements([1, 2, 3, 4], function(n) {return n >= 3;});
         const flat = [].concat(...arr);
         return flat.some(Array.isArray)? SteamrollArray(flat) : flat;
     }
+
+    steamrollArray([1, [2], [3, [[4]]]]);
 ```
 
 ### 4. Map the Debris  -> Сложность 1/5
@@ -219,6 +222,43 @@ function orbitalPeriod(arr) {
   });
 }
 
+```
+
+### 5. Everything Be True -> Сложность 3/5
+
+```javascript
+    truthCheck(
+    [
+        {key:[{key: ""}]},
+        {key:{}},
+        {key:[]},
+        {}
+    ],
+    "предикат")
+```
+
+**Условие:**
+Являются ли предикат верным для всех элементов коллекции
+
+**Info:**
+
+**Алгоритм:**
+
+1. перебрать массив .every
+2. если элемент коллекции с значением предикат false вернуть false
+
+```javascript
+function truthCheck(collection, pre) {
+    return collection.every(obj => obj[pre]);
+}
+
+function truthCheck(collection, pre) {
+  return collection.every(function (element) {
+    return element.hasOwnProperty(pre) && Boolean(element[pre]);
+  });
+}
+
+ruthCheck([{ name: "Quincy", role: "Founder", isBot: false }, { name: "Naomi", role: "", isBot: false }, { name: "Camperbot", role: "Bot", isBot: true }], "isBot");
 ```
 
 ## Strings
@@ -324,41 +364,35 @@ fromCharCode(13) -> "A"
 
 ```
 
-### 4. Everything Be True -> Сложность 3/5
-
-```javascript
-    truthCheck(
-    [
-        {key:[{key: ""}]},
-        {key:{}},
-        {key:[]},
-        {}
-    ],
-    "предикат")
-```
+### 4. Palindrome Checker  -> Сложность 1/5
 
 **Условие:**
-Являются ли предикат верным для всех элементов коллекции
+Найти палиндром в строке
+
+**пример:**
 
 **Info:**
 
+Палиндром - *это слово или фраза которая читается и в одном направлении и в другом*
+
 **Алгоритм:**
 
-1. перебрать массив .every
-2. если элемент коллекции с значением предикат false вернуть false
+1. очистить строку от спец символов
+2. перебрать строку
+3. разбить строку на массив
+4. перевернуть массив
+5. сравнить две строки
+6. вернуть результат
 
 ```javascript
-function truthCheck(collection, pre) {
-    return collection.every(obj => obj[pre]);
+function palindrome(str) {
+    const cleanStr = str.toLowerCase().replace(/[\W_]/g, "");
+    const reversedStr = cleanStr.split("").reverse().join("");
+
+    return cleanStr === reversedStr;
 }
 
-function truthCheck(collection, pre) {
-  return collection.every(function (element) {
-    return element.hasOwnProperty(pre) && Boolean(element[pre]);
-  });
-}
-
-ruthCheck([{ name: "Quincy", role: "Founder", isBot: false }, { name: "Naomi", role: "", isBot: false }, { name: "Camperbot", role: "Bot", isBot: true }], "isBot");
+palindrome("eye");
 ```
 
 ## Numbers
