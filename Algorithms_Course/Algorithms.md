@@ -19,6 +19,7 @@
   - [Numbers](#numbers)
     - [1. Sum All Odd Fibonacci Numbers -\> Сложность 4/5](#1-sum-all-odd-fibonacci-numbers---сложность-45)
     - [2. Sum all Primes -\> Сложность 5/5](#2-sum-all-primes---сложность-55)
+    - [3. Roman Numeral Converter -\> Сложность 5/5](#3-roman-numeral-converter---сложность-55)
   - [Function](#function)
     - [1. Arguments Optional  -\> Сложность 3/5](#1-arguments-optional----сложность-35)
     - [2. Make a Person  -\> Сложность 3/5](#2-make-a-person----сложность-35)
@@ -487,6 +488,228 @@ function sumPrimes(num) {
 }
 
 sumPrimes(assad)
+```
+
+### 3. Roman Numeral Converter -> Сложность 5/5
+
+**Условие:**
+Преобразовать число в римскую систему
+
+**Info:**
+
+**Алгоритм:**
+
+1. создать объект с ключами и значениями
+2. преобразовать число строку и разбить на массив строк
+3. перебрать массив
+4. преобразовать каждый элемент в число
+5.
+
+```javascript
+function convertToRoman(num) {
+  const romanToNum = {
+    1: "I",
+    4: "IV",
+    5: "V",
+    9: "IX",
+    10: "X",
+    40: "XL",
+    50: "L",
+    90: "XC",
+    100: "C",
+    400: "CD",
+    500: "D",
+    900: "CM",
+    1000: "M",
+  };
+
+  let digits = [];
+
+  const getComponents = (num) => {
+    while (num > 0) {
+      let digit = num % 10; // получаем последнюю цифру
+      digits.unshift(digit); // добавляем ее в начало массива
+      num = Math.floor(num / 10); // удаляем последнюю цифру из числа
+    }
+    let components = digits.map(
+      (digit, index) => digit * Math.pow(10, digits.length - index - 1)
+    );
+    components = components.filter((component) => component !== 0);
+    console.log(components);
+    return components;
+  };
+
+  const romanNum = getComponents(num).reduce((acc, el, index) => {
+    let sign = "";
+
+    if (el < 4) {
+      for (let i = 1; i <= el; i++) {
+        sign += romanToNum[1];
+      }
+
+      return (acc += sign);
+    }
+
+    if ((el >= 4) & (el < 9)) {
+      if (el === 4) {
+        sign += romanToNum[4];
+      } else {
+        sign += romanToNum[5];
+
+        for (let i = 0; i < el - 5; i++) {
+          sign += romanToNum[1];
+        }
+      }
+
+      return (acc += sign);
+    }
+
+    if (el === 9) {
+      return (acc += romanToNum[9]);
+    }
+
+    if (el >= 10 && el < 40) {
+      if (el === 10) {
+        sign += romanToNum[10];
+      } else {
+        sign += romanToNum[10];
+
+        for (let i = 1; i < el / 10; i++) {
+          sign += romanToNum[10];
+        }
+      }
+
+      return (acc += sign);
+    }
+
+    if (el >= 40 && el < 50) {
+      if (el === 40) {
+        sign += romanToNum[40];
+      } else {
+        sign += romanToNum[40];
+
+        for (let i = 1; i < el / 10; i++) {
+          sign += romanToNum[40];
+        }
+      }
+
+      return (acc += sign);
+    }
+
+    if (el >= 50 && el < 90) {
+      if (el === 50) {
+        sign += romanToNum[50];
+      } else {
+        sign += romanToNum[50];
+
+        const result = el - 50;
+        console.log(result);
+
+        for (let i = 1; i <= result / 10; i++) {
+          sign += romanToNum[10];
+        }
+      }
+
+      return (acc += sign);
+    }
+
+    if (el >= 90 && el < 100) {
+      if (el === 90) {
+        sign += romanToNum[90];
+      } else {
+        sign += romanToNum[90];
+
+        for (let i = 1; i < el / 90; i++) {
+          sign += romanToNum[90];
+        }
+      }
+
+      return (acc += sign);
+    }
+
+    if (el >= 100 && el < 400) {
+      if (el === 100) {
+        sign += romanToNum[100];
+      } else {
+        const result = el - 100;
+        console.log(result);
+
+        sign += romanToNum[100];
+
+        for (let i = 1; i < result / 10; i++) {
+          sign += romanToNum[10];
+        }
+      }
+
+      return (acc += sign);
+    }
+
+    if (el >= 400 && el < 500) {
+      if (el === 400) {
+        sign += romanToNum[400];
+      } else {
+        sign += romanToNum[400];
+
+        for (let i = 1; i < el / 400; i++) {
+          sign += romanToNum[400];
+        }
+      }
+
+      return (acc += sign);
+    }
+
+    if (el >= 500 && el < 900) {
+      if (el === 500) {
+        sign += romanToNum[500];
+      } else {
+        const result = el - 500;
+
+        sign += romanToNum[500];
+
+        for (let i = 0; i < result / 100; i++) {
+          sign += romanToNum[100];
+        }
+      }
+
+      return (acc += sign);
+    }
+
+    if (el >= 900 && el < 1000) {
+      if (el === 900) {
+        sign += romanToNum[900];
+      } else {
+        const result = el - 900;
+
+        sign += romanToNum[900];
+
+        for (let i = 0; i < result / 100; i++) {
+          sign += romanToNum[100];
+        }
+      }
+
+      return (acc += sign);
+    }
+
+    if (el >= 1000) {
+      if (el === 1000) {
+        sign += romanToNum[1000];
+      } else {
+        for (let i = 0; i < el / 1000; i++) {
+          sign += romanToNum[1000];
+        }
+      }
+      return (acc += sign);
+    }
+
+    return acc;
+  }, "");
+
+  console.log(romanNum);
+
+  return romanNum;
+}
+
+convertToRoman(2000);
 ```
 
 ## Function
