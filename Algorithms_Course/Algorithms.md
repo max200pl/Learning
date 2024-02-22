@@ -15,7 +15,7 @@
     - [1. Compare strings -\> Сложность 3/5](#1-compare-strings---сложность-35)
     - [2. Convert the characters -\> Сложность 2/5](#2-convert-the-characters---сложность-25)
     - [3. Binary Agents -\> Сложность 1/5](#3-binary-agents---сложность-15)
-    - [4. Palindrome Checker  -\> Сложность 1/5](#4-palindrome-checker----сложность-15)
+    - [4. Palindrome Checker -\> Сложность 1/5](#4-palindrome-checker---сложность-15)
   - [Numbers](#numbers)
     - [1. Sum All Odd Fibonacci Numbers -\> Сложность 4/5](#1-sum-all-odd-fibonacci-numbers---сложность-45)
     - [2. Sum all Primes -\> Сложность 5/5](#2-sum-all-primes---сложность-55)
@@ -365,7 +365,7 @@ fromCharCode(13) -> "A"
 
 ```
 
-### 4. Palindrome Checker  -> Сложность 1/5
+### 4. Palindrome Checker -> Сложность 1/5
 
 **Условие:**
 Найти палиндром в строке
