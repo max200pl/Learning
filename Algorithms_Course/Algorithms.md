@@ -16,6 +16,7 @@
     - [2. Convert the characters -\> Сложность 2/5](#2-convert-the-characters---сложность-25)
     - [3. Binary Agents -\> Сложность 1/5](#3-binary-agents---сложность-15)
     - [4. Palindrome Checker -\> Сложность 1/5](#4-palindrome-checker---сложность-15)
+    - [5. Caesars Cipher -\> Сложность 4/5](#5-caesars-cipher---сложность-45)
   - [Numbers](#numbers)
     - [1. Sum All Odd Fibonacci Numbers -\> Сложность 4/5](#1-sum-all-odd-fibonacci-numbers---сложность-45)
     - [2. Sum all Primes -\> Сложность 5/5](#2-sum-all-primes---сложность-55)
@@ -394,6 +395,86 @@ function palindrome(str) {
 }
 
 palindrome("eye");
+```
+
+### 5. Caesars Cipher -> Сложность 4/5
+
+**Условие:**
+
+**пример:**
+
+**Info:**
+Шифр Цезаря - *это шифр подстановки, который использует сдвиг по алфавиту*
+
+**Алгоритм:**
+
+1. создать объект с ключами и значениями
+2. перебрать строку
+3. проверить на наличие символа в объекте
+4. заменить символ на новый
+5. вернуть новую строку
+6. вернуть результат
+
+```javascript
+function rot13(str) {
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                      //EF         //RS
+    let newStr = ""
+
+  const encrypted = (currChar) => {
+    let encryptedChar
+
+    const indexCurChar = alphabet.indexOf(currChar);
+
+    const after = alphabet.length - 1 - indexCurChar;
+
+    encryptedChar = 13 + indexCurChar;
+
+    if( indexCurChar + 13 > alphabet.length -1) {
+      encryptedChar = (after + indexCurChar) - alphabet.length + 13 - after;
+    }
+
+    const char = alphabet.charAt(encryptedChar);
+
+    return char
+  }
+
+  newStr =  str.split("").reduce((acc, currChar, index)=>{
+    /*   console.log(el); */
+      if(alphabet.includes(currChar)){
+          return acc += encrypted(currChar)
+      } else {
+          return acc += currChar
+      }
+
+  }, "")
+
+
+  return newStr
+}
+
+function rot13(str) {
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    return str
+        .split("")
+        .map((char) => {
+        const index = alphabet.indexOf(char);
+            if (index === -1) {
+                return char;
+            }
+            const newIndex = (index + 13) % 26;
+            return alphabet[newIndex];
+        })
+        .join("");
+}
+
+function rot13(str) {
+    return str.replace(/[A-Z]/g, (char) =>
+        String.fromCharCode((char.charCodeAt(0) % 26) + 65)
+    );
+}
+
+rot13("SERR PBQR PNZC"); // FREE CODE CAMP
 ```
 
 ## Numbers
