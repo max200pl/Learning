@@ -24,6 +24,8 @@
   - [Function](#function)
     - [1. Arguments Optional  -\> Сложность 3/5](#1-arguments-optional----сложность-35)
     - [2. Make a Person  -\> Сложность 3/5](#2-make-a-person----сложность-35)
+  - [Regular Expressions](#regular-expressions)
+    - [1. Telephone Number Validator -\> Сложность 3/5](#1-telephone-number-validator---сложность-35)
 
 <!--
 ### 1. Smallest Common Multiple  -> Сложность 1/5
@@ -903,4 +905,35 @@ const Person = function(first, last) {
         return this.getFullName();
     }
 };
+```
+
+## Regular Expressions
+
+1. Регулярные выражения - это шаблон для поиска и замены текста
+
+### 1. Telephone Number Validator -> Сложность 3/5
+
+**Условие:**
+
+1. Проверить валидность номера телефона
+2. Валидный номер телефона должен быть в формате 555-555-5555
+3. Валидный номер телефона должен быть в формате (555)555-5555
+
+**пример:**
+
+**Info:**
+
+**Алгоритм:**
+
+1. создать регулярное выражение
+2. проверить на валидность
+
+```javascript
+
+function telephoneCheck(str) {
+  const regExp = /^(1\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/;
+  return regExp.test(str);
+}
+
+telephoneCheck("555-555-5555");
 ```
