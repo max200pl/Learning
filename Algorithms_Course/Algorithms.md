@@ -11,6 +11,7 @@
     - [3. Steamroller -\> Сложность 3/5](#3-steamroller---сложность-35)
     - [4. Map the Debris  -\> Сложность 1/5](#4-map-the-debris----сложность-15)
     - [5. Everything Be True -\> Сложность 3/5](#5-everything-be-true---сложность-35)
+    - [6. Checker Cash Register -\> Сложность 5/5](#6-checker-cash-register---сложность-55)
   - [Strings](#strings)
     - [1. Compare strings -\> Сложность 3/5](#1-compare-strings---сложность-35)
     - [2. Convert the characters -\> Сложность 2/5](#2-convert-the-characters---сложность-25)
@@ -263,6 +264,126 @@ function truthCheck(collection, pre) {
 }
 
 ruthCheck([{ name: "Quincy", role: "Founder", isBot: false }, { name: "Naomi", role: "", isBot: false }, { name: "Camperbot", role: "Bot", isBot: true }], "isBot");
+```
+
+### 6. Checker Cash Register -> Сложность 5/5
+
+```javascript
+function checkCashRegister(price, cash, cid) {
+    const enumStatus = {
+        INSUFFICIENT_FUNDS: "INSUFFICIENT_FUNDS",
+        CLOSED: "CLOSED",
+        OPEN: "OPEN",
+    };
+
+    const currencyUnit = {
+        "ONE HUNDRED": 100,
+        TWENTY: 20,
+        TEN: 10,
+        FIVE: 5,
+        ONE: 1,
+        QUARTER: 0.25,
+        DIME: 0.1,
+        NICKEL: 0.05,
+        PENNY: 0.01,
+    };
+
+    const roundMoney = (money) => Math.round(money * 100) / 100;
+
+    let sumOfCid = 0;
+
+
+
+    sumOfCid = cid.reduce((sum, arr) => {
+        return (sum += arr[1]);
+    }, 0);
+
+    sumOfCid = roundMoney(sumOfCid);
+
+    console.log(sumOfCid, "sum bank");
+
+
+    const getChange = (cash, price) => {
+        let changeBanc = [];
+        let sumChange = cash - price;
+
+        sumChange = Math.round(sumChange * 100) / 100;
+
+        for (let el in currencyUnit) {
+            if (currencyUnit[el] < sumChange) {
+                const changeX = Math.floor(sumChange / currencyUnit[el]);
+
+                for (let i = 0; i < cid.length; i++) {
+                    if (cid[i][0] === el) {
+                        let el_bank = cid[i][1]; // 20
+                        let initialEl_bank = cid[i][1];
+
+                        console.log(el_bank, "++++bank");
+                        console.log(currencyUnit[el], "...делители");
+                        console.log(sumChange, "----здача");
+                        console.log(changeX, "changeX");
+                        console.log(
+                            currencyUnit[el] * changeX,
+                            "соколько нужно вычесть"
+                        );
+                        console.log(el, "ИМЯ");
+
+                        for (let s = 0; s < changeX; s++) {
+                            if (el_bank > 0) {
+                                if(el === "DIME" ){
+
+                                    console.log(el_bank, "_________+++++__________el_bank")
+                                    console.log(sumChange, "_______+++++_______________sumChange");
+                                    el_bank =  (el_bank  - currencyUnit[el]).toFixed(3)
+                                    sumChange =   (sumChange - currencyUnit[el]).toFixed(3)
+
+                                    console.log(el_bank, "______________________el_bank")
+                                    console.log(sumChange, "______________________sumChange");
+                                }else{
+                                    el_bank = roundMoney(el_bank - currencyUnit[el]);
+                                    console.log(el_bank, "______________________el_bank")
+                                    sumChange = roundMoney(sumChange - currencyUnit[el]);
+                                    console.log(sumChange, "______________________sumChange")
+                                }
+                            } else {
+                                continue;
+                            }
+                        }
+                        const result = roundMoney(initialEl_bank - el_bank);
+                        changeBanc.push([el, result]);
+                    }
+                }
+            }
+        }
+
+       return changeBanc
+    };
+
+
+    if (cash - price === sumOfCid) {
+      return  {
+          status: enumStatus.CLOSED,
+          change:  cid,
+      };
+    }
+
+     if(sumOfCid - cash < 0){
+      return {
+        status: enumStatus.INSUFFICIENT_FUNDS, // Open | Close
+        change: [],
+      };
+    }
+
+    return {
+        status: enumStatus.OPEN, // Open | Close
+        change: getChange(cash, price),
+    };
+
+}
+
+ checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]])
+
+// {status: "OPEN", change: [["QUARTER", 0.5]]}
 ```
 
 ## Strings
