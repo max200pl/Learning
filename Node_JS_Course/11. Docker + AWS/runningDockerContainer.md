@@ -75,13 +75,13 @@ FROM node:lts-alpine
 
 WORKDIR /app
 
-COPY package*.jason ./
+COPY package*.json ./
 
-COPY client/package*.jason client/
+COPY client/package*.json client/
 RUN npm run install-client --omit=dev
 
 RUN npm run install-server --omit=dev
-COPY server/package*.jason server/
+COPY server/package*.json server/
 
 COPY client/ client/
 RUN npm run build --prefix client
@@ -132,7 +132,7 @@ docker build . -t maksymposkannyi/portfolio-react
 - `maksymposkannyi/portfolio-react` is the name of the image
 
 ```bash
-docker run -it -p 8000:8000 maksymposkannyi/portfolio-react'
+docker run -it -p 8000:8000 maksymposkannyi/portfolio-react
 ```
 
 ### How we run our applications as Docker containers?
