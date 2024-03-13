@@ -133,6 +133,8 @@ docker build . -t maksymposkannyi/portfolio-react
 
 ```bash
 docker run -it -p 8000:8000 maksymposkannyi/portfolio-react
+
+docker run -it -p 8080:8080 -p 3000:3000 maksymposkannyi/portfolio-react
 ```
 
 ### How we run our applications as Docker containers?
