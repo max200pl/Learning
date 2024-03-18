@@ -1,66 +1,20 @@
 const express = require('express');
-const { buildSchema } = require('graphql'); // allows us to build a schema from a string
+const path = require('path');
 const { graphqlHTTP } = require('express-graphql'); // express middleware for graphql
+const { makeExecutableSchema } = require('@graphql-tools/schema')
+const { loadFilesSync } = require('@graphql-tools/load-files')
 
-const schema = buildSchema(`
-    type Query {
-        products: [Product]
-        orders: [Order]
-    }
+const typesArray = loadFilesSync('**/*', {
+    extensions: ['graphql'],
+});
 
-    type Product {
-        id: ID!
-        description: String!
-        reviews: [Review]
-        price: Float!
-    }
-
-    type Review {
-        rating: Int!
-        comment: String
-    }
-
-    type Order {
-        date: String!
-        subTotal: Float!
-        items: [OrderItem]
-    }
-
-    type OrderItem {
-        product: Product!
-        quantity: Int!
-    }
-`);
+const schema = makeExecutableSchema({
+    typeDefs: [typesArray]
+})
 
 const root = {
-    products: [
-        {
-            id: "redshoes",
-            description: "Red shoes",
-            price: 123.44,
-        },
-        {
-            id: "blueshoes",
-            description: "Blue shoes",
-            price: 44.2,
-        },
-    ],
-    orders: [
-        {
-            date: "2021-12-12",
-            subTotal: 123.44,
-            items: [
-                {
-                    product: {
-                        id: "redshoes",
-                        description: "Old red shoes",
-                        price: 42.11,
-                    },
-                    quantity: 2
-                }
-            ]
-        }
-    ]
+    products: require('./products/products.model'),
+    orders: require('./orders/orders.model')
 }
 
 const app = express();

@@ -104,3 +104,30 @@ const schema = buildSchema(`
 - used under the hood by the Apollo graphical framework
 - available as a standalone package
 ![alt text](image-14.png)
+
+## Executable Schemas
+
+``` bash
+npm install @graphql-tools/schema
+npm install @graphql-tools/load-files
+```
+
+``` javascript
+import { makeExecutableSchema } from '@graphql-tools/schema';
+```
+
+- contain array of schema strings
+
+``` bash
+npm install @graphql-tools/load-files
+```
+
+``` javascript
+const typesArray = loadFilesSync('**/*', {
+    extensions: ['graphql'],
+});
+
+const schema = makeExecutableSchema({
+    typeDefs: [typesArray]
+})
+```
