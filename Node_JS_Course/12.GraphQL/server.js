@@ -4,14 +4,63 @@ const { graphqlHTTP } = require('express-graphql'); // express middleware for gr
 
 const schema = buildSchema(`
     type Query {
-        description: String
-        price: Float
+        products: [Product]
+        orders: [Order]
+    }
+
+    type Product {
+        id: ID!
+        description: String!
+        reviews: [Review]
+        price: Float!
+    }
+
+    type Review {
+        rating: Int!
+        comment: String
+    }
+
+    type Order {
+        date: String!
+        subTotal: Float!
+        items: [OrderItem]
+    }
+
+    type OrderItem {
+        product: Product!
+        quantity: Int!
     }
 `);
 
 const root = {
-    description: "Red Shirt",
-    price: 29.99
+    products: [
+        {
+            id: "redshoes",
+            description: "Red shoes",
+            price: 123.44,
+        },
+        {
+            id: "blueshoes",
+            description: "Blue shoes",
+            price: 44.2,
+        },
+    ],
+    orders: [
+        {
+            date: "2021-12-12",
+            subTotal: 123.44,
+            items: [
+                {
+                    product: {
+                        id: "redshoes",
+                        description: "Old red shoes",
+                        price: 42.11,
+                    },
+                    quantity: 2
+                }
+            ]
+        }
+    ]
 }
 
 const app = express();

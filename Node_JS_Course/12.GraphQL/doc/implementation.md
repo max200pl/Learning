@@ -56,3 +56,51 @@ app.use("/graphql", graphqlHTTP({
     graphiql: true
 }));
 ```
+
+### Build Schema
+
+- `price: Float!` graphql the type system that it supports unique identifiers or Ids
+- `id: ID!` it a special qraphql type that is used to identify objects
+
+``` javascript
+const schema = buildSchema(`
+   type Query {
+        products: [Product]
+        orders: [Order]
+    }
+
+     type Product {
+        id: ID!
+        description: String!
+        reviews: [Review]
+        price: Float!
+    }
+
+    type Review {
+        rating: Int!
+        comment: String
+    }
+
+    type Order {
+        date: String!
+        subTotal: Float!
+        items: [OrderItem]
+    }
+
+    type OrderItem {
+        product: Product!
+        quantity: Int!
+    }
+`);
+
+
+![alt text](image-13.png)
+```
+
+## GraphQL Tools
+
+<https://the-guild.dev/graphql/tools>
+
+- used under the hood by the Apollo graphical framework
+- available as a standalone package
+![alt text](image-14.png)
