@@ -34,21 +34,25 @@ react-portfolio
 exit
 ```
 
-### yum
+### SSH
 
-- is a package manager for Linux (npm for node)
+- is a comparable secure protocol for communication between two devices (to shell into a remote machine)
+
+### Setup Docker container on AWS EC2
+
+- yum is a package manager for Linux (npm for node)
 
 - `sudo yum update -y`  update all the packages on the system (update the system without asking for confirmation) run the command as root
 
 - `sudo yum install docker`  install the docker package
 
-- `sudo service docker start`  start the docker service
+- `sudo service docker start`  start the docker service in the background
 
 - `sudo docker info`  check the docker service
 
 - `sudo usermod -a -G docker ec2-user`  add the ec2-user to the docker group (to avoid using sudo when running docker commands)
 
-```bash
+```bash Putty
 sudo yum update -y
 
 sudo yum install docker
@@ -66,7 +70,7 @@ sudo usermod -a -G docker ec2-user
 
 - is the Amazon special build service for deploying Docker containers
 
-- ESC is cost money (mor complicated)
+- ESC is cost money (more complicated)
 
 #### Docker Compose
 
@@ -75,9 +79,12 @@ sudo usermod -a -G docker ec2-user
 - `--restart=always`  restart the container automatically if it stops
 
 ``` bash
+docker login
+
 docker run --restart=always -p 8000:8000 -p 3000:3000 maksymposkannyi/portfolio-react
 ```
 
 ### Node app crashes on AWS
 
 - use `pm2` to run the node app
+-
