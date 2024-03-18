@@ -51,4 +51,22 @@
 - grab the data you need (using functions calls resolvers)
 - we no longer have to make multiple requests to the server to get the data we need
 - net work question is faster and more efficient
--
+
+### Compare Rest and Restful API
+
+![alt text](image-10.png)
+
+Advantages of GraphQL:
+
+- No under fetching of data (all comes for a single request)
+- No over fetching of data (only get the data you need)
+- Speeds up development (no need to make multiple requests to the server)
+- Schema and types (automatically generated documentation for your API)
+
+![alt text](image-11.png)
+
+Disadvantages of GraphQL:
+
+- Flexibility (can be a disadvantage)
+- Difficult cache (we need to look the query to cache all the fields for all the most common queries)
+- Not Restful (many tools won't support GraphQL)
