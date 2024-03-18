@@ -42,3 +42,17 @@ app.use("/graphql", graphqlHTTP({
 ### Postman for testing
 
 ![alt text](image-12.png)
+
+## Tool for testing GraphiQL
+
+- is a Frontend application
+- this tool already included out of the box with graphql package
+
+### added to the server
+
+```javascript
+
+app.use("/graphql", graphqlHTTP({
+    graphiql: true
+}));
+```
