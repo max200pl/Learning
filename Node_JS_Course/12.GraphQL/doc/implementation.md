@@ -131,3 +131,72 @@ const schema = makeExecutableSchema({
     typeDefs: [typesArray]
 })
 ```
+
+## Resolvers
+
+![alt text](image-15.png)
+![alt text](image-16.png)
+
+- used to resolve the data for the fields in the schema
+- it is a function that returns the data for a field in the schema
+
+- `parent` - returned value from the root
+- `args` - if need parameterized queries (if we want to filter the data)
+- `context` - useful for data that's shared across all resolvers
+    ( example: witch use is login information, authentication information, etc.)
+- `info` - the information about the execution state of the server
+
+``` javascript
+const resolvers = {
+    Query: {
+        products: (parent, args, context, info ) => {
+           console.log("Getting products...")
+            const product = await Promise.resolve(parent.products);
+            return product;
+        },
+        orders: () => {
+            return orders;
+        }
+    }
+}
+```
+
+### Structure of the resolvers
+
+- separate file for each type of resolver
+- each file contains a resolver for each field in the type
+
+``` javascript
+const products = [
+    {
+        id: "redshoes",
+        description: "Red shoes",
+        price: 123.44,
+    },
+    {
+        id: "blueshoes",
+        description: "Blue shoes",
+        price: 44.2,
+    },
+]
+
+function getAllProducts() {
+    return products;
+}
+
+module.exports = {
+    getAllProducts
+}
+```
+
+``` javascript
+const productsModel = require('./products.data');
+
+module.exports = {
+    Query: {
+        products: async () => {
+            return productsModel.getAllProducts();
+        }
+    }
+}
+```
