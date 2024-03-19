@@ -200,3 +200,36 @@ module.exports = {
     }
 }
 ```
+
+## Filtering with Queries and resolvers
+
+![alt text](image-17.png)
+
+``` javascript
+function getAllProductsByPrice(min, max) {
+    return products.filter(product => product.price > min && product.price <= max);
+}
+```
+
+- `productByPrice` - query that returns products within a price range
+- `minPrice!` - minimum price (required)
+- `maxPrice!` - maximum price (required)
+- `Product` - type of the return value
+
+``` graphql
+    type Query {
+       products: async () => {
+            return productsModel.getAllProducts();
+        },
+        productsByPrice: (parent, args) => {
+            return productsModel.getAllProductsByPrice(args.min, args.max);
+        }
+    }
+```
+
+``` graphql
+   type Query {
+        products: [Product]
+        productByPrice(min: Float, max: Float): [Product]
+    }
+```
