@@ -233,3 +233,29 @@ function getAllProductsByPrice(min, max) {
         productByPrice(min: Float, max: Float): [Product]
     }
 ```
+
+## Mutations In action
+
+![alt text](image-18.png)
+
+- `Mutation` - if need do CRUD operations
+- if need to update the data in the server use `mutation` instead of `query`
+- the arguments in our mutation contain all the data that we`re saving on the server
+
+``` graphql
+   type Mutation {
+        addNewProduct(id: ID!, description: String!, price: Float!): Product
+    }
+```
+
+``` javascript
+module.exports = {
+    Query: {
+        .......
+    },
+    Mutation: {
+        addProduct: (_, args) => {
+            return productsModel.addProduct(args.id, args.description, args.price);
+        }
+    }
+}
