@@ -259,3 +259,30 @@ module.exports = {
         }
     }
 }
+```
+
+### Create a new reviews for the product
+
+![alt text](image-19.png)
+
+``` graphql
+   type Mutation {
+        addNewReview(productId: ID!, rating: Int!, comment: String): Review
+    }
+```
+
+- add an alias to the mutation to differentiate between the two products
+
+- `shoeReview` - alias for the first mutation
+- `jacketReview` - alias for the second mutation
+
+``` graphql
+   mutation {
+        shoeReview: addProductReview(id:"redshoes", rating:5, comment:"not good this shoes"){
+            rating,
+        }
+        jacketReview: addProductReview(id:"orangejacket", rating:5, comment:"Very orange"){
+            rating,
+        }
+    }
+```
