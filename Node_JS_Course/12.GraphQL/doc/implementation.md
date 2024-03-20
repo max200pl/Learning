@@ -41,7 +41,7 @@ app.use("/graphql", graphqlHTTP({
 
 ### Postman for testing
 
-![alt text](image-12.png)
+![alt text](./screenshots/image-12.png)
 
 ## Tool for testing GraphiQL
 
@@ -94,7 +94,7 @@ const schema = buildSchema(`
 `);
 
 
-![alt text](image-13.png)
+![alt text](./screenshots/image-13.png)
 ```
 
 ## GraphQL Tools
@@ -103,7 +103,7 @@ const schema = buildSchema(`
 
 - used under the hood by the Apollo graphical framework
 - available as a standalone package
-![alt text](image-14.png)
+![alt text](./screenshots/image-14.png)
 
 ## Executable Schemas
 
@@ -134,8 +134,8 @@ const schema = makeExecutableSchema({
 
 ## Resolvers
 
-![alt text](image-15.png)
-![alt text](image-16.png)
+![alt text](./screenshots/image-15.png)
+![alt text](./screenshots/image-16.png)
 
 - used to resolve the data for the fields in the schema
 - it is a function that returns the data for a field in the schema
@@ -203,7 +203,7 @@ module.exports = {
 
 ## Filtering with Queries and resolvers
 
-![alt text](image-17.png)
+![alt text](./screenshots/image-17.png)
 
 ``` javascript
 function getAllProductsByPrice(min, max) {
@@ -236,7 +236,7 @@ function getAllProductsByPrice(min, max) {
 
 ## Mutations In action
 
-![alt text](image-18.png)
+![alt text](./screenshots/image-18.png)
 
 - `Mutation` - if need do CRUD operations
 - if need to update the data in the server use `mutation` instead of `query`
@@ -263,7 +263,7 @@ module.exports = {
 
 ### Create a new reviews for the product
 
-![alt text](image-19.png)
+![alt text](./screenshots/image-19.png)
 
 ``` graphql
    type Mutation {

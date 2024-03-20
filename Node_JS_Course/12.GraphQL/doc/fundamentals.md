@@ -2,36 +2,36 @@
 
 ## Main information
 
-![alt text](image.png)
+![alt text](./screenshots/image.png)
 
 - graphql - is a query language for your API
 - always describe the data you with a schema
-![alt text](image-1.png)
+![alt text](./screenshots/image-1.png)
 - graphql has own type system
 - automating generated documentation for your API
-- ![alt text](image-6.png)
+- ![alt text](./screenshots/image-6.png)
 
 ## Why use GraphQL
 
 - Rest ful API
-![alt text](image-4.png)
+![alt text](./screenshots/image-4.png)
 
     **GraphQL API use only one endpoint**
 - It call it the one GraphQL endpoint
 
-![alt text](image-5.png)
+![alt text](./screenshots/image-5.png)
 
 ## Query
 
 - Query - is a read operation
-![alt text](image-2.png)
+![alt text](./screenshots/image-2.png)
 
 - Get predictable results
-![alt text](image-3.png)
+![alt text](./screenshots/image-3.png)
 
 ## Use Query by multiple pace of data
 
-![alt text](image-7.png)
+![alt text](./screenshots/image-7.png)
 
 ## Compare GraphQL to REST
 
@@ -41,12 +41,12 @@
 
 ### Perfect example for e-commerce application (online store)
 
-![rest full api approach](image-8.png)
+![rest full api approach](./screenshots/image-8.png)
 
 - over-fetching of data - when you get more data than you need form the server
 - under-fetching of data - when you don't get enough data from the server
 
-![GraphQL approach](image-9.png)
+![GraphQL approach](./screenshots/image-9.png)
 
 - grab the data you need (using functions calls resolvers)
 - we no longer have to make multiple requests to the server to get the data we need
@@ -54,7 +54,7 @@
 
 ### Compare Rest and Restful API
 
-![alt text](image-10.png)
+![alt text](./screenshots/image-10.png)
 
 Advantages of GraphQL:
 
@@ -63,7 +63,7 @@ Advantages of GraphQL:
 - Speeds up development (no need to make multiple requests to the server)
 - Schema and types (automatically generated documentation for your API)
 
-![alt text](image-11.png)
+![alt text](./screenshots/image-11.png)
 
 Disadvantages of GraphQL:
 
