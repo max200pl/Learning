@@ -6,9 +6,9 @@
 
 - allows to create different channels for different purposes ( for example, chat, game, etc.)
 
-![alt text](image-7.png)
+![alt text](./Img/image-7.png)
 
 ## How to create a namespace?
 
-![alt text](image-8.png)
-![alt text](image-9.png)
+![alt text](./Img/image-8.png)
+![alt text](./Img/image-9.png)

@@ -7,7 +7,7 @@
 
 ## Canvas
 
-![alt text](image.png)
+![alt text](./Img/canvas/image.png)
 <https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Drawing_shapes>
 
 - canvas can used for both 2D and 3D graphics
@@ -22,8 +22,8 @@ fillRect(x, y, width, height) - fills a rectangle
 
 <https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D>
 
-![alt text](image-1.png)
+![alt text](./Img/canvas/image-1.png)
 
-- The CanvasRenderingContext2D interface is used for drawing rectangles, text, images and other objects onto the canvas element.
+- The CanvasRenderingContext2D interface is used for drawing rectangles, text,/canvas/images and other objects onto the canvas element.
 
-![alt text](image-2.png)
+![alt text](./Img/canvas/image-2.png)

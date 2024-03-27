@@ -6,4 +6,4 @@
 
 ## How to create a room?
 
-![alt text](image-10.png)
+![alt text](./Img/image-10.png)

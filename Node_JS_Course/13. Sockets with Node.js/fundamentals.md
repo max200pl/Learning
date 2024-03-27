@@ -28,7 +28,7 @@ setInterval(() => {
 - an opening or hollow that forms a holder for something
 - holder for data to be sent and received between two computers
 
-![alt text](image.png)
+![alt text](./Img/image.png)
 
 - internet protocol sockets (IP sockets)
 - datagram sockets (UDP) low latency
@@ -42,7 +42,7 @@ This is a javascript feature that allows two way communication between the clien
 
 ### Web Sockets is a protocol a way of sending messages over the internet
 
-![alt text](image-1.png)
+![alt text](./Img/image-1.png)
 
 - sockets open channels of communication between the client and the server and allow for real time communication
 
@@ -52,12 +52,12 @@ This is a javascript feature that allows two way communication between the clien
     - this module does not work in the browser. browser clients must use the native WebSocket object.
 2. socket.io: a library that enables real-time, bidirectional and event-based communication between the browser and the server. (link)<https://socket.io/>
     - this module works in the browser and in node.js
-![alt text](image-2.png)
+![alt text](./Img/image-2.png)
     - socket io is a guaranteed to hove your application run on all devices
 
 ## Socket.IO
 
-![alt text](image-3.png)
+![alt text](./Img/image-3.png)
 
 ### Server Side socket.io
 
@@ -65,13 +65,13 @@ This is a javascript feature that allows two way communication between the clien
 
 - need to support some addition functionality over the client
   - keep track of all the clients that are connected
-  ![alt text](image-4.png)
+  ![alt text](./Img/image-4.png)
 
 ### Server api
 
 - use the node event emptier pattern
-![alt text](image-5.png)
-![alt text](image-6.png)
+![alt text](./Img/image-5.png)
+![alt text](./Img/image-6.png)
 
 ### Client Side socket.io-client
 
