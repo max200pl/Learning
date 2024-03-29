@@ -6,10 +6,10 @@
   - [JavaScript Engine](#javascript-engine)
     - [Inside the Engine](#inside-the-engine)
     - [Interpreter and Compiler =\> JIT Compiler](#interpreter-and-compiler--jit-compiler)
-    - [Call Stack + Memory Heap](#call-stack--memory-heap)
-      - [Memory Heap](#memory-heap)
-      - [Call Stack](#call-stack)
-      - [Stack Overflow](#stack-overflow)
+  - [Call Stack + Memory Heap](#call-stack--memory-heap)
+    - [Memory Heap](#memory-heap)
+    - [Call Stack](#call-stack)
+    - [Stack Overflow](#stack-overflow)
       - [Garbage Collection](#garbage-collection)
       - [Memory Leaks](#memory-leaks)
     - [Optimized Code](#optimized-code)
@@ -66,14 +66,14 @@ Brendan Eich created JavaScript in 1995, and it was first implemented in the Net
    - It's the most used method today
 ![alt text](./Img/image-4.png)
 
-### Call Stack + Memory Heap
+## Call Stack + Memory Heap
 
 ![alt text](./Img/image-5.png)
 
 - Call Stack: keeps track of the functions that are being run (where in the program we are)
 - Memory Heap: stores the variables and sets up memory space for the variables and functions (where the memory is stored)
 
-#### Memory Heap
+### Memory Heap
 
 ![alt text](./Img/image-6.png)
 
@@ -87,7 +87,7 @@ const human = { // allocate memory for an object... and its values
 };
 ```
 
-#### Call Stack
+### Call Stack
 
 ![alt text](./Img/image-7.png)
 
@@ -109,7 +109,7 @@ function calculate() {
 calculate();
 ```
 
-#### Stack Overflow
+### Stack Overflow
 
 ![alt text](./Img/image-9.png)
 
