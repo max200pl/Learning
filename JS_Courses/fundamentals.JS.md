@@ -35,11 +35,11 @@
 
 Brendan Eich created JavaScript in 1995, and it was first implemented in the Netscape Navigator browser. The first JavaScript engine was created by Brendan Eich in 1995 for the Netscape Navigator browser. The engine was called SpiderMonkey, and it was written in C++.
 
-![alt text](image.png)
+![alt text](./Img/image.png)
 
 ### Inside the Engine
 
-![alt text](image-1.png)
+![alt text](./Img/image-1.png)
 
 1. Lexical Analyzes/Tokenizing (Parser)
 2. AST (Abstract Syntax Tree) [link](https://astexplorer.net/) -> it's a tree representation of the code
@@ -49,7 +49,7 @@ Brendan Eich created JavaScript in 1995, and it was first implemented in the Net
 
 ### Interpreter and Compiler => JIT Compiler
 
-![alt text](image-2.png)
+![alt text](./Img/image-2.png)
 
 1. Interpreter: Reads the code line by line and runs it
    - It can run the code immediately
@@ -57,25 +57,25 @@ Brendan Eich created JavaScript in 1995, and it was first implemented in the Net
 2. Compiler: Translates the code into machine code and runs it
    - It can optimize the code
    - But it takes some time before the code is executed
-![alt text](image-3.png)
+![alt text](./Img/image-3.png)
 
 3. JIT Compiler: A mix of both
    - Interpreter: Runs the code immediately
    - Profiler: Monitors the code
    - Compiler: Optimizes the code that is run frequently
    - It's the most used method today
-![alt text](image-4.png)
+![alt text](./Img/image-4.png)
 
 ### Call Stack + Memory Heap
 
-![alt text](image-5.png)
+![alt text](./Img/image-5.png)
 
 - Call Stack: keeps track of the functions that are being run (where in the program we are)
 - Memory Heap: stores the variables and sets up memory space for the variables and functions (where the memory is stored)
 
 #### Memory Heap
 
-![alt text](image-6.png)
+![alt text](./Img/image-6.png)
 
 ```javascript
 
@@ -89,12 +89,12 @@ const human = { // allocate memory for an object... and its values
 
 #### Call Stack
 
-![alt text](image-7.png)
+![alt text](./Img/image-7.png)
 
 - global execution context
 -
 
-![alt text](image-8.png)
+![alt text](./Img/image-8.png)
 
 ```javascript
 function subtractTwo(num) {
@@ -111,7 +111,7 @@ calculate();
 
 #### Stack Overflow
 
-![alt text](image-9.png)
+![alt text](./Img/image-9.png)
 
 ```javascript
 function inception() {
@@ -119,18 +119,18 @@ function inception() {
 }
 ```
 
-![alt text](image-10.png)
+![alt text](./Img/image-10.png)
 
 #### Garbage Collection
 
-![alt text](image-11.png)
+![alt text](./Img/image-11.png)
 
 - When we don't need a variable anymore, the garbage collector will remove it from the memory heap
 - It's a process that runs automatically in the background
 
 Algorithm: Mark and Sweep
 
-![alt text](image-12.png)
+![alt text](./Img/image-12.png)
 
 - Mark: The garbage collector will mark the variables that are still being used
 - Sweep: The garbage collector will remove the variables that are not being used
@@ -189,16 +189,16 @@ obj1.b = 100;
 
 ## Single Threaded
 
-![alt text](<Screenshot 2024-03-28 104433.png>)
+![alt text](<./Img/image-17.png>)
 
 [Link Runtime javascript Viewer]<http://latentflip.com/loupe/?code=ZnVuY3Rpb24gcHJpbnRIZWxsbygpIHsNCiAgICBjb25zb2xlLmxvZygnSGVsbG8gZnJvbSBiYXonKTsNCn0NCg0KZnVuY3Rpb24gYmF6KCkgew0KICAgIHNldFRpbWVvdXQocHJpbnRIZWxsbywgMzAwMCk7DQp9DQoNCmZ1bmN0aW9uIGJhcigpIHsNCiAgICBiYXooKTsNCn0NCg0KZnVuY3Rpb24gZm9vKCkgew0KICAgIGJhcigpOw0KfQ0KDQpmb28oKTs%3D!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D>
 
-![alt text](image-13.png)
+![alt text](./Img/image-13.png)
 
 - one set of instructions set executed at a time
 - JavaScript is single-threaded
 
-![alt text](image-13.png)
+![alt text](./Img/image-13.png)
 
 ``` javascript
 console.log('1');
@@ -212,12 +212,12 @@ console.log('3');
 
 ## Different JavaScript Engine and JavaScript Runtime
 
-![alt text](image-14.png)
+![alt text](./Img/image-14.png)
 
 - node js it's a JavaScript runtime
 
-![alt text](image-15.png)
+![alt text](./Img/image-15.png)
 
-![alt text](image-16.png)
+![alt text](./Img/image-16.png)
 
 ### [Back to top](#fundamentals-concepts-of-javascript)
