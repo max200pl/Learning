@@ -15,7 +15,7 @@
 
 ## Introduction
 
-![alt text](image.png)
+![alt text](./ImgAsyncJS/image.png)
 
 ## Promises
 
@@ -103,7 +103,7 @@ const getData = async function () {
 
 ## Job Queue
 
-![alt text](image-1.png)
+![alt text](./ImgAsyncJS/image-1.png)
 
 **Promise** => native way to run asynchronous code.
 
@@ -214,11 +214,11 @@ When we open a browser, we have a single thread that runs all the JavaScript cod
 
 - **Worker threads** => a way to run JavaScript code in parallel.
 
-![alt text](image-2.png)
+![alt text](./ImgAsyncJS/image-2.png)
 
 ### Web Workers
 
-![alt text](image-3.png)
+![alt text](./ImgAsyncJS/image-3.png)
 
 - **Web Workers** => a simple means for web content to run scripts in background threads.
 
