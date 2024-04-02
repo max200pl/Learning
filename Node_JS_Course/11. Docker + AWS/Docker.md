@@ -1,6 +1,22 @@
 # main information
 
-![main diagram](image-1.png)
+![main diagram](./Img/image-1.png)
+
+## What is Docker? and Why we need it?
+
+![alt text](./Img/image-15.png)
+
+### Why we need Docker?
+
+![alt text](./Img/image-19.png)
+
+- **Different Development & Production Environments**
+  - exact same environment for Development and Production
+    ![alt text](./Img/image-16.png)
+  - easy to share the environment with the team
+    ![alt text](./Img/image-17.png)
+  - easy switch between different projects
+    ![alt text](./Img/image-18.png)
 
 ## Services providers
 
@@ -10,33 +26,38 @@
 
 ## Main approaches to deploy
 
-### Serverless Architecture with AWS Lambda
+### Virtual Machine VS Docker container
 
-![diagram](image-2.png)
+![alt text](./Img/image-23.png)
 
-![alt text](image-3.png)
+1. Virtual Machine:
+![alt text](./Img/image-20.png)
+   - has own operation system (OS) and hardware (CPU, RAM, Storage)
+   - can install libraries, frameworks, and applications
+   - insulated and isolated from other VMs
+   - a standalone machine -> big size -> slow to start -> high cost -> less efficient:
+    ![alt text](./Img/image-21.png)
 
-- use Serverless Framework to deploy
-![alt text](image-4.png)
+2. Container:
+![alt text](./Img/image-22.png)
+    - run a Docker engine (emulated Container support) on the host machine
+    - no need run tone extra tools
+    - can run multiple containers on the same host machine
+    - lightweight -> fast to start -> low cost -> more efficient:
+    - can configured containers and build images
 
-### Virtual Machine
 
-![alt text](image-6.png)
-
-- AWS use EC2 (Elastic Compute Cloud) to deploy
-![alt text](image-7.png)
-- EC2 is a virtual machine allowing to run an application on the cloud (AWS)
 
 ### Docker container
 
 <https://www.docker.com/get-started/>
 
-![alt text](image-5.png)
+![alt text](./Img/image-5.png)
 
 - build a Docker container
 Docker container is a small boxes run anywhere on our desktop.
-![alt text](image-8.png)
-![alt text](image-9.png)
+![alt text](./Img/image-8.png)
+![alt text](./Img/image-9.png)
 
     **containers still completely isolated from each other and the host system**
 
@@ -50,7 +71,7 @@ Virtual Machine vs Docker container:
 - Virtual Machine is more stable than Docker container
 
 Containers and Virtual Machines Using together in EC2 Container Service
-![alt text](image-10.png)
+![alt text](./Img/image-10.png)
 
 #### Container VS Images
 
@@ -60,4 +81,4 @@ Containers and Virtual Machines Using together in EC2 Container Service
 #### Docker hub <https://www.docker.com/products/docker-hub/>
 
 - docker hub is a repository of docker images
-![alt text](image-11.png)
+![alt text](./Img/image-11.png)

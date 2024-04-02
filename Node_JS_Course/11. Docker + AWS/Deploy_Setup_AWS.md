@@ -12,14 +12,14 @@
 
 EC2 is a service that allows to create virtual machines in the cloud.
 
-![alt text](image-13.png)
+![alt text](./Img/image-13.png)
 
 ```bash
 react-portfolio
 ```
 
 <https://eu-north-1.console.aws.amazon.com/ec2/home?region=eu-north-1#Instances>:
-![alt text](image-14.png)
+![alt text](./Img/image-14.png)
 
 ## Putty
 
