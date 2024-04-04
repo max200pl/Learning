@@ -1,5 +1,15 @@
 # main information
 
+[main information](#main-information)
+   [What is Docker? and Why we need it?](#what-is-docker-and-why-we-need-it)
+       [Why we need Docker?](#why-we-need-docker)
+    [Virtual Machine VS Docker container](#virtual-machine-vs-docker-container)
+    [Docker Setup](#docker-setup)
+       [Docker Installation](#docker-installation)
+    [Docker container](#docker-container)
+       [Container VS Images](#container-vs-images)
+       [Docker hub](#docker-hub)
+
 ![main diagram](./Img/image-1.png)
 
 ## What is Docker? and Why we need it?
@@ -18,15 +28,7 @@
   - easy switch between different projects
     ![alt text](./Img/image-18.png)
 
-## Services providers
-
-- AWS (Amazon Web Services)
-- Azure (Microsoft)
-- Google Cloud Platform (Google)
-
-## Main approaches to deploy
-
-### Virtual Machine VS Docker container
+## Virtual Machine VS Docker container
 
 ![alt text](./Img/image-23.png)
 
@@ -46,7 +48,11 @@
     - lightweight -> fast to start -> low cost -> more efficient:
     - can configured containers and build images
 
+## Docker Setup
 
+![docker tools](image-1.png)
+
+![Docker Setup](image.png)
 
 ### Docker container
 
@@ -78,7 +84,9 @@ Containers and Virtual Machines Using together in EC2 Container Service
 - container contain your running application
 - images collection all the files and dependencies needed to run a container
 
-#### Docker hub <https://www.docker.com/products/docker-hub/>
+#### Docker hub
+
+<https://www.docker.com/products/docker-hub/>
 
 - docker hub is a repository of docker images
 ![alt text](./Img/image-11.png)
