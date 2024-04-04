@@ -50,9 +50,9 @@
 
 ## Docker Setup
 
-![docker tools](image-1.png)
+![docker tools](./Img/docker/image-1.png)
 
-![Docker Setup](image.png)
+![Docker Setup](./Img/docker/image.png)
 
 ### Docker container
 
