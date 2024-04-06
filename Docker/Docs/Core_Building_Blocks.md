@@ -162,3 +162,23 @@ docker start -a  <container-name>
 ![alt text](image-8.png)
 docker start -a -i <container-name>
 ```
+
+## Deleting Images and Containers
+
+- `docker container prune` command to remove all stopped containers
+
+```bash
+docker ps -a
+docker stop <container-name>
+docker rm <container-name> <container-name> <container-name>
+docker container prune
+```
+
+- `docker images` command to list all images
+- `docker image prune` command to remove all dangling images
+
+```bash
+docker images
+docker rmi <image-id> <image-id> <image-id>
+docker image prune
+```
