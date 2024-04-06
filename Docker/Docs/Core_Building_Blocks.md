@@ -2,6 +2,17 @@
 
 [Docker Images & Containers](#docker-images--containers-the-core-building-blocks)
     [Docker Images VS Containers](#docker-images-vs-containers)
+    [Run a Docker Images](#run-a-docker-images)
+    [Create a Docker Image](#create-a-docker-image)
+    [Build a Docker Image](#build-a-docker-image)
+    [Image layers](#image-layers)
+    [Managing Images and Containers](#managing-images-and-containers)
+    [Entering interactive mode](#entering-interactive-mode)
+    [Deleting Images and Containers](#deleting-images-and-containers)
+    [Removing stopped containers automatically](#removing-stopped-containers-automatically)
+    [Inspecting Images](#inspecting-images)
+    [Copying files from a container and to a container](#copying-files-from-a-container-and-to-a-container)
+    [Naming Images](#naming-images)
 
 ## Docker Images VS Containers
 
@@ -205,3 +216,33 @@ docker ps
 docker images
 docker inspect <image-id>
 ```
+
+## Copying files from a container and to a container
+
+- `docker cp` command to copy files from a container to the host
+
+![alt text](image-10.png)
+
+```bash
+docker cp <from - folder-path>/ <container-name>:/< into - folder-name>
+```
+
+## Naming Images
+
+```bash
+docker run -p 3000:80 -d --rm --name MaksmPoskannyi <image-id>
+docker ps
+docker stop MaksmPoskannyi
+```
+
+## Tag Images
+
+![alt text](image-11.png)
+
+- `FROM node:14` to use the node image with the tag `14`
+- `-t` flag to tag an image
+- `docker build -t <image-name>:<tag> .` to build an image with a tag
+
+```bash
+
+docker build -t <image-name>:<tag> .
