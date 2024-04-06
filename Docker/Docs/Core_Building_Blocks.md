@@ -134,3 +134,31 @@ docker logs --help
 docker logs -f <container-name>
 docker start -a <container-name>
 ```
+
+## Entering interactive mode
+
+```Dockerfile
+FROM python
+
+WORKDIR /app
+
+COPY . /app
+
+CMD ["python", "rng.py"]
+```
+
+- `docker run -it <container-id>` command to run a container in interactive mode
+- `docker ps -a` command to list all containers (running and stopped)
+- `docker start -a <container-name>` start a container with attached mode but only listen mode
+- `docker start -a -i <container-name>` start a container with attached mode and input mode
+
+```bash
+docker build .
+docker run --help
+docker run -it <container-id>
+docker ps -a
+
+docker start -a  <container-name>
+![alt text](image-8.png)
+docker start -a -i <container-name>
+```
