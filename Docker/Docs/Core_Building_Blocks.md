@@ -182,3 +182,26 @@ docker images
 docker rmi <image-id> <image-id> <image-id>
 docker image prune
 ```
+
+## Removing stopped containers automatically
+
+- `--rm` flag to remove a container automatically when it stops
+
+```bash
+docker run --help
+![alt text](image-9.png)
+docker run --rm <image-id>
+docker images
+docker run -p 3000:80 -d --rm <image-id>
+docker stop interesting_aryabhata
+docker ps
+```
+
+## Inspecting Images
+
+- `docker inspect` command to inspect an image or container
+
+```bash
+docker images
+docker inspect <image-id>
+```
