@@ -197,6 +197,7 @@ docker image prune
 ## Removing stopped containers automatically
 
 - `--rm` flag to remove a container automatically when it stops
+- `-d` flag to run a container in detached mode
 
 ```bash
 docker run --help
@@ -244,5 +245,5 @@ docker stop MaksmPoskannyi
 - `docker build -t <image-name>:<tag> .` to build an image with a tag
 
 ```bash
-
 docker build -t <image-name>:<tag> .
+```
