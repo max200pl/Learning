@@ -247,3 +247,33 @@ docker stop MaksmPoskannyi
 ```bash
 docker build -t <image-name>:<tag> .
 ```
+
+## Sharing Images
+
+![alt text](image-12.png)
+
+![alt text](image-13.png)
+
+- `docker build -t <docker-id>/<image-name>:<tag> .` to build an image with a tag
+- `docker tag <image-name>:<tag> <docker-id>/<image-name>:<tag>` clone the image
+
+- `docker image prune -a` to remove all images
+
+```bash
+// docker build -t <docker-id>/<image-name>:<tag> .
+docker build -t maksymposkannyi/learning_node_app .
+
+docker tag node-demo:latest maksymposkannyi/learning_node_app
+
+docker image prune -a
+```
+
+### Puling Images
+
+- `docker pull`  pull an image from Docker Hub check for updates and download the latest version
+
+```bash
+docker pull maksymposkannyi/learning_node_app:latest
+
+docker run -p 3000:80 -d --rm --name node-demo maksymposkannyi/learning_node_app
+```
