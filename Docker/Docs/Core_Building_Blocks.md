@@ -160,18 +160,18 @@ CMD ["python", "rng.py"]
 
 - `docker run -it <container-id>` command to run a container in interactive mode
 - `docker ps -a` command to list all containers (running and stopped)
-- `docker start -a <container-name>` start a container with attached mode but only listen mode
-- `docker start -a -i <container-name>` start a container with attached mode and input mode
+- `docker start -a <image-name>` start a container with attached mode but only listen mode
+- `docker start -a -i <image-name>` start a container with attached mode and input mode
 
 ```bash
 docker build .
 docker run --help
-docker run -it <container-id>
+docker run -it <image-id>
 docker ps -a
 
-docker start -a  <container-name>
+docker start -a  <image-name>
 ![alt text](image-8.png)
-docker start -a -i <container-name>
+docker start -a -i <image-name>
 ```
 
 ## Deleting Images and Containers
