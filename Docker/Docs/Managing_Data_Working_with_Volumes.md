@@ -88,6 +88,7 @@ docker volume ls
 
 - we define folder where we want to mount the volume
 - great for persist and edit data
+- bind folder and if we change the file in the folder it will change in the container
 
 - `v "C:\_________PERSONAL_________\ReduxCourse\Docker\Projects\5_data_volumes\server.js:/app"` - create a bind mount (mount the file from the host machine to the container)
 
@@ -145,6 +146,94 @@ docker run -d -p 80:80 --rm --name feedback-app -v feedback:/app/feedback -v "..
 ![alt text](./Img/Managing_Data_Working_with_Volumes/image-26.png)
 - `docker volume rm VOL_NAME` - remove a volume
 - `docker volume prune` - remove all volumes
+
+#### Using "COPY" VS "Bind Mounts"
+
+- `COPY` - copy the files from the host machine to the container
+- `Bind Mounts` - mount the files from the host machine to the container
+
+    **We can remove the COPY command from the Dockerfile and use the bind mount instead**
+    **In production we should use COPY command**
+
+    ![alt text](image.png)
+
+- `docker build -t feedback-node:no-copy .` - build the image without the COPY command
+
+```bash
+docker build -t feedback-node:no-copy .
+```
+
+#### Environment Variables && ".env" files
+
+##### Docker supports build-time ARGs and ENVironment variables
+
+###### ENV
+
+![alt text](image-1.png)
+
+- `ARG` - build-time variable
+- `ENV` - environment variable
+
+![alt text](image-2.png)
+
+```Dockerfile
+ENV PORT 80
+
+EXPOSE $PORT
+```
+
+- `docker build -t feedback-node:env .` - build the image with the environment variable
+
+![alt text](image-3.png)
+
+- `-e PORT=8000` - set the environment variable
+
+```bash
+docker build -t feedback-node:env .
+
+docker stop feedback-app
+
+docker run -d -p 3000:8000 -e PORT=8000  --rm --name  feedback-app -v feedback:/app/feedback -v "...relativePath:/app:ro" -v /app/node_modules feedback-node:env
+```
+
+![alt text](image-4.png)
+
+- `--env-file ./.env` -  set the environment variable from the file
+
+```bash
+docker run -d -p 3000:8000 --env-file ./.env --rm --name  feedback-app -v feedback:/app/feedback -v "...relativePath:/app:ro" -v /app/node_modules feedback-node:env
+```
+
+```.env
+PORT=8000
+```
+
+###### ARG
+
+- `ARG` - build-time variable
+
+```Dockerfile
+ARG DEFAULT_PORT=80
+
+ENV PORT $DEFAULT_PORT
+
+EXPOSE $PORT
+```
+
+```bash
+docker build -t feedback-node:arg .
+docker build -t feedback-node:arg-dev --build-arg DEFAULT_PORT=8000  .
+```
+
+#### Dockerignore file
+
+- `dockerignore` - ignore files and folders that we don't want to copy to the container
+
+```.dockerignore
+node_modules
+Dockerfile
+.git
+```
 
 ## Summary
 
