@@ -155,7 +155,7 @@ docker run -d -p 80:80 --rm --name feedback-app -v feedback:/app/feedback -v "..
     **We can remove the COPY command from the Dockerfile and use the bind mount instead**
     **In production we should use COPY command**
 
-    ![alt text](image.png)
+    ![alt text](./Img/Managing_Data_Working_with_Volumes/image.png)
 
 - `docker build -t feedback-node:no-copy .` - build the image without the COPY command
 
@@ -169,12 +169,12 @@ docker build -t feedback-node:no-copy .
 
 ###### ENV
 
-![alt text](image-1.png)
+![alt text](./Img/Managing_Data_Working_with_Volumes/image-1.png)
 
 - `ARG` - build-time variable
 - `ENV` - environment variable
 
-![alt text](image-2.png)
+![alt text](./Img/Managing_Data_Working_with_Volumes/image-2.png)
 
 ```Dockerfile
 ENV PORT 80
@@ -184,7 +184,7 @@ EXPOSE $PORT
 
 - `docker build -t feedback-node:env .` - build the image with the environment variable
 
-![alt text](image-3.png)
+![alt text](./Img/Managing_Data_Working_with_Volumes/image-3.png)
 
 - `-e PORT=8000` - set the environment variable
 
@@ -196,7 +196,7 @@ docker stop feedback-app
 docker run -d -p 3000:8000 -e PORT=8000  --rm --name  feedback-app -v feedback:/app/feedback -v "...relativePath:/app:ro" -v /app/node_modules feedback-node:env
 ```
 
-![alt text](image-4.png)
+![alt text](./Img/Managing_Data_Working_with_Volumes/image-4.png)
 
 - `--env-file ./.env` -  set the environment variable from the file
 
