@@ -8,16 +8,20 @@
         - [Anonymous volumes](#anonymous-volumes)
         - [Named volumes](#named-volumes)
         - [Bind mounts](#bind-mounts)
-            - [Combining volumes && Merging volumes](#combining-volumes--mering-volumes)
+        - [Combining volumes && Merging volumes](#combining-volumes--merging-volumes)
+        - [Using nodemon](#using-nodemon)
+        - [Read only volumes](#read-only-volumes)
+        - [Manege volumes](#manege-volumes)
+        - [Summary](#summary)
 
 ## Data categories in Docker
 
 - Data in image unchangeable wen image was built
 - Temporary data in container (deleted when container is deleted) (form, logs, etc.)
-![alt text](image-14.png)
+![alt text](./Img/Managing_Data_Working_with_Volumes/image-14.png)
 - Permanent data in container (data that should be saved when container is deleted)
 
-![alt text](image-15.png)
+![alt text](./Img/Managing_Data_Working_with_Volumes/image-15.png)
 
 ## Analyzing the data
 
@@ -27,13 +31,13 @@
 
 ### Volumes
 
-![alt text](image-16.png)
+![alt text](./Img/Managing_Data_Working_with_Volumes/image-16.png)
 
 - Volumes are directories that are outside of the Union File System
 
 #### types of volumes
 
-![alt text](image-18.png)
+![alt text](./Img/Managing_Data_Working_with_Volumes/image-18.png)
 
 ##### Anonymous volumes
 
@@ -57,7 +61,7 @@ docker volume rm VOL_NAME
 docker volume prune
 ```
 
-![alt text](image-17.png)
+![alt text](./Img/Managing_Data_Working_with_Volumes/image-17.png)
 
 ##### Named volumes
 
@@ -74,13 +78,13 @@ docker stop feedback-app
 docker volume ls
 ```
 
-![alt text](image-19.png)
+![alt text](./Img/Managing_Data_Working_with_Volumes/image-19.png)
 
 ##### Bind mounts
 
 [Mounting Docker volumes with Docker Toolbox for Windows]<https://headsigned.com/posts/mounting-docker-volumes-with-docker-toolbox-for-windows/>
 
-![alt text](image-20.png)
+![alt text](./Img/Managing_Data_Working_with_Volumes/image-20.png)
 
 - we define folder where we want to mount the volume
 - great for persist and edit data
@@ -93,13 +97,13 @@ docker stop feedback-app
 docker run -d -p 80:80 --rm --name feedback-app -v feedback:/app/feedback -v "C:\_________PERSONAL_________\ReduxCourse\Docker\Projects\5_data_volumes\server.js:/app" feedback-node:latest
 ```
 
-![alt text](image-21.png)
+![alt text](./Img/Managing_Data_Working_with_Volumes/image-21.png)
 
 ###### Combining volumes && Merging volumes
 
-![alt text](image-24.png)
+![alt text](./Img/Managing_Data_Working_with_Volumes/image-24.png)
 
-![alt text](image-22.png)
+![alt text](./Img/Managing_Data_Working_with_Volumes/image-22.png)
 
 - `v "...relativePath:/app"` - create a volume for the app folder
 - `v /app/node_modules` - create a volume for the node_modules folder
@@ -110,7 +114,7 @@ docker run -d -p 80:80 --rm --name feedback-app -v feedback:/app/feedback -v "C:
 docker run -d -p 80:80 --rm --name feedback-app -v feedback:/app/feedback -v "...relativePath:/app" -v /app/node_modules feedback-node:latest
 ```
 
-![alt text](image-23.png)
+![alt text](./Img/Managing_Data_Working_with_Volumes/image-23.png)
 
 ```bash
 docker stop feedback-app
@@ -138,10 +142,10 @@ docker run -d -p 80:80 --rm --name feedback-app -v feedback:/app/feedback -v "..
 - `docker volume ls` - list all active volumes
 - `docker volume create VOL_NAME` - create a volume
 - `docker volume inspect VOL_NAME` - inspect a volume
-![alt text](image-26.png)
+![alt text](./Img/Managing_Data_Working_with_Volumes/image-26.png)
 - `docker volume rm VOL_NAME` - remove a volume
 - `docker volume prune` - remove all volumes
 
 ## Summary
 
-![alt text](image-25.png)
+![alt text](./Img/Managing_Data_Working_with_Volumes/image-25.png)

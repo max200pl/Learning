@@ -16,14 +16,14 @@
 
 ## Docker Images VS Containers
 
-![alt text](image.png)
+![alt text](./Img/Core_Building_Blocks/image.png)
 
 - **Docker Image**: a snapshot of a container
 - **Docker Container**: a running instance of a Docker image
 
 ## Run a Docker Images
 
-![alt text](image-2.png)
+![alt text](./Img/Core_Building_Blocks/image-2.png)
 
 - node image contains the node Installation (environments, libraries, frameworks, and applications)
 
@@ -51,7 +51,7 @@ docker run -it node // run the node image in interactive mode
 - `WORKDIR /app` to set the working directory in the container
 - `COPY` keyword to copy the files from the host machine to the container
 - `COPY . /app`  to copy all the files from the current directory to the `/app` directory in the container
-![alt text](image-3.png)
+![alt text](./Img/Core_Building_Blocks/image-3.png)
 - `RUN` keyword to run a command in the container
 - `RUN npm install` to install the dependencies in the container
 - `EXPOSE 80` keyword to expose a port in the container (port 80 in this case only for documentation)
@@ -81,7 +81,7 @@ CMD ["node", "server.js"]
 - `docker ps` command to list all running containers
 - `docker stop <name>` to stop a running container
 - `docker run -p` to publish a container's port to the host (with port should be accessible)
-![alt text](image-4.png)
+![alt text](./Img/Core_Building_Blocks/image-4.png)
 
 ```bash
 docker build .
@@ -96,7 +96,7 @@ docker stop <name>
 
 - docker cache data if the image is built before
 
-![alt text](image-5.png)
+![alt text](./Img/Core_Building_Blocks/image-5.png)
 
 - `cache` every layer will be and reused if the image is built again
 - docker only rebuilds the layers that have changed
@@ -119,11 +119,11 @@ CMD ["node", "server.js"]
 
 ## Managing Images and Containers
 
-![alt text](image-6.png)
+![alt text](./Img/Core_Building_Blocks/image-6.png)
 
 - `docker ps a` command to list all containers (running and stopped)
 - `docker ps --help` command to get help on the `docker ps` command
-![alt text](image-7.png)
+![alt text](./Img/Core_Building_Blocks/image-7.png)
 - `docker start <container-name>` command to start a stopped container
 **`docker start` running in the background, use `docker run` to run in the foreground**
 **`docker run` has detached mode by default `-d` to run in the background**
@@ -170,7 +170,7 @@ docker run -it <image-id>
 docker ps -a
 
 docker start -a  <image-name>
-![alt text](image-8.png)
+![alt text](./Img/Core_Building_Blocks/image-8.png)
 docker start -a -i <image-name>
 ```
 
@@ -201,7 +201,7 @@ docker image prune
 
 ```bash
 docker run --help
-![alt text](image-9.png)
+![alt text](./Img/Core_Building_Blocks/image-9.png)
 docker run --rm <image-id>
 docker images
 docker run -p 3000:80 -d --rm <image-id>
@@ -222,7 +222,7 @@ docker inspect <image-id>
 
 - `docker cp` command to copy files from a container to the host
 
-![alt text](image-10.png)
+![alt text](./Img/Core_Building_Blocks/image-10.png)
 
 ```bash
 docker cp <from - folder-path>/ <container-name>:/< into - folder-name>
@@ -238,7 +238,7 @@ docker stop MaksmPoskannyi
 
 ## Tag Images
 
-![alt text](image-11.png)
+![alt text](./Img/Core_Building_Blocks/image-11.png)
 
 - `FROM node:14` to use the node image with the tag `14`
 - `-t` flag to tag an image
@@ -250,9 +250,9 @@ docker build -t <image-name>:<tag> .
 
 ## Sharing Images
 
-![alt text](image-12.png)
+![alt text](./Img/Core_Building_Blocks/image-12.png)
 
-![alt text](image-13.png)
+![alt text](./Img/Core_Building_Blocks/image-13.png)
 
 - `docker build -t <docker-id>/<image-name>:<tag> .` to build an image with a tag
 - `docker tag <image-name>:<tag> <docker-id>/<image-name>:<tag>` clone the image
