@@ -78,3 +78,52 @@ mongoose.connect(
     }
 );
 ```
+
+## Docker Networks
+
+![alt text](image-7.png)
+
+- Docker creates a default network for each container
+- Containers can communicate with each other using the default network
+- Containers can communicate with the host machine using the default network
+
+- `docker network create favorites-net` will create a new network
+
+```bash
+docker container prune
+docker network --help
+docker network create favorites-net
+docker run -d --name mongodb --network favorites-net mongo
+```
+
+![alt text](image-8.png)
+
+```javascript
+mongoose.connect(
+    'mongodb://mongodb:27017/swfavorites', // mongodb is the name of the container
+    { useNewUrlParser: true },
+    (err) => {
+        if (err) {
+            console.log(err);
+        } else {
+            app.listen(3000);
+        }
+    }
+);
+```
+
+- `docker run --name favorites -d --rm  --network favorites-net -p 3000:3000 favorites-node` will create a new container with the favorites-node image
+
+```bash
+docker run --name favorites -d --rm  --network favorites-net -p 3000:3000 favorites-node
+```
+
+![alt text](image-9.png)
+
+- **If we have a container to container connection, we don't need a publish port**
+
+### Docker resolves IP address
+
+![alt text](image-10.png)
+
+**[⬆ back to top](#networking)**
