@@ -5,7 +5,7 @@
 
 ## Introduction
 
-![alt text](image.png)
+![alt text](./Img/Section_4_Networking/image.png)
 
 ## Container to WWW communication
 
@@ -13,7 +13,7 @@
 - Containers can communicate with each other
 - Containers can communicate with the host machine
 
-![alt text](image-2.png)
+![alt text](./Img/Section_4_Networking/image-2.png)
 
 ### Creating a Container & communicate to the WEB
 
@@ -22,9 +22,9 @@ docker build -t favorites-node .
 docker run --name favorites -d --rm -p 3000:3000 favorites-node
 ```
 
-![alt text](image-1.png)
+![alt text](./Img/Section_4_Networking/image-1.png)
 
-![alt text](image-3.png)
+![alt text](./Img/Section_4_Networking/image-3.png)
 
 - `host.docker.internal` is a special DNS name which resolves to the internal IP address of the host machine.
 
@@ -42,11 +42,11 @@ mongoose.connect(
 );
 ```
 
-![alt text](image-4.png)
+![alt text](./Img/Section_4_Networking/image-4.png)
 
 ### Container to Container communication
 
-![alt text](image-5.png)
+![alt text](./Img/Section_4_Networking/image-5.png)
 
 Created a new container for MongoDB
 
@@ -61,7 +61,7 @@ docker build -t favorites-node .
 docker run --name favorites -d --rm -p 3000:3000 favorites-node
 ```
 
-![alt text](image-6.png)
+![alt text](./Img/Section_4_Networking/image-6.png)
 
 - `docker container inspect mongodb` will give the IP address of the container
 
@@ -81,7 +81,7 @@ mongoose.connect(
 
 ## Docker Networks
 
-![alt text](image-7.png)
+![alt text](./Img/Section_4_Networking/image-7.png)
 
 - Docker creates a default network for each container
 - Containers can communicate with each other using the default network
@@ -96,7 +96,7 @@ docker network create favorites-net
 docker run -d --name mongodb --network favorites-net mongo
 ```
 
-![alt text](image-8.png)
+![alt text](./Img/Section_4_Networking/image-8.png)
 
 ```javascript
 mongoose.connect(
@@ -118,12 +118,12 @@ mongoose.connect(
 docker run --name favorites -d --rm  --network favorites-net -p 3000:3000 favorites-node
 ```
 
-![alt text](image-9.png)
+![alt text](./Img/Section_4_Networking/image-9.png)
 
 - **If we have a container to container connection, we don't need a publish port**
 
 ### Docker resolves IP address
 
-![alt text](image-10.png)
+![alt text](./Img/Section_4_Networking/image-10.png)
 
 **[⬆ back to top](#networking)**
