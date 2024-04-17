@@ -5,11 +5,11 @@
 
 ## Introduction
 
-![alt text](image.png)
+![alt text](./Img/Section_5/image.png)
 
 ## Setup (Schema of the project)
 
-![alt text](image-1.png)
+![alt text](./Img/Section_5/image-1.png)
 
 ## Dockerizing a MongoDB Service
 
@@ -20,7 +20,7 @@ docker run -name mongodb --rm -d -p 27017:27017 mongo
 docker logs mongodb
 ```
 
-![alt text](image-2.png)
+![alt text](./Img/Section_5/image-2.png)
 
 ## Dockerizing a Node.js application
 
@@ -132,13 +132,13 @@ docker run --name goals-frontend --rm -d -p 3000:3000 goals-react
 
 ## Data Persist in MongoDB
 
-![alt text](image-8.png)
+![alt text](./Img/Section_5/image-8.png)
 
 Wen whe remove the MongoDB container, the data is lost.
 
 MongoDB data is stored in `/data/db` inside the container.
 
-![alt text](image-3.png)
+![alt text](./Img/Section_5/image-3.png)
 
 1. Need created a volume to persist the data
     - `-v data:/data/db` - Create a volume named `data` and mount it to `/data/db`
@@ -153,11 +153,11 @@ MongoDB data is stored in `/data/db` inside the container.
     - `MONGO_INITDB_ROOT_USERNAME` - Set the root username
     - `MONGO_INITDB_ROOT_PASSWORD` - Set the root password
 
-![alt text](image-4.png)
+![alt text](./Img/Section_5/image-4.png)
 
-![alt text](image-5.png)
+![alt text](./Img/Section_5/image-5.png)
 
-![alt text](image-6.png)
+![alt text](./Img/Section_5/image-6.png)
 
 ```dockerfile
 // backend/Dockerfile
@@ -187,7 +187,7 @@ docker run --name mongodb --rm -d --network goals-net -v data:/data/db -e MONGOD
 
 ## Bind Mounts & Polishing for the Node.js Container
 
-![alt text](image-7.png)
+![alt text](./Img/Section_5/image-7.png)
 
 1. Need one volume for the logs
     - `-v logs:/app/logs`  - Create a volume named `logs` and mount it to `/app/logs`
