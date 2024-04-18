@@ -61,3 +61,44 @@ docker image prune
 docker-compose up -d
 docker-compose down
 ```
+
+## Woking with multiple containers
+
+```yaml
+backend:
+    # build: // longer way to build the image
+    #     context: ./backend
+    #     dockerfile: Dockerfile
+    #    args:
+    #        - NODE_ENV=production
+    build: ./backend
+    ports:
+        - '80:80'
+    volumes:
+        - logs:/app/logs
+        - ./backend:/app
+        - /app/node_modules
+    env_file:
+        - ./env/backend.env
+    depends_on:
+        - mongodb
+
+frontend:
+    build: ./frontend
+    ports:
+        - '3000:3000'
+    volumes:
+        - ./frontend/src:/app/src #bind mount
+    stdin_open: true #-iterative mode -> docker run -i
+    tty: true # -terminal -> docker run -t
+    depends_on:
+        - backend
+```
+
+## Docker compose commands
+
+- `docker-compose up -d` : run the services (detach mode)
+- `docker-compose down` : stop the services (delete the containers, but not the images)
+- `docker-compose ps` : list the services
+- `docker-compose logs` : show the logs of the services
+- `docker-compose build` : build the images without running the services
