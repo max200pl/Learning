@@ -2,7 +2,7 @@
 
 ## Setup Schema for Laravel Application
 
-![alt text](image.png)
+![alt text](./Img/Section_8/image.png)
 
 ## Adding a Ngnix (Web Server) Container
 
@@ -95,7 +95,7 @@ server {
 
 ## Adding MySQL Container
 
-![alt text](image-1.png)
+![alt text](./Img/Section_8/image-1.png)
 
 1. create a new directory called `env` in the root directory of the project.
 2. Create a new file called `mysql.env` in the `env` directory.
@@ -149,7 +149,7 @@ mysql:
 
 ## Install Laravel Application
 
-![alt text](image-2.png)
+![alt text](./Img/Section_8/image-2.png)
 
 1. run single container **compose** to create a new Laravel project in the `src` directory.
 
