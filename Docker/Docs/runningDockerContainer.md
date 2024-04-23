@@ -109,7 +109,7 @@ EXPOSE 8000
 
 ## Building a Docker image from a Dockerfile
 
-![alt text](image-12.png)
+![alt text](./Img/runningDockerContainer/image-12.png)
 Two steps to build a Docker image from a Dockerfile:
 
 1. build a docker image

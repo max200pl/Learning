@@ -10,22 +10,22 @@
 
 ### Serverless Architecture with AWS Lambda
 
-![diagram](./Img/image-2.png)
+![diagram](./Img/Fundamentals/image-2.png)
 
-![alt text](./Img/image-3.png)
+![alt text](./Img/Fundamentals/image-3.png)
 
 - use Serverless Framework to deploy
-![alt text](./Img/image-4.png)
+![alt text](./Img/Fundamentals/image-4.png)
 
 #### AWS Virtual Machine
 
 - AWS use EC2 (Elastic Compute Cloud) to deploy
-![alt text](./Img/image-7.png)
+![alt text](./Img/Fundamentals/image-7.png)
 - EC2 is a virtual machine allowing to run an application on the cloud (AWS)
 
 ## AWS Certificates
 
-![Certificates](./Img/image.png)
+![Certificates](./Img/Fundamentals/image.png)
 
 1. short information about services
 <https://www.youtube.com/watch?v=eel_YiYhxr8&ab_channel=ADV-IT>

@@ -14,7 +14,6 @@
 1. Not create network for the services
     - docker-compose automatically creates a network for the services
     - but you can create a network manually
-2.
 
 ![version docker compose](image-3.png)
 

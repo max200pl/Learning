@@ -10,38 +10,38 @@
        [Container VS Images](#container-vs-images)
        [Docker hub](#docker-hub)
 
-![main diagram](./Img/image-1.png)
+![main diagram](./Img/docker/image-1.png)
 
 ## What is Docker? and Why we need it?
 
-![alt text](./Img/image-15.png)
+![alt text](./Img/docker/image-15.png)
 
 ### Why we need Docker?
 
-![alt text](./Img/image-19.png)
+![alt text](./Img/docker/image-19.png)
 
 - **Different Development & Production Environments**
   - exact same environment for Development and Production
-    ![alt text](./Img/image-16.png)
+    ![alt text](./Img/docker/image-16.png)
   - easy to share the environment with the team
-    ![alt text](./Img/image-17.png)
+    ![alt text](./Img/docker/image-17.png)
   - easy switch between different projects
-    ![alt text](./Img/image-18.png)
+    ![alt text](./Img/docker/image-18.png)
 
 ## Virtual Machine VS Docker container
 
-![alt text](./Img/image-23.png)
+![alt text](./Img/docker/image-23.png)
 
 1. Virtual Machine:
-![alt text](./Img/image-20.png)
+![alt text](./Img/docker/image-20.png)
    - has own operation system (OS) and hardware (CPU, RAM, Storage)
    - can install libraries, frameworks, and applications
    - insulated and isolated from other VMs
    - a standalone machine -> big size -> slow to start -> high cost -> less efficient:
-    ![alt text](./Img/image-21.png)
+    ![alt text](./Img/docker/image-21.png)
 
 2. Container:
-![alt text](./Img/image-22.png)
+![alt text](./Img/docker/image-22.png)
     - run a Docker engine (emulated Container support) on the host machine
     - no need run tone extra tools
     - can run multiple containers on the same host machine
@@ -50,20 +50,20 @@
 
 ## Docker Setup
 
-![docker tools](./Img/docker/image-1.png)
+![docker tools](./Img/docker/Docker Setup 1.png)
 
-![Docker Setup](./Img/docker/image.png)
+![Docker Setup](./Img/docker/Docker Setup.png)
 
 ### Docker container
 
 <https://www.docker.com/get-started/>
 
-![alt text](./Img/image-5.png)
+![alt text](./Img/docker/image-5.png)
 
 - build a Docker container
 Docker container is a small boxes run anywhere on our desktop.
-![alt text](./Img/image-8.png)
-![alt text](./Img/image-9.png)
+![alt text](./Img/docker/image-8.png)
+![alt text](./Img/docker/image-9.png)
 
     **containers still completely isolated from each other and the host system**
 
@@ -77,7 +77,7 @@ Virtual Machine vs Docker container:
 - Virtual Machine is more stable than Docker container
 
 Containers and Virtual Machines Using together in EC2 Container Service
-![alt text](./Img/image-10.png)
+![alt text](./Img/docker/image-10.png)
 
 #### Container VS Images
 
@@ -89,4 +89,4 @@ Containers and Virtual Machines Using together in EC2 Container Service
 <https://www.docker.com/products/docker-hub/>
 
 - docker hub is a repository of docker images
-![alt text](./Img/image-11.png)
+![alt text](./Img/docker/image-11.png)
