@@ -87,4 +87,3 @@ docker run --restart=always -p 8000:8000 -p 3000:3000 maksymposkannyi/portfolio-
 ### Node app crashes on AWS
 
 - use `pm2` to run the node app
--
