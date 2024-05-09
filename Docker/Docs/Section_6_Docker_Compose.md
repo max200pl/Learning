@@ -5,9 +5,9 @@
 
 ## Introduction
 
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
+![alt text](./Img/Section_6/image.png)
+![alt text](./Img/Section_6/image-1.png)
+![alt text](./Img/Section_6/image-2.png)
 
 ## Creating a docker-compose file
 
