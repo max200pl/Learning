@@ -4,6 +4,10 @@
     - [Introduction](#introduction)
     - [From development to production](#from-development-to-production)
     - [Bind mounts in production](#bind-mounts-in-production)
+    - [Pushing our local image to the cloud](#pushing-our-local-image-to-the-cloud)
+    - [Allow the container to access the internet](#allow-the-container-to-access-the-internet)
+    - [Managing and updating containers in production](#managing-and-updating-containers-in-production)
+    - [Using AWS ECS third-party services to deploy containers in the cloud](#using-aws-ecs-third-party-services-to-deploy-containers-in-the-cloud)
 
 ## Introduction
 
@@ -49,3 +53,27 @@ docker ps
 ![alt text](./Img/Section_9_Deploying/image-6.png)
 
 ![alt text](./Img/Section_9_Deploying/image-7.png)
+
+## Managing and updating containers in production
+
+```bash
+docker build -t node_example_1 .
+docker push maksymposkannyi/node_example_1:tagname
+```
+
+```bash Putty
+docker ps
+
+docker stop <container_name>
+docker pull maksymposkannyi/node_example_1:tagname
+```
+
+## Using AWS ECS third-party services to deploy containers in the cloud
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+## Using Elastic container services
+
+![alt text](image-2.png)
