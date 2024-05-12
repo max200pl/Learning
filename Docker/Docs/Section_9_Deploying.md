@@ -70,22 +70,22 @@ docker pull maksymposkannyi/node_example_1:tagname
 
 ## Using AWS ECS third-party services to deploy containers in the cloud
 
-![alt text](image.png)
+![alt text](image-8.png)
 
-![alt text](image-1.png)
+![alt text](image-9.png)
 
 ## Using Elastic container services
 
-![alt text](image-2.png)
+![alt text](image-10.png)
 
 1. created container
-   ![alt text](image-3.png)
+   ![alt text](image-11.png)
 2. one task it's one remote machine with docker
-   ![alt text](image-4.png)
+   ![alt text](image-12.png)
 
 ## Deploying multi container applications
 
 1. create a cluster
 2. create a task (№144)
-![alt text](image-5.png)
+![alt text](image-13.png)
 3. create a mongo task container
