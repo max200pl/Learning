@@ -77,3 +77,15 @@ docker pull maksymposkannyi/node_example_1:tagname
 ## Using Elastic container services
 
 ![alt text](image-2.png)
+
+1. created container
+   ![alt text](image-3.png)
+2. one task it's one remote machine with docker
+   ![alt text](image-4.png)
+
+## Deploying multi container applications
+
+1. create a cluster
+2. create a task (№144)
+![alt text](image-5.png)
+3. create a mongo task container
