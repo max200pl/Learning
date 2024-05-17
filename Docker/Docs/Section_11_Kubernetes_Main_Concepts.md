@@ -24,11 +24,21 @@
 
 ## Architecture of Kubernetes
 
-### Pod
+### Pod (object)
 
 - smallest unit in Kubernetes
 - one or more containers
 - shell around the container
+- shared resources for all Pod containers (network, storage, etc.)
+- has clyster-internal IP address (localhost for all containers in the Pod)
+- persistent data is lost when the Pod is deleted
+
+### Deployment (object)
+
+- set instructions about a pods (how many pods should run)
+- control multiple pods
+- role back the failed deployment
+- deployments can be scaled dynamically (increase or decrease the number of pods)
 
 ### Nodes
 
