@@ -204,3 +204,22 @@ spec:
 1. `kubectl apply -f service.yaml` - apply configuration from the file
 2. `kubectl get services` - get all services
 3. `minikube service backend` - open service in browser (open app in browser) it's only work in minikube (not work in AWS)
+
+### 201 Updating and Deleting Resources
+
+1. update the configuration file
+2. `kubectl apply -f deployment.yaml` apply the configuration file
+3. `image: maksymposkannyi/kub-first-app:1` - change the image
+4. `kubectl apply -f deployment.yaml` - apply the configuration file
+5. `kubectl delete -f deployment.yaml` - delete the configuration file (deployment)
+
+### 202 multiple vs single configuration file
+
+- create a file `master-deployment.yaml` in the root directory
+
+- separate configuration files for each object
+  `---` - separate objects
+
+1. `kubectl delete -f deployment.yaml -f services.yaml` - delete the configuration file (deployment and service)
+2. `kubectl apply -f master-deployment.yaml` - apply the configuration file
+3. `minikube service backend` - open service in browser (open app in browser) it's only work in minikube (not work in AWS)
