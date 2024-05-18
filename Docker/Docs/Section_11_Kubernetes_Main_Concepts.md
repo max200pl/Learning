@@ -40,6 +40,11 @@
 - role back the failed deployment
 - deployments can be scaled dynamically (increase or decrease the number of pods)
 
+### Service (object)
+
+- exposed pods to the cluster (outside world)
+- can allow access to the pods from the outside world (pod IP address is not static)
+
 ### Nodes
 
 - physical or virtual machine that runs the containers
