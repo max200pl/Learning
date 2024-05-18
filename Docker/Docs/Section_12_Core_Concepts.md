@@ -220,6 +220,32 @@ spec:
 - separate configuration files for each object
   `---` - separate objects
 
-1. `kubectl delete -f deployment.yaml -f services.yaml` - delete the configuration file (deployment and service)
+1. `kubectl delete -f deployment.yaml -f service.yaml` - delete the configuration file (deployment and service)
 2. `kubectl apply -f master-deployment.yaml` - apply the configuration file
 3. `minikube service backend` - open service in browser (open app in browser) it's only work in minikube (not work in AWS)
+
+### 204 - check the status of the deployment
+
+- `livenessProbe` - check the status of the pod
+- `httpGet` - check the status of the pod by HTTP request
+- `periodSeconds` - check the status of the pod every 5 seconds
+- `initialDelaySeconds` - check the status of the pod after 3 seconds
+
+```yaml
+ spec:
+      containers:
+        - name: second-node
+          image: maksymposkannyi/kub-first-app:2
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 3
+        # - name: ...
+        #   image: ...
+```

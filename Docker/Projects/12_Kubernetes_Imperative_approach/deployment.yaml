@@ -16,5 +16,16 @@ spec:
     spec:
       containers:
         - name: second-node
-          image: maksymposkannyi/kub-first-app:2
+          image: maksymposkannyi/kub-first-app:latest
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8080
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 3
+        # - name: ...
+        #   image: ...
 
