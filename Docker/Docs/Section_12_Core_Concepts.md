@@ -85,3 +85,23 @@ mkdir .kube
 - objects created two ways
       - Imperative commands
       - Declarative configuration files
+
+### Imperative approach
+
+1. `minikube start --driver=docker` - start minikube
+2. `docker build -t kub-first-app .` - build docker image
+3. `docker tag kub-first-app maksymposkannyi/kub-first-app` - tag docker image
+4. `docker push maksymposkannyi/kub-first-app` - push docker image to docker hub
+5. `kubectl create deployment first-app --image=maksymposkannyi/kub-first-app` - create a deployment name first-app with image kub-first-app from docker hub
+6. `kubectl get deployments` - get all deployments
+7. `kubectl get pods` - get all pods
+8. `kubectl delete deployment first-app` - delete deployment
+9. `minikube dashboard` - open dashboard
+
+### Exposing a deployment with a service
+
+1. `kubectl expose deployment first-app --type=LoadBalancer --port=8080`
+    - expose deployment first-app with type LoadBalancer and port 8080 (app listening on port 8080)
+2. `kubectl get services` - get all services
+3. `minikube service first-app` - open service in browser (open app in browser) it's only work in minikube (not work in AWS)
+4. `kubectl get pods` - get all pods
