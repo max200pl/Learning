@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: story-deployment
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: story
@@ -14,4 +14,13 @@ spec:
     spec:
       containers:
         - name: story
-          image: maksymposkannyi/kub-data-demo
+          image: maksymposkannyi/kub-data-demo:1
+          volumeMounts: # mount volume to container
+            - mountPath: /app/story
+              name: story-volume
+      volumes:
+        - name: story-volume
+          # emptyDir: {} # type emptyDir volume
+          hostPath: # type hostPath volume
+            path: /data/story
+            type: DirectoryOrCreate

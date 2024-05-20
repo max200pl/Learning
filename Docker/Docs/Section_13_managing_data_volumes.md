@@ -61,3 +61,29 @@ kubectl apply -f service.yaml -f deployment.yaml
 kubectl get deployments
 minikube service story-service
 ```
+
+## 214 "emptyDir" / "hostPath" / "csi" volume
+
+- volumes really attached to the pod
+- **emptyDir**  - is an empty directory that is created when the pod is assigned to a node
+- **hostPath** - has a path on the node's filesystem and the pod can access it
+   1. multiple pods can access the same hostPath
+   2. if rune in Difference nodes, the data will be different
+   3. shared already exist data
+- **csi** - Container Storage Interface
+    1. allows the use of storage drivers
+
+```yaml
+spec:
+    containers:
+        - name: story
+            image: maksymposkannyi/kub-data-demo:1
+            volumeMounts:
+                - mountPath: /app/story
+                    name: story-volume
+    volumes:
+    - name: story-volume
+      hostPath:
+        path: /data #binde to the host path
+        type: DirectoryOrCreate
+```
