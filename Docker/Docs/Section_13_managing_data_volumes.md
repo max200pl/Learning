@@ -52,3 +52,12 @@ docker container prune
     1. Supports only local volumes
     2. volumes persist until manually deleted
     3. volumes survive Container (restarts /  removals)
+
+```bash
+docker build -t maksymposkannyi/kub-data-demo .
+docker push maksymposkannyi/kub-data-demo
+minikube status
+kubectl apply -f service.yaml -f deployment.yaml
+kubectl get deployments
+minikube service story-service
+```
