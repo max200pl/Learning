@@ -73,6 +73,8 @@ minikube service story-service
 - **csi** - Container Storage Interface
     1. allows the use of storage drivers
 
+This volume is used to store data in a way that is independent of the pod lifecycle
+
 ```yaml
 spec:
     containers:
@@ -86,4 +88,26 @@ spec:
       hostPath:
         path: /data #binde to the host path
         type: DirectoryOrCreate
+```
+
+## 217 - 218 Persistent Volumes
+
+- **Persistent Volumes** are used to store data in a way that is independent of the pod lifecycle
+
+- Persistent volumes will be detached from the pod when the pod is deleted
+
+## Storage Classes
+
+- **Storage Classes** are used to define the type of storage that will be used for the Persistent Volume
+
+`kubectl get sc` - get storage classes
+
+```cmd
+    kubectl apply -f host-pv.yaml
+    kubectl apply -f host-pvc.yaml
+    kubectl apply -f deployment.yaml
+    kubectl get pv # get persistent volumes
+    kubectl get pvc # get persistent volume claims
+    kubectl get deployments
+    minikube service story-service
 ```
