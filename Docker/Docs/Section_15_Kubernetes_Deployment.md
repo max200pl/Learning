@@ -77,3 +77,94 @@ kubectl get deployments
 kubectl get pods
 kubectl get services
 ```
+
+## volumes in Kubernetes deployment
+
+### AWS EFS (Elastic File System) CSI (Container Storage Interface) driver
+
+- EFS is a scalable, elastic, cloud-native file system for Linux-based workloads for use with AWS Cloud services and on-premises resources.
+- EFS CSI driver allows you to use EFS with any Kubernetes cluster.
+
+<https://github.com/openshift/aws-efs-csi-driver>
+
+- install CSI driver using kubectl apply
+
+```bash
+kubectl apply -k "github.com/kubernetes-sigs/aws-efs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.7"
+```
+
+### 253 Create Security Group
+
+- Create a security group for EFS
+
+### Create EFS
+
+- Create a file system
+
+```bash
+kubectl get sc # get storage class
+```
+
+1. create a storage class
+
+    <https://github.com/openshift/aws-efs-csi-driver/blob/master/examples/kubernetes/static_provisioning/specs/storageclass.yaml>
+
+    ```yaml
+    apiVersion: storage.k8s.io/v1
+    kind: StorageClass
+    metadata:
+    name: efs-sc
+    provisioner: efs.csi.aws.com
+    ```
+
+2. created PersistentVolume
+
+    ```yaml
+    apiVersion: v1
+    kind: PersistentVolume
+    metadata:
+    name: efs-pv
+    spec:
+    capacity:
+        storage: 5Gi
+    volumeMode: Filesystem # Required for EFS
+    accessModes:
+        - ReadWriteMany # Required for EFS
+    storageClassName: efs-sc # EFS Storage Class
+    csi:
+        driver: efs.csi.aws.com # EFS CSI Driver
+        volumeHandle: fs-0c75b4c8fea6883c7 # EFS File System ID
+    ```
+
+3. create a PersistentVolumeClaim
+
+    ```yaml
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
+    name: efs-pvc
+    spec:
+    accessModes:
+        - ReadWriteMany
+    storageClassName: efs-sc
+    resources:
+        requests:
+        storage: 5Gi
+    ```
+
+4. connected all for pod
+
+   ```yaml
+      containers:
+        - name: users-api
+             .....
+          volumeMounts:
+            - name: efs-vol
+              mountPath: /app/users
+      volumes:
+        - name: efs-volumeHandle
+          persistentVolumeClaim:
+            claimName: efs-pvc
+    ```
+
+### Using the EFS Volume
