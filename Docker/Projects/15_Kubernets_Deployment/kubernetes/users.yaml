@@ -1,5 +1,5 @@
-apiVersion: storage.k8s.io/v1
 kind: StorageClass
+apiVersion: storage.k8s.io/v1
 metadata:
   name: efs-sc
 provisioner: efs.csi.aws.com
@@ -49,7 +49,7 @@ kind: Deployment
 metadata:
   name: users-deployment
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: users
@@ -70,6 +70,6 @@ spec:
             - name: efs-vol
               mountPath: /app/users
       volumes:
-        - name: efs-volumeHandle
+        - name: efs-vol
           persistentVolumeClaim:
             claimName: efs-pvc

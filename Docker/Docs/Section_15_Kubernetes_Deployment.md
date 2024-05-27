@@ -168,3 +168,20 @@ kubectl get sc # get storage class
     ```
 
 ### Using the EFS Volume
+
+- created containers
+
+```bash
+docker build -t maksymposkannyi/kub-dep-frontend .
+docker push maksymposkannyi/kub-dep-frontend
+```
+
+- delete deployment
+
+```bash
+cd kubernetes
+kubectl get deployments
+kubectl delete users-deployment
+kubectl apply -f users.yaml
+kubectl get pods
+```
