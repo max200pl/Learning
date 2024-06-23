@@ -170,9 +170,10 @@ docker run -it <image-id>
 docker ps -a
 
 docker start -a  <image-name>
-![alt text](./Img/Core_Building_Blocks/image-8.png)
 docker start -a -i <image-name>
 ```
+
+![alt text](./Img/Core_Building_Blocks/image-8.png)
 
 ## Deleting Images and Containers
 
@@ -201,13 +202,14 @@ docker image prune
 
 ```bash
 docker run --help
-![alt text](./Img/Core_Building_Blocks/image-9.png)
 docker run --rm <image-id>
 docker images
 docker run -p 3000:80 -d --rm <image-id>
 docker stop interesting_aryabhata
 docker ps
 ```
+
+![alt text](./Img/Core_Building_Blocks/image-9.png)
 
 ## Inspecting Images
 

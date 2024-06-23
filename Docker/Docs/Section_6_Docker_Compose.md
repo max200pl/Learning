@@ -15,7 +15,7 @@
     - docker-compose automatically creates a network for the services
     - but you can create a network manually
 
-![version docker compose](image-3.png)
+![version docker compose](./Img/Section_6/image-3.png)
 
 - `version` : version of the docker-compose file
 - `services` : list of services that we want to run

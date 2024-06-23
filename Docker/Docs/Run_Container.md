@@ -123,7 +123,6 @@ Usage:`docker image build [OPTIONS] PATH | URL | -`
 
 ```bash
 docker build . -t maksymposkannyi/portfolio-react
-
 ```
 
 - `it` is used to run the container in interactive mode
