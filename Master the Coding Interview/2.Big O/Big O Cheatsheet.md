@@ -111,3 +111,110 @@ No matter how big the input is, the number of operations will always be the same
     // O(n) + O(n^2) => O(n^2) // Drop the non-dominant term
     // O(n^2 + 3n + 100 + 1000) => O(n^2) // Drop the non-dominant term
     ```
+
+## Factorial Time O(!n)
+
+- **O(n!)**: Factorial Time (Bad) loops through all the elements and their combinations
+
+    ```javascript
+    function factorial(n) {
+        if (n === 2) {
+            return 2;
+        }
+        return n * factorial(n - 1);
+    }
+
+    factorial(5); // 5 * 4 * 3 * 2 => 120
+    ```
+
+## Which code is best?
+
+Readable ------ Space Complexity ------ Time Complexity
+
+### Space Complexity
+
+```javascript
+
+    function boooo(n) {
+        for (let i = 0; i < n.length; i++) {
+            console.log('booooo');
+        }
+    }
+
+    boooo([1, 2, 3, 4, 5]); // O(1)
+
+    function arrayOfHiNTimes(n) {
+        let hiArray = [];
+        for (let i = 0; i < n; i++) {
+            hiArray[i] = 'hi';
+        }
+        return hiArray;
+    }
+
+    arrayOfHiNTimes(6); // O(n)
+```
+
+## Exercise Twitter
+
+```javascript
+    const array = ['a', 'b', 'c', 'd', 'e'];
+    array[0]; // O(1)
+    array[array.length - 1]; // O(1)
+
+    const array = [ // O(n^2)
+        {
+            tweet: 'hi',
+            date: 2012
+        },
+        {
+            tweet: 'my',
+            date: 2014
+        },
+        {
+            tweet: 'teddy',
+            date: 2018
+        }
+    ];
+
+
+    'QWWQEEQWWE'.length // O(1) based on language working with
+```
+
+## Exercise javascript loop
+
+```javascript
+    const nemo = ['nemo'];
+    const everyone = ['dory', 'bruce', 'marlin', 'nemo', 'gill', 'bloat', 'nigel', 'squirt', 'darla', 'hank'];
+    const large = new Array(100000).fill('nemo');
+    function findNemo(array) {
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] === 'nemo') {
+                console.log('Found Nemo!');
+                break; // Stop the loop
+            }
+        }
+    }
+
+    findNemo(large); // O(n) -> Linear Time
+
+    const findNemo2 = array => {
+        array.forEach(fish => {
+            if (fish === 'nemo') {
+                console.log('Found Nemo!');
+            }
+        });
+    }
+
+    findNemo2(large); // O(n) -> Linear Time
+
+
+    const findNemo3 = array => {
+        for (let fish of array) {
+            if (fish === 'nemo') {
+                console.log('Found Nemo!');
+            }
+        }
+    }
+
+    findNemo3(large); // O(n) -> Linear Time
+```
