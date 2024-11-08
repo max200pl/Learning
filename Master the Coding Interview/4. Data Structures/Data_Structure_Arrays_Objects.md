@@ -1,4 +1,4 @@
-# Data Structures Arrays
+# Data Structures Arrays and Objects
 
 Dynamic Array - Automatically resizes itself when it reaches capacity
 Static Array - Fixed size
@@ -63,7 +63,6 @@ Static Array - Fixed size
 ```javascript
    function a() {
        let b = 10; // b is in the scope of function a
-       console.log(this); // Window object
    }
 
    const objectName = {
@@ -104,4 +103,67 @@ Static Array - Fixed size
     const wizard1 = new Wizard('Shelly', 'Healer'); // 4. create an object
     const wizard2 = new Wizard('Shawn', 'Dark Magic'); // 4.1 create another object
     // wizard1.introduce(); // Hi I am Shelly, I'm a Healer
+```
+
+## Data Structures Arrays
+
+- Lookup: O(1)
+- Push: O(1)
+- Insert: O(n)
+- Delete: O(n)
+
+```javascript
+class MyArray {
+    constructor() {
+        this.length = 0;
+        this.data = {};
+    }
+
+    get(index) {
+        return this.data[index];
+    }
+
+    push(item){
+        this.data[this.length] = item;
+        this.length++;
+        return this.length;
+    }
+
+    pop(){
+        const lastItem = this.data[this.length-1];
+        delete this.data[this.length-1];
+        this.length--;
+        return lastItem;
+    }
+
+    delete(index){
+        const item = this.data[index];
+        this.shiftItems(index);
+        return item;
+    }
+
+    shiftItems(index){
+        for(let i = index; i < this.length - 1; i++){ // O(n)
+            this.data[i] = this.data[i+1];
+        }
+        delete this.data[this.length-1];
+        this.length--;
+    }
+}
+
+const newArray = new MyArray();
+newArray.push('hi');
+newArray.push('you');
+newArray.push('!');
+newArray.delete(1);
+newArray.pop();
+console.log(newArray); // MyArray { length: 2, data: { '0': 'hi', '1': 'you' } }
+```
+
+### Strings As Arrays
+
+```javascript
+    const string = 'Hi my name is Shubham';
+    const reverseString = string.split('').reverse().join('');
+    console.log(reverseString); // mahbuhS si eman ym iH
 ```
