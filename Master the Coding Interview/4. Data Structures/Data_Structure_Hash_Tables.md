@@ -5,6 +5,16 @@
 - Python has dictionaries
 - Ruby has hash tables
 
+## Proc and Cons HashTables
+
+| Pros                 | Cons                 |
+| -------------------- | -------------------- |
+| Fast Lookups         | Slow Iteration       |
+| Fast Inserts         | Unordered            |
+| Flexible Keys        | Single Directional   |
+| Delete/Update        |                      |
+| Cache Friendly       | Collisions           |
+
 ## Hash Tables VS Arrays
 
 | Hash Tables          | Arrays              |

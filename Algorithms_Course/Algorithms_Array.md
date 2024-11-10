@@ -12,14 +12,14 @@
     - [4. Map the Debris  -\> Сложность 1/5](#4-map-the-debris----сложность-15)
     - [5. Everything Be True -\> Сложность 3/5](#5-everything-be-true---сложность-35)
     - [6. Checker Cash Register -\> Сложность 5/5](#6-checker-cash-register---сложность-55)
+    - [7. First Recurring Character -\> Сложность 3/5](#7-first-recurring-character---сложность-35)
 
 ## Arrays
 
-========== Arrays ==========
-
 ### Recommendation
 
-Отбить основной цикл и внутренний разделителями
+1. Avoid using nested loops // O(n^2)
+   - If necessary, separate the main loop and the inner loop with delimiters // O(n^2)
 
 ```javascript
 function uniteUnique(arr) {
@@ -169,11 +169,11 @@ dropElements([1, 2, 3, 4], function(n) {return n >= 3;});
 ### 4. Map the Debris  -> Сложность 1/5
 
 **Условие:**
+**initial**     [{name : "sputnik", avgAlt : 35873.5553}]
+**expectation** [{name: "sputnik", orbitalPeriod: 86400}]
 
 1. вернуть новый массив объектов с обновленными свойствами
 2. преобразовать высоту в круговую орбиту
-*orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]);*
-*return [{name: "sputnik", orbitalPeriod: 86400}]*
 
 **Info:**
 
@@ -217,6 +217,8 @@ function orbitalPeriod(arr) {
 
 **Условие:**
 Являются ли предикат верным для всех элементов коллекции
+**initial**    [{key: "value"}, {key: "value"}, {key: "value"}]
+**expectation** true | false
 
 **Info:**
 
@@ -264,8 +266,6 @@ function checkCashRegister(price, cash, cid) {
     const roundMoney = (money) => Math.round(money * 100) / 100;
 
     let sumOfCid = 0;
-
-
 
     sumOfCid = cid.reduce((sum, arr) => {
         return (sum += arr[1]);
@@ -357,4 +357,42 @@ function checkCashRegister(price, cash, cid) {
  checkCashRegister(19.5, 20, [["PENNY", 0.01], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 1], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]])
 
 // {status: "OPEN", change: [["QUARTER", 0.5]]}
+```
+
+### 7. First Recurring Character -> Сложность 3/5
+
+**Условие:**
+Найти первый повторяющийся элемент в массиве
+**initial**   [2, 5, 1, 2, 3, 5, 1, 2, 4]
+**expectation** 2
+**initial**   [2, 1, 1, 2, 3, 5, 1, 2, 4]
+**expectation** 1
+**initial**   [2, 3, 4, 5]
+**expectation** undefined
+
+**Алгоритм:** O(n)
+
+1. создать объект
+2. перебрать массив
+3. если элемент массива есть в объекте вернуть его
+4. если нет добавить в объект
+5. вернуть undefined
+
+```javascript
+
+function firstRecurringCharacter(input) {
+    let map = {};
+
+    for (let i = 0; i < input.length; i++) {
+        if (map[input[i]]) {
+            return input[i];
+        } else {
+            map[input[i]] = true;
+        }
+    }
+
+    return undefined;
+}
+
+firstRecurringCharacter([2, 5, 1, 2, 3, 5, 1, 2, 4]); // 2 O(n)
 ```
