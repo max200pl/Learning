@@ -234,12 +234,12 @@ obj1.b = 100;
 
 [Link Runtime javascript Viewer](http://latentflip.com/loupe/?code=ZnVuY3Rpb24gcHJpbnRIZWxsbygpIHsNCiAgICBjb25zb2xlLmxvZygnSGVsbG8gZnJvbSBiYXonKTsNCn0NCg0KZnVuY3Rpb24gYmF6KCkgew0KICAgIHNldFRpbWVvdXQocHJpbnRIZWxsbywgMzAwMCk7DQp9DQoNCmZ1bmN0aW9uIGJhcigpIHsNCiAgICBiYXooKTsNCn0NCg0KZnVuY3Rpb24gZm9vKCkgew0KICAgIGJhcigpOw0KfQ0KDQpmb28oKTs%3D!!!PGJ1dHRvbj5DbGljayBtZSE8L2J1dHRvbj4%3D)
 
-![alt text](./Img/image-13.png){height="40%" width="40%"}
+![alt text](./Img/image-13.png){height="100%" width="100%"}
 
 - one set of instructions set executed at a time
 - JavaScript is single-threaded
 
-![alt text](./Img/image-13.png){height="40%" width="40%"}
+![alt text](./Img/image-13.png){height="100%" width="100%"}
 
 ``` javascript
 console.log('1');
