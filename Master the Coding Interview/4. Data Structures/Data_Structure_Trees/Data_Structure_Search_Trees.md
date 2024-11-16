@@ -3,7 +3,7 @@
 
 [link visualgo search trees](https://visualgo.net/en/bst?slide=1)
 
-![Trees Big(0)](<Trees Big(0).png>){width=70% height=70%}
+![Trees Big(0)](<./src/Trees Big(0).png>){width=70% height=70%}
 
 1. A binary search tree is a binary tree in which every node fits a specific ordering property:
      1. All left descendants <= n < all right descendants

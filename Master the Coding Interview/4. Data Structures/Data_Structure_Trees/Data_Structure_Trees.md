@@ -19,7 +19,7 @@
 
 ## Main concepts
 
-![Treas main concepts](treas_main_concepts.png){width=80% height=80%}
+![Treas main concepts](./src/treas_main_concepts.png){width=80% height=80%}
 
 ### Trees Terminology
 
@@ -36,7 +36,7 @@
 
 ### Binary Example
 
-![Binary Example](binary_example.png){width=80% height=80%}
+![Binary Example](./src/binary_example.png){width=80% height=80%}
 
 #### Perfect Binary Tree
 
@@ -62,7 +62,7 @@ function BinaryTreeNode(value) {
 
 ### Big O of Binary Trees O(log n)
 
-![Trees Big(0)](<Trees Big(0).png>){width=70% height=70%}
+![Trees Big(0)](./src/Trees%20Big(0).png){width=70% height=70%}
 
 ### Level Treas
 
