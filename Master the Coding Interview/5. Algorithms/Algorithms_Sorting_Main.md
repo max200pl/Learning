@@ -14,11 +14,14 @@ Sorting is a fundamental operation in computer science. It is **used in many alg
 
 There are many different sorting algorithms, each with its own **advantages** and **disadvantages**. Some of the most common sorting algorithms are:
 
-- Bubble Sort
-- Selection Sort
-- Insertion Sort
-- Merge Sort
-- Quick Sort
+| Algorithm      | Description                                                                                       | Time Complexity | Space Complexity | Notes                                                                 |
+|----------------|---------------------------------------------------------------------------------------------------|-----------------|------------------|-----------------------------------------------------------------------|
+| Bubble Sort    | Simple, but inefficient. Use it for small datasets or when simplicity is more important than performance. | O(n^2)          | O(1)             | Inefficient for large datasets.                                       |
+| Selection Sort | Simple, but inefficient. Use it for small datasets or when simplicity is more important than performance. | O(n^2)          | O(1)             | Inefficient for large datasets.                                       |
+| Insertion Sort | Simple, but inefficient. Use it for small datasets or when simplicity is more important than performance. | O(n^2)          | O(1)             | Efficient for small datasets.                                         |
+| Merge Sort     | Efficient and stable. Use it when you need a stable sorting algorithm.                            | O(n log n)      | O(n)             | Not good for large datasets due to space complexity.                  |
+| Quick Sort     | Efficient and in-place. Use it when you need an in-place sorting algorithm.                       | O(n log n)      | O(log n)         | Not stable; the relative order of equal elements may change.          |
+| Heap Sort      | Efficient and in-place. Use it when you need an in-place sorting algorithm.                       | O(n log n)      | O(1)             | Efficient and in-place.                                               |
 
 ## The issue with sorting algorithms in JavaScript
 
@@ -45,9 +48,3 @@ There are many different sorting algorithms, each with its own **advantages** an
     spanish.sort(); // ['cosas', 'fútbol', 'árbol', 'único'] - Incorrect result
     spanish.sort((a, b) => a.localeCompare(b)); // ['árbol', 'cosas', 'fútbol', 'único'] - Correct result
     ```
-
-## Complexity analysis
-
-### Time complexity
-
-### Space complexity
