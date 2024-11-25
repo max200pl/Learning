@@ -6,7 +6,7 @@
 
 Bubble Sort is a simple sorting algorithm that **repeatedly steps through the list**, compares adjacent elements, and **swaps them if they are in the wrong order**. The pass through the list is repeated until no swaps are needed, which indicates that the list is sorted.
 
-![Bubble Sorting Algorithm](BubbleSortingAlgorithm.png){width=50%}
+![Bubble Sorting Algorithm](./src/BubbleSortingAlgorithm.png){width=50%}
 
 ### 2. Why is Bubble Sort important?
 

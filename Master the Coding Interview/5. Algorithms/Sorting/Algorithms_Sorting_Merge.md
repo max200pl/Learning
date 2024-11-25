@@ -6,7 +6,7 @@
 
 Merge Sort is a **divide-and-conquer** algorithm that **divides the input array into two halves**, recursively sorts the two halves, and then **merges the sorted halves**. It is a **stable sorting algorithm** that is **efficient** and **general-purpose**.
 
-![Merge Sort](MergeSort.png)
+![Merge Sort](./src/MergeSort.png)
 
 ### 2. Why is Merge Sort important?
 

@@ -6,8 +6,8 @@
 
 Quick Sort is a **divide-and-conquer** algorithm that **selects a pivot element** from the input array, **partitions the array into two subarrays** according to the pivot, and then **recursively sorts the subarrays**. It is an **efficient** and **general-purpose** sorting algorithm that is widely used in practice.
 
-![Quick Sort](QuickSort.png)
-![Quick Sort2 ](QuickSort2.png)
+![Quick Sort](./src/QuickSort.png)
+![Quick Sort2 ](./src/QuickSort2.png)
 
 ### 2. Why is Quick Sort important?
 

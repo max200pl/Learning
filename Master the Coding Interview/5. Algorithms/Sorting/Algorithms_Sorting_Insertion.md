@@ -6,7 +6,7 @@
 
 Insertion Sort is a simple sorting algorithm that **builds the final sorted list one item at a time**. It **selects an element** from the unsorted part and **inserts it into its correct position** in the sorted part. This process is repeated until the entire list is sorted.
 
-![Insertion Sorting Algorithm](InsertionSortingAlgorithm.png){width=50%}
+![Insertion Sorting Algorithm](./src/InsertionSortingAlgorithm.png){width=50%}
 
 1. Black items are sorted.
 2. White items are unsorted.

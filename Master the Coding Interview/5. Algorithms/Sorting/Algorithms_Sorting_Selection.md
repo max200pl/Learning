@@ -6,7 +6,7 @@
 
 Selection Sort is a simple sorting algorithm that **divides the input list into two parts**: the **sorted part** at the beginning and the **unsorted part** at the end. The algorithm **selects the smallest element** from the unsorted part and **swaps it with the first element** in the unsorted part. This process is repeated until the entire list is sorted.
 
-![Selection Sorting Algorithm](SelectionSortingAlgorithm.png){width=50%, height=300}
+![Selection Sorting Algorithm](./src/SelectionSortingAlgorithm.png){width=50%, height=300}
 
 1. Yellow items are sorted.
 2. White items are unsorted.
