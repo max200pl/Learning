@@ -20,6 +20,31 @@
 - Nodes are sometimes called vertices
 - Connections are sometimes called edges
 
+## Types of Graphs
+
+- **Directed Graphs**: Edges have direction
+- **Undirected Graphs**: Edges do not have direction
+- **Weighted Graphs**: Edges have values associated with them
+- **Unweighted Graphs**: Edges do not have values associated with them
+- **Cyclic Graphs**: Graphs that have cycles
+- **Acyclic Graphs**: Graphs that do not have cycles
+
+## Graph Traverse
+
+- **Breadth First Search (BFS)**: Explore all neighbors before moving on to the next level of neighbors
+- **Depth First Search (DFS)**: Go as deep as possible down one path before backtracking
+
+### Where Traverse is Used in real life?
+
+- Facebook: BFS to find friends
+- LinkedIn: DFS to recommend jobs
+- Google: BFS to find nearest restaurant
+- Amazon: DFS to recommend products
+- Netflix: DFS to recommend movies
+- Uber: BFS to find nearest driver
+- Airbnb: DFS to recommend places
+- etc.
+
 ![Graph Algorithm.png](<Graph Algorithm.png>){width=50%}
 
 ## Poc and Cons of Graphs
@@ -37,9 +62,6 @@ Cons:
 
 ## Directed vs Undirected Graphs
 
-- **Undirected Graphs**: No direction associated with the edges
-- **Directed Graphs**: Edges have direction
-
 | Undirected Graph | Directed Graph |
 | ---------------- | -------------- |
 | **Example**: Facebook (Friendship is mutual) | **Example**: Twitter (Following is not mutual) |
@@ -48,9 +70,6 @@ Cons:
 ![Directed vs Undirected](directedVsUndirectedGraph.png){width=50%}
 
 ## Weighted Graphs and Unweighted Graphs
-
-- **Weighted Graphs**: Edges have values associated with them
-- **Unweighted Graphs**: Edges do not have values associated with them
 
 | Weighted Graph | Unweighted Graph |
 | -------------- | ---------------- |

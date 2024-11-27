@@ -220,19 +220,81 @@ class BinarySearchTree {
         }
         return this.breadthFirstSearchR(queue, list);
     }
+
+    // DFS Depth First Search In Order (left, root, right)
+
+    depthFirstSearchInOrder() {
+        return traverseInOrder(this.root, []);
+    }
+
+    // DFS Depth First Search Pre Order (root, left, right)
+
+    depthFirstSearchPreOrder() {
+        return traversePreOrder(this.root, []);
+    }
+
+    // DFS Depth First Search Post Order (left, right, root)
+
+    depthFirstSearchPostOrder() {
+        return traversePostOrder(this.root, []);
+    }
 }
 
+function traverseInOrder(node, list) {
+    console.log(node.value);
+    if (node.left) {
+        traverseInOrder(node.left, list);
+    }
+    list.push(node.value);
+    if (node.right) {
+        traverseInOrder(node.right, list);
+    }
+    return list;
+}
+
+function traversePreOrder(node, list) {
+    console.log(node.value);
+    list.push(node.value);
+    if (node.left) {
+        traversePreOrder(node.left, list);
+    }
+    if (node.right) {
+        traversePreOrder(node.right, list);
+    }
+    return list;
+}
+
+function traversePostOrder(node, list) {
+    console.log(node.value);
+    if (node.left) {
+        traversePostOrder(node.left, list);
+    }
+    if (node.right) {
+        traversePostOrder(node.right, list);
+    }
+    list.push(node.value);
+    return list;
+}
+
+//        9
+//    4       20
+//  1   6  15   170
+
 const tree = new BinarySearchTree();
-tree.insert(9);
-tree.insert(4);
-tree.insert(6);
-tree.insert(20);
-tree.insert(170);
-tree.insert(15);
-tree.insert(1);
-tree.lookup(170);
-tree.breadthFirstSearch();
-tree.breadthFirstSearchR([tree.root], []);
+tree.insert(9); // root O(1) time complexity and O(1) space complexity
+tree.insert(4); // left of root O(log n) time complexity and O(1) space complexity
+tree.insert(6); // right of 4 O(log n) time complexity and O(1) space complexity
+tree.insert(20); // right of root O(log n) time complexity and O(1) space complexity
+tree.insert(170); // right of 20 O(log n) time complexity and O(1) space complexity
+tree.insert(15); // left of 20 O(log n) time complexity and O(1) space complexity
+tree.insert(1); // left of 4 O(log n) time complexity and O(1) space complexity
+tree.lookup(170);  // Node { value: 170, left: null, right: null } O(log n) time complexity and O(1) space complexity
+tree.breadthFirstSearch();  // [9, 4, 20, 1, 6, 15, 170] O(n) time complexity and O(n) space complexity
+tree.breadthFirstSearchR([tree.root], []); // [9, 4, 20, 1, 6, 15, 170] O(n) time complexity and O(n) space complexity
+console.log(tree.depthFirstSearchInOrder()); // [1, 4, 6, 9, 15, 20, 170] O(n) time complexity and O(n) space complexity
+console.log(tree.depthFirstSearchPreOrder()); // [9, 4, 1, 6, 20, 15, 170] O(n) time complexity and O(n) space complexity
+console.log(tree.depthFirstSearchPostOrder()); // [1, 6, 4, 15, 170, 20, 9] O(n) time complexity and O(n) space complexity
+```
 
 JSON.stringify(traverse(tree.root));
 
