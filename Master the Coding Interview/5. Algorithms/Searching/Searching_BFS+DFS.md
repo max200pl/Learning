@@ -34,6 +34,40 @@
 - **DFS** is a graph traversal algorithm that starts at a node and explores as far as possible along each branch before backtracking.
 - It uses a **stack** to keep track of the nodes to visit next.
 
+### DFS Way of Implementation
+
+          9
+        /   \
+         4     20
+        / \   /  \
+        1  6 15   170
+
+- **In-order traversal**: left, root, right
+    How in order traversal works:
+      - Traverse the left subtree
+      - Visit the root
+      - Traverse the right subtree
+      - Output: 1, 4, 6, 9, 15, 20, 170
+
+- **Post-order traversal**: left, right, root
+    How post order traversal works:
+      - Traverse the left subtree
+      - Traverse the right subtree
+      - Visit the root
+      - Output: 1, 6, 4, 15, 170, 20, 9
+- **Pre-order traversal**: root, left, right
+    How pre order traversal works:
+      - Visit the root
+      - Traverse the left subtree
+      - Traverse the right subtree
+      - Output: 9, 4, 1, 6, 20, 15, 170
+
+### When to use DFS way of implementation of real life problems
+
+- **In-order traversal**: Useful for binary search trees to get nodes in non-decreasing order
+- **Pre-order traversal**: Can be used to create a copy of the tree
+- **Post-order traversal**: Can be used to delete the tree or free the memory
+
 ## EXAMPLES
 
 BFS and DFS can be used to solve a variety of problems. Here are some examples:
