@@ -60,25 +60,57 @@ console.log(memoized(5)); // 85
 
 ![Memoization Fibonacci 2](Memoization_Fibonacci_2.png)
 
+#### Fibonacci (Exponential Time Complexity) (O(2^n) - Exponential time complexity)
+
 ```javascript
-function fibonacci(n) {
+function fibonacci(n) { // O(2^n) - Exponential time complexity - Bad performance
   if (n < 2) {
     return n;
   }
   return fibonacci(n - 1) + fibonacci(n - 2);
 }
+
+fibonacci(6); // 8
 ```
 
+#### Fibonacci (Memoization) (O(n) - Linear time complexity)
+
 ```javascript
-function fibonacci(n, memo = []) {
-  if (memo[n] !== undefined) {
-    return memo[n];
-  }
-  if (n < 2) {
-    return n;
-  }
-  let result = fibonacci(n - 1, memo) + fibonacci(n - 2, memo);
-  memo[n] = result;
-  return result;
+function fibonacci( ) {
+    let cache = {}; // Memoization cache object to store the results of the subproblems to avoid recomputation.
+    return function fib(n) {
+        if (n in cache) {
+            return cache[n];
+        } else {
+            if (n < 2) {
+                return n;
+            } else {
+                cache[n] = fib(n - 1) + fib(n - 2);
+                return cache[n];
+            }
+        }
+    };
 }
+
+const fib = fibonacci();
+fib(6); // 8
 ```
+
+### Memoization Example 3 ( Fibonacci - Iterative Approach)
+
+```javascript
+function fibonacci(n) {
+  let fib = [0, 1];
+  for (let i = 2; i <= n; i++) {
+    fib[i] = fib[i - 1] + fib[i - 2];
+  }
+  return fib[n];
+}
+
+```
+
+## Interview Questions: Dynamic Programming Links
+
+[House Robber](https://leetcode.com/problems/house-robber/)
+[Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)
+[Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/)
