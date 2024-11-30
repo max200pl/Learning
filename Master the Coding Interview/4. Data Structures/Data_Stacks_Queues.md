@@ -7,7 +7,7 @@
 - Stacks are like a stack of plates
 - Last item added to the stack is the first item to be removed
 
-![ Stack ](Stack.png)
+![ Stack ](./src/Stack.png)
 
 - Stacks are used in:
   - Managing function invocations
@@ -23,7 +23,7 @@
   - Uploading resources
   - Printing / Task processing
 
-![ Queue ](Queue.png)
+![ Queue ](./src/Queue.png)
 
 ## Array Vs Stack and Queue
 

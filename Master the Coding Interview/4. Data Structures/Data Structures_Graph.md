@@ -2,7 +2,7 @@
 
 ## Why Graphs?
 
-![Is it Graph?](graphRepresentation.png)
+![Is it Graph?](./src/graphRepresentation.png)
 
 - Graphs are extremely useful for modeling relationships between data
 - Graphs are used in:
@@ -45,7 +45,7 @@
 - Airbnb: DFS to recommend places
 - etc.
 
-![Graph Algorithm.png](<Graph Algorithm.png>){width=50%}
+![Graph Algorithm.png](./src/Graph Algorithm.png){width=50%}
 
 ## Poc and Cons of Graphs
 
@@ -67,7 +67,7 @@ Cons:
 | **Example**: Facebook (Friendship is mutual) | **Example**: Twitter (Following is not mutual) |
 | **Example**: Road Network (Traffic can go both ways) | **Example**: One-way Street (Traffic can go only one way) |
 
-![Directed vs Undirected](directedVsUndirectedGraph.png){width=50%}
+![Directed vs Undirected](./src/directedVsUndirectedGraph.png){width=50%}
 
 ## Weighted Graphs and Unweighted Graphs
 
@@ -77,7 +77,7 @@ Cons:
 | **Example**: Maps (Distance between cities) | **Example**: Family Tree (Just connections) |
 | **Example**: Internet (Latency between servers) | **Example**: Web Crawler (Just connections) |
 
-![Weight graph vs Unweighted graph](weightGraphVsUnweightedGraph.png){width=50%}
+![Weight graph vs Unweighted graph](./src/weightGraphVsUnweightedGraph.png){width=50%}
 
 ## Cyclic vs Acyclic Graphs
 
@@ -85,7 +85,7 @@ Cons:
 - **Acyclic Graphs**: Graphs that do not have cycles
 - **Cycle**: A cycle is a path that starts and ends at the same node
 
-![Cyclic vs Acyclic Graphs](Cyclic_Acyclic_Graphs.png){width=50%}
+![Cyclic vs Acyclic Graphs](./src/Cyclic_Acyclic_Graphs.png){width=50%}
 
 ## Graph Representation
 
@@ -121,7 +121,7 @@ Cons:
 
 ## Own Graph Implementation
 
-![Own Graph Implementation](OwnGraph.png){width=90%}
+![Own Graph Implementation](./src/OwnGraph.png){width=90%}
 
 ```javascript
 class Graph {

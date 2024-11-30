@@ -33,7 +33,7 @@
 
 ## Singly Linked Lists
 
-![Linked list introduce](linkedListVisual.png){width=50%, height=50%}
+![Linked list introduce](./src/linkedListVisual.png){width=50%, height=50%}
 
 Start with the head node and follow the next pointers until you reach the end
 
@@ -48,7 +48,7 @@ const basket = ['apples', 'grapes', 'pears'];
 //                    372 --> null
 ```
 
-![alt text](image-3.png)
+![alt text](./src/image-3.png)
 
 ## Doubly Linked Lists
 
@@ -60,7 +60,7 @@ const basket = ['apples', 'grapes', 'pears'];
 | More memory | Less memory |
 | More complex | Less complex |
 
-![Doubly linked list introduce](doublyLinkedListVisual.png){width=50%, height=50%}
+![Doubly linked list introduce](./src/doublyLinkedListVisual.png){width=50%, height=50%}
 
 ### Own Single Linked List Implementation in JS
 

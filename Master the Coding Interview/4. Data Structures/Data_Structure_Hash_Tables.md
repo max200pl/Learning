@@ -31,7 +31,7 @@
 - keys are unique
 - keys are hashed to store in memory
 
-![Hash Table Illustration](image.png)
+![Hash Table Illustration](./src/image.png)
 
 ## JS Objects are Hash Tables
 
@@ -62,9 +62,9 @@ user.spell = 'abra kadabra'; // O(1)
 - two keys can have the same hash
 - two keys can have the same index
 
-![EXAMPLE 1 of collisions](image-1.png)
+![EXAMPLE 1 of collisions](./src/image-1.png)
 [Example of Hash Creation](https://www.cs.usfca.edu/~galles/visualization/OpenHash.html)
-![EXAMPLE 2 of collisions](image-2.png)
+![EXAMPLE 2 of collisions](./src/image-2.png)
 
 Big O of Hash Tables is O(1) but in the worst case scenario it can be O(n)
 
