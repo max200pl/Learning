@@ -8,7 +8,7 @@
       body {
         margin: 0;
         font-family: Arial, sans-serif;
-        background-color: #121212;
+        background-color: green;
       }
 
       nav {
@@ -18,6 +18,11 @@
         display: flex;
         flex-direction: column;
         color: white;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: clip-path 0.3s ease;
+        z-index: 1;
       }
 
       nav button {
@@ -30,39 +35,33 @@
         font-size: 16px;
         margin-bottom: 10px;
         position: relative;
-        border-radius: 10px 0 0 10px; /* Скругление слева */
-        overflow: hidden;
-        z-index: 1; /* Устанавливаем z-index выше */
+        border-radius: 10px 0 0 10px;
+        z-index: 2; /* Ставим выше, чтобы кнопки были поверх фона */
       }
 
       nav button span {
-        position: absolute;
-        z-index: 2; /* Устанавливаем z-index выше */
-      }
-
-      nav button::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #1e1e1e; /* Цвет фона панели */
-        clip-path: polygon(0 0, 80% 0, 100% 100%, 0 100%);
+        position: relative;
+        z-index: 2;
       }
 
       nav button.active {
         color: #ffffff;
-        background: linear-gradient(90deg, #6b5cff, #9c4bff);
-      }
-
-      nav button.active::after {
-        background-color: #121212; /* Цвет фона панели */
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        background: rgba(
+          0,
+          128,
+          0,
+          0.5
+        ); /* Прозрачный зеленый фон для активной кнопки */
       }
 
       nav button:hover {
         color: #ffffff;
+        background-color: rgba(0, 128, 0, 0.2);
+      }
+
+      /* Позиционирование для активной кнопки */
+      nav button.active {
+        z-index: 3;
       }
     </style>
   </head>
@@ -79,10 +78,32 @@
     <script>
       // Функция для активации кнопки
       function setActive(el) {
+        // Убираем класс активности с других кнопок
         document
           .querySelectorAll("nav button")
           .forEach((btn) => btn.classList.remove("active"));
         el.classList.add("active");
+
+        // Получаем координаты активной кнопки
+        const rect = el.getBoundingClientRect();
+        const navRect = el.closest("nav").getBoundingClientRect();
+        const top = rect.top - navRect.top;
+        const height = rect.height;
+
+        // Вычисляем clip-path для фона навигации
+        const clipPathValue = `polygon(
+          0 0,
+          100% 0,
+          100% ${top}px,
+          0 ${top}px,
+          0 ${top + height}px,
+          100% ${top + height}px,
+          100% 100%,
+          0 100%
+        )`;
+
+        // Применяем clip-path к панели навигации
+        document.querySelector("nav").style.clipPath = clipPathValue;
       }
     </script>
   </body>
