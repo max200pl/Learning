@@ -36,7 +36,7 @@
         margin-bottom: 10px;
         position: relative;
         border-radius: 10px 0 0 10px;
-        z-index: 2; /* Ставим выше, чтобы кнопки были поверх фона */
+        z-index: 2; /* Ставим кнопки поверх фона */
       }
 
       nav button span {
@@ -62,6 +62,19 @@
       /* Позиционирование для активной кнопки */
       nav button.active {
         z-index: 3;
+      }
+
+      /* Для вырезания фона панели */
+      nav::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #1e1e1e;
+        clip-path: none;
+        z-index: -1; /* Чтобы вырезать только фон */
       }
     </style>
   </head>
@@ -103,7 +116,11 @@
         )`;
 
         // Применяем clip-path к панели навигации
-        document.querySelector("nav").style.clipPath = clipPathValue;
+        const nav = document.querySelector("nav");
+        nav.style.clipPath = clipPathValue;
+
+        // Убираем вырез с кнопки, делаем ее полностью видимой
+        el.style.clipPath = "none";
       }
     </script>
   </body>
