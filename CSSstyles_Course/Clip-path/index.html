@@ -8,7 +8,7 @@
       body {
         margin: 0;
         font-family: Arial, sans-serif;
-        background-color: green;
+        background-color: yellow;
       }
 
       nav {
@@ -79,14 +79,19 @@
     </style>
   </head>
   <body>
-    <nav>
-      <button onclick="setActive(this)"><span>Dashboard</span></button>
-      <button onclick="setActive(this)" class="active">
-        <span>Clean Up</span>
-      </button>
-      <button onclick="setActive(this)"><span>Optimize</span></button>
-      <button onclick="setActive(this)"><span>Games</span></button>
-    </nav>
+    <div>
+      <div background-color="green">
+        <h1>Dashboard</h1>
+      </div>
+      <nav class="nav">
+        <button onclick="setActive(this)"><span>Dashboard</span></button>
+        <button onclick="setActive(this)" class="active">
+          <span>Clean Up</span>
+        </button>
+        <button onclick="setActive(this)"><span>Optimize</span></button>
+        <button onclick="setActive(this)"><span>Games</span></button>
+      </nav>
+    </div>
 
     <script>
       // Функция для активации кнопки
