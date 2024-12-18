@@ -73,3 +73,74 @@ What is the measure of the unknown angle?
 
 Determine the interior angle measure for any regular n-gon
 ![determine the interior angle measure for any regular n-gon](./Img/interior_angle_n_gon.png)
+
+### Polygon Angle Relationships
+
+![Regular triangle sum angles](./Img/regular_triangle_angles_sum.png)
+
+The equation that relates all the interior and exterior angles in a triangle is fundamental in understanding polygon geometry.
+![Equation relates all of the interior and exterior angles in a triangle](./Img/triangle_angle_relation.png)
+
+$$
+\text{Interior Angle Sum} + \text{Exterior Angle Sum} = 540 \text{degrees}
+$$
+
+**The interior angle sum for any triangle is 180°.**
+$$
+a + b + c = 180
+$$
+
+![interior angle sum](./Img/interior_angle_sum_diagram.png)
+
+
+### Angle Sums for All Polygons
+
+What is the sum of all interior and exterior angles for a quadrilateral?
+
+![quadrilateral sum of all interior and exterior angles](./Img/geometry_quadrilateral_sum.png)
+
+$$
+4 *180° = 720°
+$$ 
+
+What is the interior angle sum for a quadrilateral?
+
+$$
+720° - 360° = 360°
+$$
+
+**The interior angle sum for any quadrilateral is 360°**
+ 
+
+ ![interior 5 angle sum for a pentagon](./Img/angle_sum_pentagon.png)
+
+
+### Polygon Angle Sum Formula
+
+The sum of the interior angles of a polygon is given by the formula:
+
+$$
+n * 180° - 360°
+$$
+
+Where n is the number of sides in the polygon.
+
+$$
+Since 360° = 2 * 180° 
+$$
+
+$$ 
+n * 180° - 2 * 180° = (n - 2) * 180°
+$$
+
+The interior angle sum of any n-gon is:
+
+$$
+(n - 2) * 180°
+$$
+
+<span style="color:blue">**What is the sum of the interior angles of a  12-gon?**</span>
+
+$$
+(12 - 2) * 180° = 10 * 180° = 1800°
+$$
