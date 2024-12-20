@@ -19,3 +19,6 @@ A vector has a horizontal component and a vertical component. The horizontal com
 
 ## Vectors and Points
 
+Points and vectors are different. Points are locations in space, while vectors are directions and magnitudes.
+
+![point and vector visualization](pointAndVectorVisualization.png)
