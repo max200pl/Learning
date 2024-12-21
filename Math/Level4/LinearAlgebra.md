@@ -22,3 +22,30 @@ A vector has a horizontal component and a vertical component. The horizontal com
 Points and vectors are different. Points are locations in space, while vectors are directions and magnitudes.
 
 ![point and vector visualization](pointAndVectorVisualization.png)
+
+
+## Adding Vectors
+
+![Combining Vectors](combining_vectors_diagram.png)
+
+To find the effect of shifting by multiple vectors in order, we can add the vectors.
+
+$$
+(a, b) + (c, d) = (a + c, b + d)
+$$
+
+![eight-move sequence](eight_move_sequence.png)
+
+$$
+x= 2 + -2 + 3 + -3 + 4 + -4 + 5 + -5 = 0
+y= 3 + -3 + 4 + -4 + 5 + -5 + 6 + -6 = 0
+$$
+
+
+![Sum vectors is (0,0)](vector_sum_diagram.png)
+
+![work with the vectors themselves](vector_representation_graph.png)
+
+
+
+![vectors in sequence](vector_sequence_visualization.png)
