@@ -82,3 +82,17 @@ If we add the negative of a vector to itself, we get the zero vector.
 $$
 -(\vec{a} + \vec{b} + \vec{c}) = -\vec{a} - \vec{b} - \vec{c}
 $$
+
+## Head to Head
+
+To add vectors head to head, we place the tail of the second vector at the head of the first vector.
+
+![find this unknown vector](unknown_vector_visualization.png)
+
+### Example 1
+
+![Example 1 find this unknown vector](unknown_vector_example.png)
+
+### Example 2
+
+![Example 2 find this unknown vector](unknown_vector_example2.png)
