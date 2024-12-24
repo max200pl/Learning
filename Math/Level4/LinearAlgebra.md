@@ -96,3 +96,26 @@ To add vectors head to head, we place the tail of the second vector at the head 
 ### Example 2
 
 ![Example 2 find this unknown vector](unknown_vector_example2.png)
+
+
+## Length of a Vector
+
+The length of that vector is also the distance from one location to the other. For a vector $\vec{v}, we'll denote the length as $$|\vec{v}|$$
+
+![draw a vector](vector_visualization.png)
+
+## Length of Components
+
+We can find the length of the components of a vector using the Pythagorean theorem.
+The length of a vector $\vec{v}$ = (a, b) is:
+$$
+|\vec{v}| = \sqrt{a^2 + b^2}
+$$
+
+![fiend |v|](vector_space_graph.png)
+
+### Example 1:
+
+What is the length of  $\vec{v}$ = (2, -6)?
+
+![Example 1 Length of Components](length_of_components_example_1.png)
