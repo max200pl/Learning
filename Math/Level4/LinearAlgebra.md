@@ -2,8 +2,7 @@
 
 ## Introduction
 
-We use an arrow in the symbol of a vector. For example, $\vec{v}$ is a vector.
-That's pronounced as "vector v".
+We use an arrow in the symbol of a vector. For example, $\vec{v}$ is a vector. That's pronounced as "vector v".
 
 ![Simple vector](./Img/simple_vector_visualization.png)
 
@@ -97,25 +96,40 @@ To add vectors head to head, we place the tail of the second vector at the head 
 
 ![Example 2 find this unknown vector](unknown_vector_example2.png)
 
-
 ## Length of a Vector
 
-The length of that vector is also the distance from one location to the other. For a vector $\vec{v}, we'll denote the length as $$|\vec{v}|$$
+The length of that vector is also the distance from one location to the other. For a vector $\vec{v}$, we'll denote the length as $|\vec{v}|$.
 
 ![draw a vector](vector_visualization.png)
 
 ## Length of Components
 
-We can find the length of the components of a vector using the Pythagorean theorem.
-The length of a vector $\vec{v}$ = (a, b) is:
+We can find the length of the components of a vector using the Pythagorean theorem. The length of a vector $\vec{v} = (a, b)$ is:
+
 $$
 |\vec{v}| = \sqrt{a^2 + b^2}
 $$
 
-![fiend |v|](vector_space_graph.png)
+![find |v|](vector_space_graph.png)
 
 ### Example 1:
 
-What is the length of  $\vec{v}$ = (2, -6)?
+What is the length of $\vec{v} = (2, -6)$?
 
 ![Example 1 Length of Components](length_of_components_example_1.png)
+
+### Example 2:
+
+Which calculation gives the length of the vector $\vec{w}$?
+
+![Example 2 Length of Components](length_of_components_example_2.png)
+
+###  Theorem
+
+When vectors $\langle a, b \rangle$ and $\langle x, y \rangle$ have their tails in the same position, the distance between their heads is:
+
+$$
+|\vec{d}| = \sqrt{(a-x)^2 + (b-y)^2}
+$$
+
+
