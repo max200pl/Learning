@@ -29,3 +29,9 @@ In this expression:
 - b is a variable that approaches the point a.
 - $$ \frac{f(b) - f(a)}{b - a} $$
     represents the average rate of change of the function between b and a.
+
+## A Closer Look at f'
+
+The derivative of a function f at a point a is the slope of the tangent line to the curve at that point.
+
+
