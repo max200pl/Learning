@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authentication Web App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section>
+      <form class="ui segment grey signup-form">
+        <div class="ui form">
+          <div class="ui stacked segment">
+            <!-- Mail -->
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="mail icon"></i>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                />
+              </div>
+            </div>
+            <!-- Password -->
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                />
+              </div>
+            </div>
+
+            <!-- Sign Up Button -->
+            <button class="ui fluid large teal submit button" id="signup-btn">
+              CREATE ACCOUNT
+            </button>
+          </div>
+        </div>
+      </form>
+    </section>
+    <script src="firebase.js" type="module"></script>
+    <script src="app.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+section {
+  height: 100vh;
+  background-color: #ececec;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.signup-form {
+  min-width: 300px;
+  tex-align: center;
+}
