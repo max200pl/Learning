@@ -12,9 +12,10 @@
   </head>
   <body>
     <section>
-      <form class="ui segment grey signup-form">
-        <div class="ui form">
+      <div class="ui segment grey signup-form">
+        <form class="ui form">
           <div class="ui stacked segment">
+            <div class="ui error message" id="error-message">Error</div>
             <!-- Mail -->
             <div class="field">
               <div class="ui left icon input">
@@ -45,8 +46,11 @@
               CREATE ACCOUNT
             </button>
           </div>
+        </form>
+        <div class="ui message small">
+          Already have an account? <a>Log In</a>
         </div>
-      </form>
+      </div>
     </section>
     <script src="firebase.js" type="module"></script>
     <script src="app.js" type="module"></script>
