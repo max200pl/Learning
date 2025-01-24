@@ -9,3 +9,7 @@ section {
 .signup-form {
   width: 300px;
 }
+
+#user-profile {
+  display: none;
+}

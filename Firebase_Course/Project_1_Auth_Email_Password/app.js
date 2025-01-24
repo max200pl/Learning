@@ -10,6 +10,10 @@ const password = document.getElementById("password");
 const signupBtn = document.getElementById("signup-btn");
 const UIErrorMessage = document.getElementById("error-message");
 
+const UIsignUpFromView = document.getElementById("signup-form");
+const UIuserProfileView = document.getElementById("user-profile");
+const UIuserEmail = document.getElementById("user-email");
+
 const signUpButtonPressed = async (e) => {
   e.preventDefault();
   try {
@@ -19,6 +23,11 @@ const signUpButtonPressed = async (e) => {
       password.value
     );
     console.log(`User credentials: ${userCredential}`);
+
+    UIuserEmail.innerHTML = userCredential.user.email;
+
+    UIsignUpFromView.style.display = "none";
+    UIuserProfileView.style.display = "block";
   } catch (error) {
     console.error(error.code);
     UIErrorMessage.innerText = formatErrorMessages(error.code);

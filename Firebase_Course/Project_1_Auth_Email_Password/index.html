@@ -12,7 +12,18 @@
   </head>
   <body>
     <section>
-      <div class="ui segment grey signup-form">
+      <div class="ui segment" id="user-profile">
+        <div class="ui card">
+          <div class="content">
+            <div class="header">User Profile</div>
+            <div class="meta" id="user-email">someemail@gmail.com</div>
+          </div>
+        </div>
+        <div class="extra content">
+          <button class="ui button red tiny">Log out</button>
+        </div>
+      </div>
+      <div class="ui segment grey signup-form" id="signup-form">
         <form class="ui form">
           <div class="ui stacked segment">
             <div class="ui error message" id="error-message">Error</div>
