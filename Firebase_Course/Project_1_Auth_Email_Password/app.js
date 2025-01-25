@@ -3,21 +3,32 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  signInWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 
 const auth = getAuth();
 
 const mainView = document.getElementById("main-view");
 
+/** ======== Sign Up ======== */
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const signupBtn = document.getElementById("signup-btn");
-const UIErrorMessage = document.getElementById("error-message");
+const signUpErrorMessage = document.getElementById("error-message");
 
-const UIsignUpFromView = document.getElementById("signup-form");
+const signUpFrom = document.getElementById("signup-form");
+const loginForm = document.getElementById("login-form");
+
+/** ======== User Profile ======== */
 const UIuserProfileView = document.getElementById("user-profile");
 const UIuserEmail = document.getElementById("user-email");
 const logoutBtn = document.getElementById("logout-btn");
+
+/** ======== Login ======== */
+const loginEmail = document.getElementById("login-email");
+const loginPassword = document.getElementById("login-password");
+const loginBtn = document.getElementById("login-btn");
+const loginErrorMessage = document.getElementById("login-error-message");
 
 /** @description
  * This function listens for auth state changes.
@@ -27,11 +38,11 @@ const logoutBtn = document.getElementById("logout-btn");
 onAuthStateChanged(auth, (user) => {
   console.log(user);
   if (user) {
-    UIsignUpFromView.style.display = "none";
+    loginForm.style.display = "none";
     UIuserProfileView.style.display = "block";
     UIuserEmail.innerHTML = user.email;
   } else {
-    UIsignUpFromView.style.display = "block";
+    loginForm.style.display = "block";
     UIuserProfileView.style.display = "none";
   }
   mainView.classList.remove("loading");
@@ -49,12 +60,12 @@ const signUpButtonPressed = async (e) => {
 
     UIuserEmail.innerHTML = userCredential.user.email;
 
-    UIsignUpFromView.style.display = "none";
+    signUpFrom.style.display = "none";
     UIuserProfileView.style.display = "block";
   } catch (error) {
     console.error(error.code);
-    UIErrorMessage.innerText = formatErrorMessages(error.code);
-    UIErrorMessage.classList.add("visible");
+    signUpErrorMessage.innerText = formatErrorMessages(error.code, "signup");
+    signUpErrorMessage.classList.add("visible");
   }
 };
 
@@ -68,23 +79,56 @@ const logoutButtonPressed = async () => {
   }
 };
 
+const loginButtonPressed = async (e) => {
+  e.preventDefault();
+
+  try {
+    await signInWithEmailAndPassword(
+      auth,
+      loginEmail.value,
+      loginPassword.value
+    );
+  } catch (error) {
+    console.error(error.code);
+    loginErrorMessage.innerHTML = formatErrorMessages(error.code, "login");
+    loginErrorMessage.classList.add("visible");
+  }
+};
+
 signupBtn.addEventListener("click", signUpButtonPressed);
 logoutBtn.addEventListener("click", logoutButtonPressed);
+loginBtn.addEventListener("click", loginButtonPressed);
 
-const formatErrorMessages = (errorCode) => {
+const formatErrorMessages = (errorCode, action) => {
   let message = "";
-  if (
-    errorCode === "auth/invalid-email" ||
-    errorCode === "auth/missing-email"
-  ) {
-    message = "Invalid email address.";
-  } else if (
-    errorCode === "auth/missing-password" ||
-    errorCode === "auth/weak-password"
-  ) {
-    message = "Password must be at least 6 characters long.";
-  } else if (errorCode === "auth/email-already-in-use") {
-    message = "This email is already in use.";
+
+  if (action === "signup") {
+    if (
+      errorCode === "auth/invalid-email" ||
+      errorCode === "auth/missing-email"
+    ) {
+      message = "Invalid email address.";
+    } else if (
+      errorCode === "auth/missing-password" ||
+      errorCode === "auth/weak-password"
+    ) {
+      message = "Password must be at least 6 characters long.";
+    } else if (errorCode === "auth/email-already-in-use") {
+      message = "This email is already in use.";
+    }
+  } else if (action === "login") {
+    if (
+      errorCode === "auth/invalid-email" ||
+      errorCode === "auth/missing-email"
+    ) {
+      message = "Email or password is incorrect.";
+    } else if (
+      errorCode === "auth/user-not-found" ||
+      errorCode === "auth/invalid-credential"
+    ) {
+      message =
+        "Our system was unable to find an account with that email or password.";
+    }
   }
 
   return message;

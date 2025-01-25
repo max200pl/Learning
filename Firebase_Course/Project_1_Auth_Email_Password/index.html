@@ -20,9 +20,50 @@
           </div>
         </div>
         <div class="extra content">
-          <button class="ui button red tiny" id="logout-btn">Log out</button>
+          <button class="ui button red tiny" id="logout-btn">LOG OUT</button>
         </div>
       </div>
+
+      <!-- Login Form -->
+      <div class="ui segment" id="login-form">
+        <form action="" class="ui form">
+          <div class="ui stacked segment">
+            <div class="ui error message" id="login-error-message">Error</div>
+            <!-- Email -->
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="mail icon"></i>
+                <input
+                  type="email"
+                  name="email"
+                  id="login-email"
+                  placeholder="Email"
+                />
+              </div>
+            </div>
+            <!-- Password -->
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input
+                  type="password"
+                  name="password"
+                  id="login-password"
+                  placeholder="Password"
+                />
+              </div>
+            </div>
+            <!-- Login Button -->
+            <button class="ui fluid large teal submit button" id="login-btn">
+              LOG IN
+            </button>
+          </div>
+        </form>
+        <div class="ui message small">
+          Don't have an account? <a>Sign Up</a>
+        </div>
+      </div>
+      <!-- Sign Up Form -->
       <div class="ui segment grey signup-form" id="signup-form">
         <form class="ui form">
           <div class="ui stacked segment">

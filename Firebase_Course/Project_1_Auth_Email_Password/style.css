@@ -6,12 +6,8 @@ section {
   align-content: center;
 }
 
-#user-profile {
-  display: none;
-  margin: auto;
-  max-width: 300px !important;
-}
-
+#user-profile,
+/* #login-form, */
 #signup-form {
   display: none;
   margin: auto;
