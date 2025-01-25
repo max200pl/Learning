@@ -6,14 +6,13 @@ section {
   align-content: center;
 }
 
-.signup-form {
-  max-width: 300px !important;
-  max-height: 400px !important;
-  text-align: center;
+#user-profile {
   display: none;
+  margin: auto;
+  max-width: 300px !important;
 }
 
-#user-profile {
+#signup-form {
   display: none;
   margin: auto;
   max-width: 300px !important;

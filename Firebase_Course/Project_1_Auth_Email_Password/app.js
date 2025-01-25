@@ -2,6 +2,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 
 const auth = getAuth();
@@ -16,6 +17,7 @@ const UIErrorMessage = document.getElementById("error-message");
 const UIsignUpFromView = document.getElementById("signup-form");
 const UIuserProfileView = document.getElementById("user-profile");
 const UIuserEmail = document.getElementById("user-email");
+const logoutBtn = document.getElementById("logout-btn");
 
 /** @description
  * This function listens for auth state changes.
@@ -56,7 +58,18 @@ const signUpButtonPressed = async (e) => {
   }
 };
 
+const logoutButtonPressed = async () => {
+  try {
+    await signOut(auth);
+    email.value = "";
+    password.value = "";
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 signupBtn.addEventListener("click", signUpButtonPressed);
+logoutBtn.addEventListener("click", logoutButtonPressed);
 
 const formatErrorMessages = (errorCode) => {
   let message = "";
