@@ -1,9 +1,12 @@
 import {
   getAuth,
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 
 const auth = getAuth();
+
+const mainView = document.getElementById("main-view");
 
 const email = document.getElementById("email");
 const password = document.getElementById("password");
@@ -13,6 +16,24 @@ const UIErrorMessage = document.getElementById("error-message");
 const UIsignUpFromView = document.getElementById("signup-form");
 const UIuserProfileView = document.getElementById("user-profile");
 const UIuserEmail = document.getElementById("user-email");
+
+/** @description
+ * This function listens for auth state changes.
+ * If the user is signed in, the user object is returned.
+ * If the user is signed out, the user object is null.
+ */
+onAuthStateChanged(auth, (user) => {
+  console.log(user);
+  if (user) {
+    UIsignUpFromView.style.display = "none";
+    UIuserProfileView.style.display = "block";
+    UIuserEmail.innerHTML = user.email;
+  } else {
+    UIsignUpFromView.style.display = "block";
+    UIuserProfileView.style.display = "none";
+  }
+  mainView.classList.remove("loading");
+});
 
 const signUpButtonPressed = async (e) => {
   e.preventDefault();

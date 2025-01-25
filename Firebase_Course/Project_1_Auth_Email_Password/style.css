@@ -1,15 +1,20 @@
 section {
   height: 100vh;
   background-color: #ececec;
-  display: flex !important;
-  justify-content: center;
+  display: flex;
+  justify-content: middle;
   align-content: center;
 }
 
 .signup-form {
-  width: 300px;
+  max-width: 300px !important;
+  max-height: 400px !important;
+  text-align: center;
+  display: none;
 }
 
 #user-profile {
   display: none;
+  margin: auto;
+  max-width: 300px !important;
 }

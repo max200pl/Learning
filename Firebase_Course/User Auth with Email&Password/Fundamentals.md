@@ -6,6 +6,7 @@
   - [Add Firebase SDK](#add-firebase-sdk)
   - [Enabled Email/Password Authentication](#enabled-emailpassword-authentication)
   - [Import Firebase SDK](#import-firebase-sdk)
+  - [Create User with Email and Password](#create-user-with-email-and-password)
 
 ## Create A Firebase Project Firebase Console
 
@@ -27,6 +28,8 @@
         2.1 getAuth() - To get the Auth service for the default app or a given app.
         2.2 createUserWithEmailAndPassword() - Creates a new user account associated with the specified email address and password.
 
+## Create User with Email and Password
+
 ```javascript
 
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
@@ -45,5 +48,3 @@ try {
 }
 
 ```
-
-```javascript
