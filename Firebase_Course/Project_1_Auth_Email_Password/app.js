@@ -15,6 +15,7 @@ const email = document.getElementById("email");
 const password = document.getElementById("password");
 const signupBtn = document.getElementById("signup-btn");
 const signUpErrorMessage = document.getElementById("error-message");
+const haveAnAccountBtn = document.getElementById("have-an-account-btn");
 
 const signUpFrom = document.getElementById("signup-form");
 const loginForm = document.getElementById("login-form");
@@ -29,6 +30,7 @@ const loginEmail = document.getElementById("login-email");
 const loginPassword = document.getElementById("login-password");
 const loginBtn = document.getElementById("login-btn");
 const loginErrorMessage = document.getElementById("login-error-message");
+const needAnAccountBtn = document.getElementById("need-an-account-btn");
 
 /** @description
  * This function listens for auth state changes.
@@ -95,9 +97,21 @@ const loginButtonPressed = async (e) => {
   }
 };
 
+const needAnAccountBtnPressed = () => {
+  loginForm.style.display = "none";
+  signUpFrom.style.display = "block";
+};
+
+const haveAnAccountBtnPressed = () => {
+  signUpFrom.style.display = "none";
+  loginForm.style.display = "block";
+};
+
 signupBtn.addEventListener("click", signUpButtonPressed);
+haveAnAccountBtn.addEventListener("click", haveAnAccountBtnPressed);
 logoutBtn.addEventListener("click", logoutButtonPressed);
 loginBtn.addEventListener("click", loginButtonPressed);
+needAnAccountBtn.addEventListener("click", needAnAccountBtnPressed);
 
 const formatErrorMessages = (errorCode, action) => {
   let message = "";

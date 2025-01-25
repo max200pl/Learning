@@ -4,12 +4,23 @@ section {
   display: flex;
   justify-content: middle;
   align-content: center;
+  text-align: center;
 }
 
 #user-profile,
-/* #login-form, */
+#login-form,
 #signup-form {
   display: none;
   margin: auto;
   max-width: 300px !important;
+}
+
+#login-form {
+  display: block;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #007bff;
 }
