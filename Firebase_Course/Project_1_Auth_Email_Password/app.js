@@ -4,11 +4,16 @@ import {
   onAuthStateChanged,
   signOut,
   signInWithEmailAndPassword,
+  sendEmailVerification,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 
 const auth = getAuth();
 
 const mainView = document.getElementById("main-view");
+
+/** ======== Email Verification ======== */
+const emailVerificationForm = document.getElementById("email-verification");
+const resendEmailBtn = document.getElementById("resend-email-btn");
 
 /** ======== Sign Up ======== */
 const email = document.getElementById("email");
@@ -32,6 +37,16 @@ const loginBtn = document.getElementById("login-btn");
 const loginErrorMessage = document.getElementById("login-error-message");
 const needAnAccountBtn = document.getElementById("need-an-account-btn");
 
+const resendButtonPressed = async () => {
+  try {
+    await sendEmailVerification(auth.currentUser);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+resendEmailBtn.addEventListener("click", resendButtonPressed);
+
 /** @description
  * This function listens for auth state changes.
  * If the user is signed in, the user object is returned.
@@ -40,9 +55,17 @@ const needAnAccountBtn = document.getElementById("need-an-account-btn");
 onAuthStateChanged(auth, (user) => {
   console.log(user);
   if (user) {
+    if (!user.emailVerified) {
+      emailVerificationForm.style.display = "block";
+      UIuserProfileView.style.display = "none";
+    } else {
+      UIuserProfileView.style.display = "block";
+      UIuserEmail.innerHTML = user.email;
+      emailVerificationForm.style.display = "none";
+    }
+
     loginForm.style.display = "none";
-    UIuserProfileView.style.display = "block";
-    UIuserEmail.innerHTML = user.email;
+    signUpFrom.style.display = "none";
   } else {
     loginForm.style.display = "block";
     UIuserProfileView.style.display = "none";
@@ -58,12 +81,9 @@ const signUpButtonPressed = async (e) => {
       email.value,
       password.value
     );
+    await sendEmailVerification(userCredential.user);
+
     console.log(`User credentials: ${userCredential}`);
-
-    UIuserEmail.innerHTML = userCredential.user.email;
-
-    signUpFrom.style.display = "none";
-    UIuserProfileView.style.display = "block";
   } catch (error) {
     console.error(error.code);
     signUpErrorMessage.innerText = formatErrorMessages(error.code, "signup");

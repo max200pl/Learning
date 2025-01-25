@@ -9,7 +9,8 @@ section {
 
 #user-profile,
 #login-form,
-#signup-form {
+#signup-form,
+#email-verification {
   display: none;
   margin: auto;
   max-width: 300px !important;
@@ -23,4 +24,8 @@ a {
   cursor: pointer;
   text-decoration: none;
   color: #007bff;
+}
+
+#email-verification {
+  text-align: left;
 }

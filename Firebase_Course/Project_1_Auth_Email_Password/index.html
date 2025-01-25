@@ -12,7 +12,29 @@
   </head>
   <body>
     <section class="ui segment loading" id="main-view">
-      <div class="ui segment" id="user-profile">
+      <!-- EMAIL VERIFICATION -->
+
+      <div class="ui segment small" id="email-verification">
+        <div class="ui card fluid">
+          <div class="content">
+            <div class="header">
+              Verification Email Sent!<i class="icon check green"></i>
+              <div class="meta">
+                We've sent you a verification email. Please click the link in
+                the email to verify your account.
+              </div>
+            </div>
+          </div>
+          <div class="extra content">
+            <button class="ui button red submit" id="resend-email-btn">
+              Resend
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- USER PROFILE -->
+      <div class="ui segment grey" id="user-profile">
         <div class="ui card">
           <div class="content">
             <div class="header">User Profile</div>
@@ -25,8 +47,8 @@
       </div>
 
       <!-- Login Form -->
-      <div class="ui segment" id="login-form">
-        <form action="" class="ui form">
+      <div class="ui segment grey signin-form" id="login-form">
+        <form class="ui form">
           <div class="ui stacked segment">
             <div class="ui error message" id="login-error-message">Error</div>
             <!-- Email -->
@@ -63,6 +85,7 @@
           Need an account? <a id="need-an-account-btn">Sign Up</a>
         </div>
       </div>
+
       <!-- Sign Up Form -->
       <div class="ui segment grey signup-form" id="signup-form">
         <form class="ui form">
