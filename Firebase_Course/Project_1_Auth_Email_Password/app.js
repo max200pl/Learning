@@ -6,6 +6,8 @@ import {
   signInWithEmailAndPassword,
   sendEmailVerification,
   sendPasswordResetEmail,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 
 const auth = getAuth();
@@ -38,6 +40,10 @@ const loginBtn = document.getElementById("login-btn");
 const loginErrorMessage = document.getElementById("login-error-message");
 const needAnAccountBtn = document.getElementById("need-an-account-btn");
 const forgotPasswordBtn = document.getElementById("forgot-password-btn");
+
+/** ========  Login With GOOLE ======== */
+
+const loginWithGooleBtn = document.getElementById("login-with-goole-btn");
 
 /** ========  Reset Password ======== */
 const resetPasswordForm = document.getElementById("reset-password-form");
@@ -157,6 +163,16 @@ const resetPasswordBtnPressed = async (e) => {
   resetPasswordMessage.classList.remove("hidden");
 };
 
+const loginWithGooleBtnPressed = async (e) => {
+  e.preventDefault();
+  const provider = new GoogleAuthProvider();
+  try {
+    await signInWithPopup(auth, provider);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 signupBtn.addEventListener("click", signUpButtonPressed);
 haveAnAccountBtn.addEventListener("click", haveAnAccountBtnPressed);
 logoutBtn.addEventListener("click", logoutButtonPressed);
@@ -164,6 +180,7 @@ loginBtn.addEventListener("click", loginButtonPressed);
 needAnAccountBtn.addEventListener("click", needAnAccountBtnPressed);
 forgotPasswordBtn.addEventListener("click", forgotPasswordBtnPressed);
 resetPasswordBtn.addEventListener("click", resetPasswordBtnPressed);
+loginWithGooleBtn.addEventListener("click", loginWithGooleBtnPressed);
 
 const formatErrorMessages = (errorCode, action) => {
   let message = "";
