@@ -5,6 +5,7 @@ import {
   signOut,
   signInWithEmailAndPassword,
   sendEmailVerification,
+  sendPasswordResetEmail,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 
 const auth = getAuth();
@@ -36,6 +37,13 @@ const loginPassword = document.getElementById("login-password");
 const loginBtn = document.getElementById("login-btn");
 const loginErrorMessage = document.getElementById("login-error-message");
 const needAnAccountBtn = document.getElementById("need-an-account-btn");
+const forgotPasswordBtn = document.getElementById("forgot-password-btn");
+
+/** ========  Reset Password ======== */
+const resetPasswordForm = document.getElementById("reset-password-form");
+const resetPasswordBtn = document.getElementById("reset-password-btn");
+const resetPasswordEmail = document.getElementById("reset-password-email");
+const resetPasswordMessage = document.getElementById("rp-message");
 
 const resendButtonPressed = async () => {
   try {
@@ -127,11 +135,35 @@ const haveAnAccountBtnPressed = () => {
   loginForm.style.display = "block";
 };
 
+const forgotPasswordBtnPressed = () => {
+  loginForm.style.display = "none";
+  resetPasswordForm.style.display = "block";
+};
+
+const resetPasswordBtnPressed = async (e) => {
+  e.preventDefault();
+  console.log(resetPasswordEmail.value);
+  try {
+    await sendPasswordResetEmail(auth, resetPasswordEmail.value);
+
+    resetPasswordMessage.innerHTML = `An email has been sent to ${resetPasswordEmail.value}`;
+    resetPasswordMessage.classList.add("success");
+  } catch (error) {
+    console.error(error.code);
+    resetPasswordMessage.innerHTML = "Please enter a valid email address.";
+    resetPasswordMessage.classList.add("error");
+  }
+
+  resetPasswordMessage.classList.remove("hidden");
+};
+
 signupBtn.addEventListener("click", signUpButtonPressed);
 haveAnAccountBtn.addEventListener("click", haveAnAccountBtnPressed);
 logoutBtn.addEventListener("click", logoutButtonPressed);
 loginBtn.addEventListener("click", loginButtonPressed);
 needAnAccountBtn.addEventListener("click", needAnAccountBtnPressed);
+forgotPasswordBtn.addEventListener("click", forgotPasswordBtnPressed);
+resetPasswordBtn.addEventListener("click", resetPasswordBtnPressed);
 
 const formatErrorMessages = (errorCode, action) => {
   let message = "";

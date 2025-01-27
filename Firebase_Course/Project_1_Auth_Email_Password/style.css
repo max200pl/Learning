@@ -29,3 +29,16 @@ a {
 #email-verification {
   text-align: left;
 }
+
+#forgot-password-btn {
+  font-size: 17px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#reset-password-form {
+  display: none;
+  text-align: left;
+  max-width: 300px;
+  margin: auto;
+}
