@@ -42,3 +42,7 @@ a {
   max-width: 300px;
   margin: auto;
 }
+
+#login-with-github-btn {
+  margin-top: 10px;
+}
