@@ -10,6 +10,8 @@
   - [Sign In User with Email and Password](#sign-in-user-with-email-and-password)
   - [Sign Out User](#sign-out-user)
   - [Send Email Verification](#send-email-verification)
+  - [PASSWORD RESET](#password-reset)
+  - [Google Sign In](#google-sign-in)
 
 ## Create A Firebase Project Firebase Console
 
@@ -108,6 +110,48 @@ const signUpButtonPressed = async (e) =>{
         const user = auth.currentUser;
         await sendEmailVerification(user);
         console.log('Verification email sent!');
+    } catch (error) {
+        console.error(error);
+    }
+}
+```
+
+## PASSWORD RESET
+
+```javascript
+
+import { getAuth, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+
+const auth = getAuth();
+
+const resetPassword = async (e) =>{
+ e.preventDefault();
+    try {
+        await sendPasswordResetEmail(auth, email);
+        console.log('Password reset email sent!');
+    } catch (error) {
+        console.error(error);
+    }
+}
+```
+
+## Google Sign In
+
+```javascript
+
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
+
+const auth = getAuth();
+
+const googleSignIn = async (e) =>{
+ e.preventDefault();
+    try {
+        const provider = new GoogleAuthProvider();
+        const result = await signInWithPopup(auth, provider);
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+        console.log(`User ${JSON.stringify(user)} signed in successfully!`);
     } catch (error) {
         console.error(error);
     }
