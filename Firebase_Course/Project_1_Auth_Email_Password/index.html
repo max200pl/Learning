@@ -58,15 +58,45 @@
 
       <!-- USER PROFILE -->
       <div class="ui segment grey" id="user-profile">
-        <div class="ui card">
+        <div class="ui card grey">
           <div class="content">
             <div class="header">User Profile</div>
             <div class="meta" id="user-email">someemail@gmail.com</div>
           </div>
+
+
+        <!-- User Update Profile Form -->
+        <form class="ui form big">
+          <div class="ui stacked segment">
+            <div class="field">
+              <div class="ui left icon input normal">
+                <i class="user icon"></i>
+                <input type="text" placeholder="Name" id="update-name" />
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input normal">
+                <i class="phone icon"></i>
+                <input type="text" placeholder="Phone" id="update-phone" />
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui left icon input normal">
+                <i class="mail icon"></i>
+                <input type="email" placeholder="Email" id="update-email" />
+              </div>
+            </div>
+            <button class="ui button blue fluid submit normal" id="update-btn">
+              Update Profile
+            </button>
+          </div>
         </div>
-        <div class="extra content">
-          <button class="ui button red tiny" id="logout-btn">LOG OUT</button>
-        </div>
+        </form>
+        <!-- Update Profile Form -->
+
+        <button class="ui button red tiny submit" id="logout-btn">
+          LOG OUT
+        </button>
       </div>
 
       <!-- Login Form -->

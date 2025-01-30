@@ -44,6 +44,13 @@ const UIuserProfileView = document.getElementById("user-profile");
 const UIuserEmail = document.getElementById("user-email");
 const logoutBtn = document.getElementById("logout-btn");
 
+/** ======== User Update Profile ======== */
+
+const updateName = document.getElementById("update-name");
+const updatePhone = document.getElementById("update-phone");
+const updateEmail = document.getElementById("update-email");
+const updateBtn = document.getElementById("update-btn");
+
 /** ======== Login ======== */
 const loginEmail = document.getElementById("login-email");
 const loginPassword = document.getElementById("login-password");
@@ -96,8 +103,11 @@ onAuthStateChanged(auth, async (user) => {
 
       try {
         const docSnap = await getDoc(docRef);
-
         console.log(docSnap.data());
+
+        updateName.value = docSnap.data().name;
+        updatePhone.value = docSnap.data().phone;
+        updateEmail.value = docSnap.data().email;
       } catch (error) {
         console.error(error.code);
       }
@@ -216,9 +226,32 @@ const loginWithGithubBtnPressed = async (e) => {
   }
 };
 
+const updateButtonPressed = async (e) => {
+  e.preventDefault();
+
+  const user = auth.currentUser;
+
+  try {
+    const docRef = doc(db, "users", user.uid);
+
+    await setDoc(docRef, {
+      name: updateName.value,
+      phone: updatePhone.value,
+      email: updateEmail.value,
+    });
+
+    console.log("Document successfully written!");
+  } catch (error) {
+    console.error("Error writing document: ", error);
+  }
+};
+
 signupBtn.addEventListener("click", signUpButtonPressed);
 haveAnAccountBtn.addEventListener("click", haveAnAccountBtnPressed);
+
 logoutBtn.addEventListener("click", logoutButtonPressed);
+updateBtn.addEventListener("click", updateButtonPressed);
+
 loginBtn.addEventListener("click", loginButtonPressed);
 needAnAccountBtn.addEventListener("click", needAnAccountBtnPressed);
 forgotPasswordBtn.addEventListener("click", forgotPasswordBtnPressed);
