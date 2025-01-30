@@ -17,7 +17,7 @@ section {
 }
 
 #login-form {
-  display: block;
+  display: none;
 }
 
 a {
@@ -44,5 +44,6 @@ a {
 }
 
 #login-with-github-btn {
+  display: none;
   margin-top: 10px;
 }
