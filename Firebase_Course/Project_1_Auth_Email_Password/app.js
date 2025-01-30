@@ -11,7 +11,14 @@ import {
   signInWithPopup,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-auth.js";
 
+import {
+  getFirestore,
+  doc,
+  setDoc,
+} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
+
 const auth = getAuth();
+const db = getFirestore();
 
 const mainView = document.getElementById("main-view");
 
@@ -20,6 +27,8 @@ const emailVerificationForm = document.getElementById("email-verification");
 const resendEmailBtn = document.getElementById("resend-email-btn");
 
 /** ======== Sign Up ======== */
+const name = document.getElementById("name");
+const phone = document.getElementById("phone");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const signupBtn = document.getElementById("signup-btn");
@@ -101,6 +110,14 @@ const signUpButtonPressed = async (e) => {
       password.value
     );
     await sendEmailVerification(userCredential.user);
+
+    const docRef = doc(db, "users", userCredential.user.uid);
+
+    await setDoc(docRef, {
+      name: name.value,
+      phone: phone.value,
+      email: email.value,
+    });
 
     console.log(`User credentials: ${userCredential}`);
   } catch (error) {
