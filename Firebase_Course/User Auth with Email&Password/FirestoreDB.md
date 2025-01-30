@@ -86,3 +86,27 @@ service cloud.firestore {
   }
 }
 ```
+
+## Update Data in Firestore Database
+
+```javascript
+const updateButtonPressed = async (e) => {
+  e.preventDefault();
+
+  const user = auth.currentUser;
+
+  try {
+    const docRef = doc(db, "users", user.uid);
+
+    await setDoc(docRef, {
+      name: updateName.value,
+      phone: updatePhone.value,
+      email: updateEmail.value,
+    });
+
+    console.log("Document successfully written!");
+  } catch (error) {
+    console.error("Error writing document: ", error);
+  }
+};
+```
