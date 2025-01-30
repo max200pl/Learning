@@ -17,7 +17,7 @@
 
 ## Add Data to Firestore Database
 
-``` javascript
+```javascript
 import {
   getFirestore,
   doc,
@@ -27,7 +27,7 @@ import {
 const db = getFirestore();
 
 const signUpButtonPressed = async (e) => {
-   e.preventDefault();
+  e.preventDefault();
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -60,19 +60,29 @@ const signUpButtonPressed = async (e) => {
 - Add the following rules
 - Publish
 
-1. `service cloud.firestore {`  // Firestore Database
-2. `match /databases/{database}/documents {`  // Match the Database
-3. `match /users/{userId} {`  // Match the Collection
-4. `allow write: if request.auth != null;`  // Allow Write if Authenticated
+### Rules
 
-``` javascript
+1. `service cloud.firestore {` // Firestore Database
+2. `match /databases/{database}/documents {` // Match the Database
+3. `match /users/{userId} {` // Match the Collection
+4. `allow write: if request.auth != null;` // Allow Write if Authenticated
+5. `match /users/{userId}{` // Match the Collection
+6. `allow read: if request.auth != null && request.auth.uid == userId;` // Allow Read if Authenticated and UID is the same as the Document ID
+
+```javascript
 rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-   match /users/{userId} {
-    allow write: if request.auth != null;
-   }
+    // ADD Data
+    match /users/{userId} {
+        allow write: if request.auth != null;
+    }
+
+    // GET DATA
+    match /users/{userId}{
+      allow read: if request.auth != null && request.auth.uid == userId;
+    }
   }
 }
 ```

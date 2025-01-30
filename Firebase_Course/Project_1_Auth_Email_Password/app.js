@@ -15,6 +15,7 @@ import {
   getFirestore,
   doc,
   setDoc,
+  getDoc,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 
 const auth = getAuth();
@@ -80,8 +81,8 @@ resendEmailBtn.addEventListener("click", resendButtonPressed);
  * If the user is signed in, the user object is returned.
  * If the user is signed out, the user object is null.
  */
-onAuthStateChanged(auth, (user) => {
-  console.log(user);
+onAuthStateChanged(auth, async (user) => {
+  //   console.log(user);
   if (user) {
     if (!user.emailVerified) {
       emailVerificationForm.style.display = "block";
@@ -90,6 +91,16 @@ onAuthStateChanged(auth, (user) => {
       UIuserProfileView.style.display = "block";
       UIuserEmail.innerHTML = user.email;
       emailVerificationForm.style.display = "none";
+
+      const docRef = doc(db, "users", user.uid);
+
+      try {
+        const docSnap = await getDoc(docRef);
+
+        console.log(docSnap.data());
+      } catch (error) {
+        console.error(error.code);
+      }
     }
 
     loginForm.style.display = "none";
