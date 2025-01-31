@@ -18,8 +18,16 @@ import {
   getDoc,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-firestore.js";
 
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-storage.js";
+
 const auth = getAuth();
 const db = getFirestore();
+let file = null;
+const storage = getStorage();
 
 const mainView = document.getElementById("main-view");
 
@@ -45,7 +53,7 @@ const UIuserEmail = document.getElementById("user-email");
 const logoutBtn = document.getElementById("logout-btn");
 
 /** ======== User Update Profile ======== */
-
+const imageFileInput = document.getElementById("image-file-input");
 const updateName = document.getElementById("update-name");
 const updatePhone = document.getElementById("update-phone");
 const updateEmail = document.getElementById("update-email");
@@ -139,6 +147,13 @@ const signUpButtonPressed = async (e) => {
       phone: phone.value,
       email: email.value,
     });
+
+    const storageRef = ref(
+      storage,
+      `user_images/${userCredential.user.uid}/${file.name}`
+    );
+
+    await uploadBytes(storageRef, file);
 
     console.log(`User credentials: ${userCredential}`);
   } catch (error) {
@@ -246,17 +261,36 @@ const updateButtonPressed = async (e) => {
   }
 };
 
+const imageFileChosen = (e) => {
+  file = e.target.files[0];
+};
+
+/** ======== Email Verification ======== */
+resendEmailBtn.addEventListener("click", resendButtonPressed);
+
+/** ======== Sign Up ======== */
 signupBtn.addEventListener("click", signUpButtonPressed);
 haveAnAccountBtn.addEventListener("click", haveAnAccountBtnPressed);
 
+/** ======== User Profile ======== */
 logoutBtn.addEventListener("click", logoutButtonPressed);
-updateBtn.addEventListener("click", updateButtonPressed);
 
+/** ======== User Update Profile ======== */
+updateBtn.addEventListener("click", updateButtonPressed);
+imageFileInput.addEventListener("change", imageFileChosen);
+
+/** ======== Login ======== */
 loginBtn.addEventListener("click", loginButtonPressed);
 needAnAccountBtn.addEventListener("click", needAnAccountBtnPressed);
 forgotPasswordBtn.addEventListener("click", forgotPasswordBtnPressed);
+
+/** ======== Reset Password ======== */
 resetPasswordBtn.addEventListener("click", resetPasswordBtnPressed);
+
+/** ======== Login With Google ======== */
 loginWithGooleBtn.addEventListener("click", loginWithGooleBtnPressed);
+
+/** ======== Login With Github ======== */
 loginWithGithubBtn.addEventListener("click", loginWithGithubBtnPressed);
 
 const formatErrorMessages = (errorCode, action) => {
