@@ -22,6 +22,7 @@ import {
   getStorage,
   ref,
   uploadBytes,
+  getDownloadURL,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-storage.js";
 
 const auth = getAuth();
@@ -58,6 +59,7 @@ const updateName = document.getElementById("update-name");
 const updatePhone = document.getElementById("update-phone");
 const updateEmail = document.getElementById("update-email");
 const updateBtn = document.getElementById("update-btn");
+const profilePicture = document.getElementById("profile-picture-img");
 
 /** ======== Login ======== */
 const loginEmail = document.getElementById("login-email");
@@ -111,11 +113,17 @@ onAuthStateChanged(auth, async (user) => {
 
       try {
         const docSnap = await getDoc(docRef);
-        console.log(docSnap.data());
 
         updateName.value = docSnap.data().name;
         updatePhone.value = docSnap.data().phone;
         updateEmail.value = docSnap.data().email;
+        console.log(docSnap.data());
+
+        const fileRef = ref(storage, `user_images/${user.uid}/profile_picture`);
+
+        const url = await getDownloadURL(fileRef);
+        console.log(url);
+        profilePicture.src = url;
       } catch (error) {
         console.error(error.code);
       }
@@ -150,7 +158,7 @@ const signUpButtonPressed = async (e) => {
 
     const storageRef = ref(
       storage,
-      `user_images/${userCredential.user.uid}/${file.name}`
+      `user_images/${userCredential.user.uid}/profile_picture`
     );
 
     await uploadBytes(storageRef, file);
