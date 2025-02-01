@@ -21,6 +21,7 @@ import {
   getStorage,
   ref,
   uploadBytes,
+  getDownloadURL,
 } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-storage.js";
 
 const storage = getStorage();
@@ -35,7 +36,7 @@ uploadBytes(storageRef, file).then((snapshot) => {
 
 ```
 
-## Fixed Security Rules
+### Fixed Security Rules
 
 - Allow only authenticated users to upload files
 
@@ -47,13 +48,53 @@ uploadBytes(storageRef, file).then((snapshot) => {
 ```javascript
 rules_version = '2';
 
-// Craft rules based on data in your Firestore database
-// allow write: if firestore.get(
-//    /databases/(default)/documents/users/$(request.auth.uid)).data.isAdmin;
 service firebase.storage {
   match /b/{bucket}/o {
     match /user_images/{userId}/{fileName}{
         allow write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}
+```
+
+## Load Image from Firebase Storage
+
+```javascript
+
+import {
+  getStorage,
+  ref,
+  getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/11.2.0/firebase-storage.js";
+
+const storage = getStorage();
+
+const storageRef = ref(storage, "images/" + file.name);
+
+getDownloadURL(storageRef).then((url) => {
+  console.log(url);
+  document.querySelector("#image").src = url;
+});
+
+```
+
+### Fixed Read Security Rules
+
+- Allow only authenticated users to download files
+
+1. `match /b/{bucket}/o` - This is the root path of the storage bucket
+2. `match /images/{fileName}` - This is the path where the files will be uploaded
+3. `allow read: if request.auth != null;` - This is the rule that allows only authenticated users to download files
+4. `request.auth != null` - This is the condition that checks if the user is authenticated
+5. `request.auth.uid == userId` - This is the condition that checks if the user is the owner of the file
+
+```javascript
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /user_images/{userId}/{fileName}{
+        allow read: if request.auth != null && request.auth.uid == userId;
     }
   }
 }
