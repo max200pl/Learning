@@ -10,7 +10,44 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+    <div class="ui fixed inverted main menu">
+      <div class="header item">Authentication Web App</div>
+      <div class="right menu">
+          <div class="vertically fitted item">
+          <button
+            id="verify-btn"
+            class="ui button blue submit normal"
+            data-tooltip="Please verify your email to access the console"
+            data-position="bottom right"
+            data-inverted=""
+          >
+             Verify Email
+          </button>
+          <button
+            id="console-btn"
+            class="ui button green submit normal"
+            data-tooltip="Only for Admins"
+            data-position="bottom right"
+            data-inverted=""
+          >
+            Go to console
+          </button>
+        </div>
+      </div>
+      <div  id="email-verification" class="ui message transition">
+        <i id="email-verification-close" class="close icon"></i>
+        <div class="header">
+            Verification Email Sent!<i class="icon check green"></i>
+        </div>
+        <p id="email-verification-text"> We've sent you a verification email. Please click the link in
+            the email to verify your account.</p>
+            <div class="footer">
+            <button class="ui button red submit" id="resend-email-btn">
+                Resend
+              </button>
+          </div>
+      </div>
+    </div>
     <section class="ui segment loading" id="main-view">
       <!-- FORGOT PASSWORD -->
 
@@ -35,26 +72,7 @@
           </button>
         </form>
       </div>
-      <!-- EMAIL VERIFICATION -->
 
-      <div class="ui segment small" id="email-verification">
-        <div class="ui card fluid">
-          <div class="content">
-            <div class="header">
-              Verification Email Sent!<i class="icon check green"></i>
-              <div class="meta">
-                We've sent you a verification email. Please click the link in
-                the email to verify your account.
-              </div>
-            </div>
-          </div>
-          <div class="extra content">
-            <button class="ui button red submit" id="resend-email-btn">
-              Resend
-            </button>
-          </div>
-        </div>
-      </div>
 
       <!-- USER PROFILE -->
       <div class="ui segment grey" id="user-profile">
@@ -62,6 +80,10 @@
           <div class="content">
             <div class="header">User Profile</div>
             <div class="meta" id="user-email">someemail@gmail.com</div>
+            <div class="row">
+              <span class="meta">Role:</span>
+              <span class="meta" id="user-role">User</span>
+            </div>
           </div>
 
           <!-- User Update Profile Form -->

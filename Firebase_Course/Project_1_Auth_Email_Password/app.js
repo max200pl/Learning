@@ -33,7 +33,7 @@ const storage = getStorage();
 const mainView = document.getElementById("main-view");
 
 /** ======== Email Verification ======== */
-const emailVerificationForm = document.getElementById("email-verification");
+
 const resendEmailBtn = document.getElementById("resend-email-btn");
 
 /** ======== Sign Up ======== */
@@ -48,9 +48,21 @@ const haveAnAccountBtn = document.getElementById("have-an-account-btn");
 const signUpFrom = document.getElementById("signup-form");
 const loginForm = document.getElementById("login-form");
 
+/** ======== Console ======== */
+const consoleBtn = document.getElementById("console-btn");
+const verifyBtn = document.getElementById("verify-btn");
+const emailVerificationForm = document.getElementById("email-verification");
+const emailVerificationText = document.getElementById(
+  "email-verification-text"
+);
+const emailVerificationClose = document.getElementById(
+  "email-verification-close"
+);
+
 /** ======== User Profile ======== */
 const UIuserProfileView = document.getElementById("user-profile");
 const UIuserEmail = document.getElementById("user-email");
+const userRole = document.getElementById("user-role");
 const logoutBtn = document.getElementById("logout-btn");
 
 /** ======== User Update Profile ======== */
@@ -83,15 +95,13 @@ const resetPasswordBtn = document.getElementById("reset-password-btn");
 const resetPasswordEmail = document.getElementById("reset-password-email");
 const resetPasswordMessage = document.getElementById("rp-message");
 
-const resendButtonPressed = async () => {
-  try {
-    await sendEmailVerification(auth.currentUser);
-  } catch (error) {
-    console.error(error);
-  }
-};
+async function setUserRole(uid, role) {
+  await setDoc(doc(db, "users", uid), { role });
+}
 
-resendEmailBtn.addEventListener("click", resendButtonPressed);
+async function setCustomClaim(uid, role) {
+  await getAuth().setCustomUserClaims(uid, { role });
+}
 
 /** @description
  * This function listens for auth state changes.
@@ -102,31 +112,39 @@ onAuthStateChanged(auth, async (user) => {
   //   console.log(user);
   if (user) {
     if (!user.emailVerified) {
-      emailVerificationForm.style.display = "block";
-      UIuserProfileView.style.display = "none";
+      verifyBtn.style.display = "block";
+      consoleBtn.style.display = "none";
     } else {
-      UIuserProfileView.style.display = "block";
-      UIuserEmail.innerHTML = user.email;
-      emailVerificationForm.style.display = "none";
+      verifyBtn.style.display = "none";
+      consoleBtn.style.display = "block";
+    }
 
-      const docRef = doc(db, "users", user.uid);
+    UIuserProfileView.style.display = "block";
+    UIuserEmail.innerHTML = user.email;
 
-      try {
-        const docSnap = await getDoc(docRef);
+    const docRef = doc(db, "users", user.uid);
 
-        updateName.value = docSnap.data().name;
-        updatePhone.value = docSnap.data().phone;
-        updateEmail.value = docSnap.data().email;
-        console.log(docSnap.data());
+    try {
+      const docSnap = await getDoc(docRef);
 
-        const fileRef = ref(storage, `user_images/${user.uid}/profile_picture`);
-
-        const url = await getDownloadURL(fileRef);
-        console.log(url);
-        profilePicture.src = url;
-      } catch (error) {
-        console.error(error.code);
+      if (docSnap.data().role === "admin") {
+        consoleBtn.style.display = "block";
       }
+
+      updateName.value = docSnap.data().name;
+      updatePhone.value = docSnap.data().phone;
+      updateEmail.value = docSnap.data().email;
+      userRole.innerText = docSnap.data().role;
+
+      console.log(docSnap.data());
+
+      const fileRef = ref(storage, `user_images/${user.uid}/profile_picture`);
+
+      const url = await getDownloadURL(fileRef);
+      console.log(url);
+      profilePicture.src = url;
+    } catch (error) {
+      console.error(error.code);
     }
 
     loginForm.style.display = "none";
@@ -134,6 +152,7 @@ onAuthStateChanged(auth, async (user) => {
   } else {
     loginForm.style.display = "block";
     UIuserProfileView.style.display = "none";
+    consoleBtn.style.display = "none";
   }
   mainView.classList.remove("loading");
 });
@@ -146,7 +165,6 @@ const signUpButtonPressed = async (e) => {
       email.value,
       password.value
     );
-    await sendEmailVerification(userCredential.user);
 
     const docRef = doc(db, "users", userCredential.user.uid);
 
@@ -154,6 +172,7 @@ const signUpButtonPressed = async (e) => {
       name: name.value,
       phone: phone.value,
       email: email.value,
+      role: "admin",
     });
 
     const storageRef = ref(
@@ -226,7 +245,7 @@ const resetPasswordBtnPressed = async (e) => {
     resetPasswordMessage.classList.add("error");
   }
 
-  resetPasswordMessage.classList.remove("hidden");
+  resetPasswordMessage.classList.add("hidden");
 };
 
 const loginWithGooleBtnPressed = async (e) => {
@@ -273,8 +292,39 @@ const imageFileChosen = (e) => {
   file = e.target.files[0];
 };
 
+const closeMessage = () => {
+  emailVerificationForm.classList.add("hidden");
+  emailVerificationForm.classList.remove("visible");
+};
+
+const sendVerificationButtonPressed = async () => {
+  try {
+    await sendEmailVerification(auth.currentUser);
+    emailVerificationForm.classList.add("visible");
+  } catch (error) {
+    emailVerificationForm.classList.add("visible");
+    emailVerificationText.innerText = `An error occurred: ${error.code}`;
+    emailVerificationForm.classList.add("error");
+    console.error(error);
+  }
+};
+
+const resendButtonPressed = async () => {
+  try {
+    await sendEmailVerification(auth.currentUser);
+    emailVerificationForm.classList.add("hidden");
+  } catch (error) {
+    emailVerificationForm.classList.add("visible");
+    emailVerificationForm.classList.add("error");
+    emailVerificationText.innerText = `An error occurred: ${error.code}`;
+    console.error(error);
+  }
+};
+
 /** ======== Email Verification ======== */
+verifyBtn.addEventListener("click", sendVerificationButtonPressed);
 resendEmailBtn.addEventListener("click", resendButtonPressed);
+emailVerificationClose.addEventListener("click", closeMessage);
 
 /** ======== Sign Up ======== */
 signupBtn.addEventListener("click", signUpButtonPressed);
