@@ -222,6 +222,8 @@ const loginButtonPressed = async (e) => {
     loginErrorMessage.innerHTML = formatErrorMessages(error.code, "login");
     loginErrorMessage.classList.add("visible");
   }
+
+  mainView.classList.remove("loading");
 };
 
 const needAnAccountBtnPressed = () => {
