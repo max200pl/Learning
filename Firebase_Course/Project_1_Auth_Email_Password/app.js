@@ -72,6 +72,7 @@ const updatePhone = document.getElementById("update-phone");
 const updateEmail = document.getElementById("update-email");
 const updateBtn = document.getElementById("update-btn");
 const profilePicture = document.getElementById("profile-picture-img");
+const updateUserMessage = document.getElementById("update-user-message");
 
 /** ======== Login ======== */
 const loginEmail = document.getElementById("login-email");
@@ -132,17 +133,20 @@ onAuthStateChanged(auth, async (user) => {
       }
 
       updateName.value = docSnap.data().name;
-      updatePhone.value = docSnap.data().phone;
+      updatePhone.value = docSnap.data().phone ?? "";
       updateEmail.value = docSnap.data().email;
       userRole.innerText = docSnap.data().role;
 
-      console.log(docSnap.data());
+      if (docSnap.data().photoURL) {
+        profilePicture.src = docSnap.data().photoURL;
+      } else {
+        profilePicture.src = url;
 
-      const fileRef = ref(storage, `user_images/${user.uid}/profile_picture`);
-
-      const url = await getDownloadURL(fileRef);
-      console.log(url);
-      profilePicture.src = url;
+        const fileRef = ref(storage, `user_images/${user.uid}/profile_picture`);
+        const url = await getDownloadURL(fileRef);
+        console.log("profile_picture URL:", url);
+        profilePicture.src = url;
+      }
     } catch (error) {
       console.error(error.code);
     }
@@ -204,11 +208,15 @@ const loginButtonPressed = async (e) => {
   e.preventDefault();
 
   try {
+    mainView.classList.add("loading");
+
     await signInWithEmailAndPassword(
       auth,
       loginEmail.value,
       loginPassword.value
     );
+
+    loginForm.style.display = "none";
   } catch (error) {
     console.error(error.code);
     loginErrorMessage.innerHTML = formatErrorMessages(error.code, "login");
@@ -236,23 +244,40 @@ const resetPasswordBtnPressed = async (e) => {
   console.log(resetPasswordEmail.value);
   try {
     await sendPasswordResetEmail(auth, resetPasswordEmail.value);
-
-    resetPasswordMessage.innerHTML = `An email has been sent to ${resetPasswordEmail.value}`;
+    resetPasswordMessage.innerText = `An email has been sent to ${resetPasswordEmail.value}`;
     resetPasswordMessage.classList.add("success");
+    resetPasswordMessage.style.display = "block";
   } catch (error) {
     console.error(error.code);
     resetPasswordMessage.innerHTML = "Please enter a valid email address.";
     resetPasswordMessage.classList.add("error");
   }
 
-  resetPasswordMessage.classList.add("hidden");
+  setInterval(() => {
+    resetPasswordMessage.classList.add("hidden");
+    resetPasswordForm.style.display = "none";
+    loginForm.style.display = "block";
+  }, 5000);
 };
 
 const loginWithGooleBtnPressed = async (e) => {
   e.preventDefault();
   const provider = new GoogleAuthProvider();
+  mainView.classList.add("loading");
   try {
-    await signInWithPopup(auth, provider);
+    loginForm.style.display = "none";
+    const result = await signInWithPopup(auth, provider);
+
+    const docRef = doc(db, "users", result.user.uid);
+    // photoURL
+    console.log(result.user);
+
+    await setDoc(docRef, {
+      name: result.user.displayName,
+      email: result.user.email,
+      role: "admin",
+      photoURL: result.user.photoURL,
+    });
   } catch (error) {
     console.error(error);
   }
@@ -273,19 +298,41 @@ const updateButtonPressed = async (e) => {
 
   const user = auth.currentUser;
 
+  mainView.classList.add("loading");
   try {
     const docRef = doc(db, "users", user.uid);
+    const oldDataSnap = await getDoc(docRef);
 
-    await setDoc(docRef, {
-      name: updateName.value,
-      phone: updatePhone.value,
-      email: updateEmail.value,
+    const oldData = oldDataSnap.data();
+
+    console.log(oldData);
+    const updatedData = {
+      photoURL: oldData.photoURL,
+      role: oldData.role,
+      name: updateName.value || oldData.name,
+      phone: updatePhone.value || oldData.phone,
+      email: updateEmail.value || oldData.email,
+    };
+
+    Object.keys(updatedData).forEach((key) => {
+      if (updatedData[key] === undefined) {
+        delete updatedData[key];
+      }
     });
 
+    await setDoc(docRef, updatedData);
+
+    updateUserMessage.classList.add("success");
+    updateUserMessage.innerText = "User profile updated successfully!";
+    updateUserMessage.style.display = "block";
     console.log("Document successfully written!");
   } catch (error) {
+    updateUserMessage.classList.add("error");
+    updateUserMessage.innerText = "An error occurred. Please try again.";
+    updateUserMessage.style.display = "block";
     console.error("Error writing document: ", error);
   }
+  mainView.classList.remove("loading");
 };
 
 const imageFileChosen = (e) => {

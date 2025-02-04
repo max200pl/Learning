@@ -71,3 +71,7 @@ a {
 #verify-btn {
   display: none;
 }
+
+#update-user-message {
+  display: none;
+}
