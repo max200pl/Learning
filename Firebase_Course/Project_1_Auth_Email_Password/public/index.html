@@ -1,167 +1,277 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Welcome to Firebase Hosting</title>
-
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/11.2.0/firebase-app-compat.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/11.2.0/firebase-auth-compat.js"></script>
-    <script
-      defer
-      src="/__/firebase/11.2.0/firebase-database-compat.js"
-    ></script>
-    <script
-      defer
-      src="/__/firebase/11.2.0/firebase-firestore-compat.js"
-    ></script>
-    <script
-      defer
-      src="/__/firebase/11.2.0/firebase-functions-compat.js"
-    ></script>
-    <script
-      defer
-      src="/__/firebase/11.2.0/firebase-messaging-compat.js"
-    ></script>
-    <script defer src="/__/firebase/11.2.0/firebase-storage-compat.js"></script>
-    <script
-      defer
-      src="/__/firebase/11.2.0/firebase-analytics-compat.js"
-    ></script>
-    <script
-      defer
-      src="/__/firebase/11.2.0/firebase-remote-config-compat.js"
-    ></script>
-    <script
-      defer
-      src="/__/firebase/11.2.0/firebase-performance-compat.js"
-    ></script>
-    <!--
-      initialize the SDK after all desired features are loaded, set useEmulator to false
-      to avoid connecting the SDK to running emulators.
-    -->
-    <script defer src="/__/firebase/init.js?useEmulator=true"></script>
-
-    <style media="screen">
-      body {
-        background: #eceff1;
-        color: rgba(0, 0, 0, 0.87);
-        font-family: Roboto, Helvetica, Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-      }
-      #message {
-        background: white;
-        max-width: 360px;
-        margin: 100px auto 16px;
-        padding: 32px 24px;
-        border-radius: 3px;
-      }
-      #message h2 {
-        color: #ffa100;
-        font-weight: bold;
-        font-size: 16px;
-        margin: 0 0 8px;
-      }
-      #message h1 {
-        font-size: 22px;
-        font-weight: 300;
-        color: rgba(0, 0, 0, 0.6);
-        margin: 0 0 16px;
-      }
-      #message p {
-        line-height: 140%;
-        margin: 16px 0 24px;
-        font-size: 14px;
-      }
-      #message a {
-        display: block;
-        text-align: center;
-        background: #039be5;
-        text-transform: uppercase;
-        text-decoration: none;
-        color: white;
-        padding: 16px;
-        border-radius: 4px;
-      }
-      #message,
-      #message a {
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-      }
-      #load {
-        color: rgba(0, 0, 0, 0.4);
-        text-align: center;
-        font-size: 13px;
-      }
-      @media (max-width: 600px) {
-        body,
-        #message {
-          margin-top: 0;
-          background: white;
-          box-shadow: none;
-        }
-        body {
-          border-top: 16px solid #ffa100;
-        }
-      }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authentication Web App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/semantic-ui@2.5.0/dist/semantic.min.css"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>
-        You're seeing this because you've successfully setup Firebase Hosting.
-        Now it's time to go build something extraordinary!
-      </p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/"
-        >Open Hosting Documentation</a
-      >
+    <div class="ui fixed inverted main menu">
+      <div class="header item">Authentication Web App</div>
+      <div class="right menu">
+          <div class="vertically fitted item">
+          <button
+            id="verify-btn"
+            class="ui button blue submit normal"
+            data-tooltip="Please verify your email to access the console"
+            data-position="bottom right"
+            data-inverted=""
+          >
+             Verify Email
+          </button>
+          <button
+            id="console-btn"
+            class="ui button green submit normal"
+            data-tooltip="Only for Admins"
+            data-position="bottom right"
+            data-inverted=""
+          >
+            Go to console
+          </button>
+        </div>
+      </div>
+      <div  id="email-verification" class="ui message transition">
+        <i id="email-verification-close" class="close icon"></i>
+        <div class="header">
+            Verification Email Sent!<i class="icon check green"></i>
+        </div>
+        <p id="email-verification-text"> We've sent you a verification email. Please click the link in
+            the email to verify your account.</p>
+            <div class="footer">
+            <button class="ui button red submit" id="resend-email-btn">
+                Resend
+              </button>
+          </div>
+      </div>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+    <section class="ui segment loading" id="main-view">
+      <!-- FORGOT PASSWORD -->
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const loadEl = document.querySelector("#load");
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.firestore().doc('/foo/bar').get().then(() => { });
-        // firebase.functions().httpsCallable('yourFunction')().then(() => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        // firebase.analytics(); // call to activate
-        // firebase.analytics().logEvent('tutorial_completed');
-        // firebase.performance(); // call to activate
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+      <div class="ui segment normal" id="reset-password-form">
+        <h1>Reset Your Password</h1>
+        <p>Enter your email address to reset your password</p>
+        <div class="ui message hidden small" id="rp-message"></div>
+        <form action="" class="ui form normal">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="mail icon"></i>
+              <input
+                class="rp-input"
+                type="email"
+                placeholder="Email"
+                id="reset-password-email"
+              />
+            </div>
+          </div>
+          <button class="ui button red submit normal" id="reset-password-btn">
+            Reset Password
+          </button>
+        </form>
+      </div>
 
-        try {
-          let app = firebase.app();
-          let features = [
-            "auth",
-            "database",
-            "firestore",
-            "functions",
-            "messaging",
-            "storage",
-            "analytics",
-            "remoteConfig",
-            "performance",
-          ].filter((feature) => typeof app[feature] === "function");
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(
-            ", "
-          )}`;
-        } catch (e) {
-          console.error(e);
-          loadEl.textContent =
-            "Error loading the Firebase SDK, check the console.";
-        }
-      });
-    </script>
+
+      <!-- USER PROFILE -->
+      <div class="ui segment grey" id="user-profile">
+        <div class="ui card grey">
+          <div class="content">
+            <div class="header">User Profile</div>
+            <div class="meta" id="user-email">someemail@gmail.com</div>
+            <div class="row">
+              <span class="meta">Role:</span>
+              <span class="meta" id="user-role">User</span>
+            </div>
+          </div>
+
+          <!-- User Update Profile Form -->
+          <form class="ui form big">
+            <div class="ui stacked segment">
+              <!-- Profile Picture -->
+
+              <img
+                class="ui centered circular image"
+                id="profile-picture-img"
+              />
+
+              <!-- NAME update -->
+              <div class="field">
+                <div class="ui left icon input normal">
+                  <i class="user icon"></i>
+                  <input type="text" placeholder="Name" id="update-name" />
+                </div>
+              </div>
+
+              <!-- PHONE update -->
+              <div class="field">
+                <div class="ui left icon input normal">
+                  <i class="phone icon"></i>
+                  <input type="text" placeholder="Phone" id="update-phone" />
+                </div>
+              </div>
+
+              <!-- EMAIL update -->
+              <div class="field">
+                <div class="ui left icon input normal">
+                  <i class="mail icon"></i>
+                  <input type="email" placeholder="Email" id="update-email" />
+                </div>
+              </div>
+
+              <div class="ui message small" id="update-user-message"></div>
+
+              <button
+                class="ui button blue fluid submit normal"
+                id="update-btn"
+              >
+                Update Profile
+              </button>
+            </div>
+          </form>
+          <!-- Update Profile Form -->
+
+          <button class="ui button red tiny submit" id="logout-btn">
+            LOG OUT
+          </button>
+        </div>
+      </div>
+
+      <!-- Login Form -->
+      <div class="ui segment grey signin-form" id="login-form">
+        <form class="ui form">
+          <div class="ui stacked segment">
+            <button
+              class="ui goole plus button red fluid normal"
+              id="login-with-goole-btn"
+            >
+              <i class="google icon"></i> Login with Google
+            </button>
+
+            <button
+              class="ui github button fluid normal black"
+              id="login-with-github-btn"
+            >
+              <i class="github icon"> </i> Login with Github
+            </button>
+
+            <div class="ui horizontal divider">or</div>
+            <div class="ui error message" id="login-error-message">Error</div>
+            <!-- Email -->
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="mail icon"></i>
+                <input
+                  type="email"
+                  name="email"
+                  id="login-email"
+                  placeholder="Email"
+                />
+              </div>
+            </div>
+            <!-- Password -->
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input
+                  type="password"
+                  name="password"
+                  id="login-password"
+                  placeholder="Password"
+                />
+              </div>
+            </div>
+            <!-- Login Button -->
+            <button class="ui fluid normal teal submit button" id="login-btn">
+              LOG IN
+            </button>
+            <br />
+            <a id="forgot-password-btn">Forgot Password?</a>
+          </div>
+        </form>
+        <div class="ui message small">
+          Need an account? <a id="need-an-account-btn">Sign Up</a>
+        </div>
+      </div>
+
+      <!-- Sign Up Form -->
+      <div class="ui segment grey signup-form" id="signup-form">
+        <form class="ui form">
+          <div class="ui stacked segment">
+            <div class="ui error message" id="error-message">Error</div>
+
+            <!-- Profile Picture -->
+
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="image icon"></i>
+                <input
+                  type="file"
+                  name="profile-picture"
+                  id="image-file-input"
+                />
+              </div>
+            </div>
+
+            <!-- Name -->
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="user icon"></i>
+                <input type="text" name="name" id="name" placeholder="Name" />
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="phone icon"></i>
+                <input
+                  type="text"
+                  name="phone"
+                  id="phone"
+                  placeholder="Phone"
+                />
+              </div>
+            </div>
+
+            <!-- Mail -->
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="mail icon"></i>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="Email"
+                />
+              </div>
+            </div>
+            <!-- Password -->
+            <div class="field">
+              <div class="ui left icon input">
+                <i class="lock icon"></i>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="Password"
+                />
+              </div>
+            </div>
+
+            <!-- Sign Up Button -->
+            <button class="ui fluid large teal submit button" id="signup-btn">
+              CREATE ACCOUNT
+            </button>
+          </div>
+        </form>
+        <div class="ui message small">
+          Already have an account? <a id="have-an-account-btn">Log In</a>
+        </div>
+      </div>
+    </section>
+    <script src="firebase.js" type="module"></script>
+    <script src="app.js" type="module"></script>
   </body>
 </html>
