@@ -147,9 +147,14 @@ onAuthStateChanged(auth, async (user) => {
         profilePicture.src = docSnap.data().photoURL;
       } else {
         const fileRef = ref(storage, `user_images/${user.uid}/profile_picture`);
-        const url = await getDownloadURL(fileRef);
-        console.log("profile_picture URL:", url);
-        profilePicture.src = url;
+        try {
+          const url = await getDownloadURL(fileRef);
+          console.log("profile_picture URL:", url);
+          profilePicture.src = url;
+        } catch (error) {
+          console.error("Error fetching profile picture URL:", error);
+          profilePicture.src = "default-profile-picture-url"; // Provide a default image URL
+        }
       }
     } catch (error) {
       console.error(error);
@@ -212,13 +217,13 @@ const logoutButtonPressed = async () => {
     email.value = "";
     password.value = "";
 
-    loginErrorMessage.classList.remove("visible", "error", "success");
-    loginErrorMessage.classList.add("hidden");
+    loginErrorMessage.classList.remove(["error", "success"]);
+    loginErrorMessage.style.display = "none";
 
-    signUpErrorMessage.classList.remove("visible", "error", "success");
+    signUpErrorMessage.classList.remove(["visible", "error", "success"]);
     signUpErrorMessage.classList.add("hidden");
 
-    updateUserMessage.classList.remove("visible", "error", "success");
+    updateUserMessage.classList.remove(["visible", "error", "success"]);
     updateUserMessage.style.display = "none";
   } catch (error) {
     console.error(error);
@@ -239,7 +244,7 @@ const loginButtonPressed = async (e) => {
   } catch (error) {
     console.error(error.code);
     loginErrorMessage.innerHTML = formatErrorMessages(error.code, "login");
-    loginErrorMessage.classList.add("visible");
+    loginErrorMessage.style.display = "block";
   } finally {
     mainView.classList.remove("loading");
   }
@@ -309,6 +314,10 @@ const loginWithGooleBtnPressed = async (e) => {
     }
 
     await setDoc(docRef, userData, { merge: true });
+
+    if (userData.photoURL) {
+      profilePicture.src = userData.photoURL;
+    }
   } catch (error) {
     console.error(error);
   } finally {
