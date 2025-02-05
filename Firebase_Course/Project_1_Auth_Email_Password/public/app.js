@@ -218,7 +218,8 @@ const logoutButtonPressed = async () => {
     signUpErrorMessage.classList.remove("visible", "error", "success");
     signUpErrorMessage.classList.add("hidden");
 
-    loginErrorMessage.innerText = "";
+    updateUserMessage.classList.remove("visible", "error", "success");
+    updateUserMessage.style.display = "none";
   } catch (error) {
     console.error(error);
   }
