@@ -133,22 +133,20 @@ onAuthStateChanged(auth, async (user) => {
       }
 
       updateName.value = docSnap.data().name;
-      updatePhone.value = docSnap.data().phone ?? "";
+      updatePhone.value = docSnap.data().phone;
       updateEmail.value = docSnap.data().email;
       userRole.innerText = docSnap.data().role;
 
-      if (docSnap.data().photoURL) {
+      if (docSnap.data().photoURL !== undefined) {
         profilePicture.src = docSnap.data().photoURL;
       } else {
-        profilePicture.src = url;
-
         const fileRef = ref(storage, `user_images/${user.uid}/profile_picture`);
         const url = await getDownloadURL(fileRef);
         console.log("profile_picture URL:", url);
         profilePicture.src = url;
       }
     } catch (error) {
-      console.error(error.code);
+      console.error(error);
     }
 
     loginForm.style.display = "none";
@@ -163,6 +161,7 @@ onAuthStateChanged(auth, async (user) => {
 
 const signUpButtonPressed = async (e) => {
   e.preventDefault();
+  mainView.classList.add("loading");
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
@@ -191,6 +190,8 @@ const signUpButtonPressed = async (e) => {
     console.error(error.code);
     signUpErrorMessage.innerText = formatErrorMessages(error.code, "signup");
     signUpErrorMessage.classList.add("visible");
+  } finally {
+    mainView.classList.remove("loading");
   }
 };
 
@@ -206,10 +207,8 @@ const logoutButtonPressed = async () => {
 
 const loginButtonPressed = async (e) => {
   e.preventDefault();
-
+  mainView.classList.add("loading");
   try {
-    mainView.classList.add("loading");
-
     await signInWithEmailAndPassword(
       auth,
       loginEmail.value,
@@ -243,7 +242,7 @@ const forgotPasswordBtnPressed = () => {
 
 const resetPasswordBtnPressed = async (e) => {
   e.preventDefault();
-  console.log(resetPasswordEmail.value);
+  mainView.classList.add("loading");
   try {
     await sendPasswordResetEmail(auth, resetPasswordEmail.value);
     resetPasswordMessage.innerText = `An email has been sent to ${resetPasswordEmail.value}`;
@@ -253,6 +252,8 @@ const resetPasswordBtnPressed = async (e) => {
     console.error(error.code);
     resetPasswordMessage.innerHTML = "Please enter a valid email address.";
     resetPasswordMessage.classList.add("error");
+  } finally {
+    mainView.classList.remove("loading");
   }
 
   setInterval(() => {
@@ -264,14 +265,12 @@ const resetPasswordBtnPressed = async (e) => {
 
 const loginWithGooleBtnPressed = async (e) => {
   e.preventDefault();
-  const provider = new GoogleAuthProvider();
   mainView.classList.add("loading");
   try {
     loginForm.style.display = "none";
-    const result = await signInWithPopup(auth, provider);
+    const result = await signInWithPopup(auth, new GoogleAuthProvider());
 
     const docRef = doc(db, "users", result.user.uid);
-    // photoURL
     console.log(result.user);
 
     await setDoc(docRef, {
@@ -282,16 +281,20 @@ const loginWithGooleBtnPressed = async (e) => {
     });
   } catch (error) {
     console.error(error);
+  } finally {
+    mainView.classList.remove("loading");
   }
 };
 
 const loginWithGithubBtnPressed = async (e) => {
   e.preventDefault();
-  const provider = new GithubAuthProvider();
+  mainView.classList.add("loading");
   try {
-    await signInWithPopup(auth, provider);
+    await signInWithPopup(auth, new GithubAuthProvider());
   } catch (error) {
     console.error(error);
+  } finally {
+    mainView.classList.remove("loading");
   }
 };
 
@@ -333,8 +336,9 @@ const updateButtonPressed = async (e) => {
     updateUserMessage.innerText = "An error occurred. Please try again.";
     updateUserMessage.style.display = "block";
     console.error("Error writing document: ", error);
+  } finally {
+    mainView.classList.remove("loading");
   }
-  mainView.classList.remove("loading");
 };
 
 const imageFileChosen = (e) => {
