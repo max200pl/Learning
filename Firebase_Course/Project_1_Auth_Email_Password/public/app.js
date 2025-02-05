@@ -207,8 +207,18 @@ const signUpButtonPressed = async (e) => {
 const logoutButtonPressed = async () => {
   try {
     await signOut(auth);
+
+    // RESET FORM FIELDS and ERROR MESSAGES
     email.value = "";
     password.value = "";
+
+    loginErrorMessage.classList.remove("visible", "error", "success");
+    loginErrorMessage.classList.add("hidden");
+
+    signUpErrorMessage.classList.remove("visible", "error", "success");
+    signUpErrorMessage.classList.add("hidden");
+
+    loginErrorMessage.innerText = "";
   } catch (error) {
     console.error(error);
   }
