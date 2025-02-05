@@ -132,12 +132,18 @@ onAuthStateChanged(auth, async (user) => {
         consoleBtn.style.display = "block";
       }
 
-      updateName.value = docSnap.data().name;
-      updatePhone.value = docSnap.data().phone;
-      updateEmail.value = docSnap.data().email;
-      userRole.innerText = docSnap.data().role;
+      if (docSnap.data().name) {
+        updateName.value = docSnap.data().name;
+      }
+      if (docSnap.data().phone) {
+        updatePhone.value = docSnap.data().phone;
+      }
+      if (docSnap.data().email) {
+        updateEmail.value = docSnap.data().email;
+      }
+      userRole.innerText = docSnap.data().role || "User";
 
-      if (docSnap.data().photoURL !== undefined) {
+      if (docSnap.data().photoURL) {
         profilePicture.src = docSnap.data().photoURL;
       } else {
         const fileRef = ref(storage, `user_images/${user.uid}/profile_picture`);
