@@ -185,6 +185,9 @@ const signUpButtonPressed = async (e) => {
 
     await uploadBytes(storageRef, file);
 
+    if (signUpErrorMessage.classList.contains("visible")) {
+      signUpErrorMessage.classList.remove("visible");
+    }
     console.log(`User credentials: ${userCredential}`);
   } catch (error) {
     console.error(error.code);
@@ -415,7 +418,8 @@ const formatErrorMessages = (errorCode, action) => {
       message = "Invalid email address.";
     } else if (
       errorCode === "auth/missing-password" ||
-      errorCode === "auth/weak-password"
+      errorCode === "auth/weak-password" ||
+      errorCode === "auth/missing-password"
     ) {
       message = "Password must be at least 6 characters long.";
     } else if (errorCode === "auth/email-already-in-use") {
@@ -426,7 +430,12 @@ const formatErrorMessages = (errorCode, action) => {
       errorCode === "auth/invalid-email" ||
       errorCode === "auth/missing-email"
     ) {
-      message = "Email or password is incorrect.";
+      message = "Email is incorrect";
+    } else if (
+      errorCode === "auth/missing-password" ||
+      errorCode === "auth/wrong-password"
+    ) {
+      message = "Password is incorrect";
     } else if (
       errorCode === "auth/user-not-found" ||
       errorCode === "auth/invalid-credential"
