@@ -175,7 +175,7 @@ const signUpButtonPressed = async (e) => {
       password.value
     );
 
-    const docRef = doc(db, "users", userCredential.user.uid);
+    const docRef = await doc(db, "users", userCredential.user.uid);
 
     await setDoc(docRef, {
       name: name.value,
@@ -292,12 +292,22 @@ const loginWithGooleBtnPressed = async (e) => {
     const docRef = doc(db, "users", result.user.uid);
     console.log(result.user);
 
-    await setDoc(docRef, {
+    const userData = {
       name: result.user.displayName,
       email: result.user.email,
       role: "admin",
       photoURL: result.user.photoURL,
-    });
+    };
+
+    const existingDoc = await getDoc(docRef);
+    if (existingDoc.exists()) {
+      const existingData = existingDoc.data();
+      if (existingData.phone) {
+        userData.phone = existingData.phone;
+      }
+    }
+
+    await setDoc(docRef, userData, { merge: true });
   } catch (error) {
     console.error(error);
   } finally {
