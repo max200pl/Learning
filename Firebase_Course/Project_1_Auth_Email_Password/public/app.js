@@ -120,7 +120,6 @@ onAuthStateChanged(auth, async (user) => {
       consoleBtn.style.display = "block";
     }
 
-    UIuserProfileView.style.display = "block";
     UIuserEmail.innerHTML = user.email;
 
     const docRef = doc(db, "users", user.uid);
@@ -162,10 +161,13 @@ onAuthStateChanged(auth, async (user) => {
 
     loginForm.style.display = "none";
     signUpFrom.style.display = "none";
+    UIuserProfileView.style.display = "block";
   } else {
     loginForm.style.display = "block";
     UIuserProfileView.style.display = "none";
     consoleBtn.style.display = "none";
+    verifyBtn.style.display = "none";
+    signUpFrom.style.display = "none";
   }
   mainView.classList.remove("loading");
 });
@@ -196,14 +198,13 @@ const signUpButtonPressed = async (e) => {
 
     await uploadBytes(storageRef, file);
 
-    if (signUpErrorMessage.classList.contains("visible")) {
-      signUpErrorMessage.classList.remove("visible");
-    }
+    signUpFrom.style.display = "none";
+    signUpErrorMessage.style.display = "none";
     console.log(`User credentials: ${userCredential}`);
   } catch (error) {
     console.error(error.code);
     signUpErrorMessage.innerText = formatErrorMessages(error.code, "signup");
-    signUpErrorMessage.classList.add("visible");
+    signUpErrorMessage.style.display = "block";
   } finally {
     mainView.classList.remove("loading");
   }
@@ -258,6 +259,9 @@ const needAnAccountBtnPressed = () => {
 const haveAnAccountBtnPressed = () => {
   signUpFrom.style.display = "none";
   loginForm.style.display = "block";
+
+  signUpErrorMessage.classList.remove(["visible", "error", "success"]);
+  signUpErrorMessage.style.display = "none";
 };
 
 const forgotPasswordBtnPressed = () => {
