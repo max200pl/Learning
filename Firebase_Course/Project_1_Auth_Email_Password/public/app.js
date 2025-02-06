@@ -151,7 +151,11 @@ onAuthStateChanged(auth, async (user) => {
           console.log("profile_picture URL:", url);
           profilePicture.src = url;
         } catch (error) {
-          console.error("Error fetching profile picture URL:", error);
+          console.error(error);
+          // If the file is not found, get the default URL
+          const defaultFileRef = ref(storage, `user`);
+          const defaultUrl = await getDownloadURL(defaultFileRef);
+          profilePicture.src = defaultUrl;
         }
       }
     } catch (error) {
