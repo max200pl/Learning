@@ -152,7 +152,6 @@ onAuthStateChanged(auth, async (user) => {
           profilePicture.src = url;
         } catch (error) {
           console.error("Error fetching profile picture URL:", error);
-          profilePicture.src = "default-profile-picture-url"; // Provide a default image URL
         }
       }
     } catch (error) {
@@ -191,12 +190,14 @@ const signUpButtonPressed = async (e) => {
       role: "admin",
     });
 
-    const storageRef = ref(
-      storage,
-      `user_images/${userCredential.user.uid}/profile_picture`
-    );
+    if (file !== null) {
+      const storageRef = ref(
+        storage,
+        `user_images/${userCredential.user.uid}/profile_picture`
+      );
 
-    await uploadBytes(storageRef, file);
+      await uploadBytes(storageRef, file);
+    }
 
     signUpFrom.style.display = "none";
     signUpErrorMessage.style.display = "none";
