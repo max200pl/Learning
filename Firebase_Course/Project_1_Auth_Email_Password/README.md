@@ -42,7 +42,7 @@ flowchart TD
     style Start color:#FFFFFF, fill:#2962FF, stroke:#2962FF
     style SignUp color:#FFFFFF, fill:#00C853, stroke:#00C853
     style SignIn color:#FFFFFF, fill:#00C853, stroke:#00C853
-    style VerifyEmail color:#FFFFFF, fill:#F9A825, stroke:#F9A825, stroke-dasharray: 5 5
+    style VerifyEmail color:#FFFFFF, fill:#F9A825, stroke:#F9A825,
     style RoleCheck color:#FFFFFF, fill:#AA00FF, stroke:#AA00FF
     style ProfileSetup color:#FFFFFF, fill:#00ACC1, stroke:#00ACC1
     style ConsoleAccess color:#FFFFFF, fill:#D50000, stroke:#D50000
