@@ -151,11 +151,13 @@ onAuthStateChanged(auth, async (user) => {
           console.log("profile_picture URL:", url);
           profilePicture.src = url;
         } catch (error) {
-          console.error(error);
-          // If the file is not found, get the default URL
-          const defaultFileRef = ref(storage, `user`);
-          const defaultUrl = await getDownloadURL(defaultFileRef);
-          profilePicture.src = defaultUrl;
+          if (error.code === "storage/object-not-found") {
+            console.log("Profile picture does not exist.");
+            // Optionally, set a default image or handle the error as needed
+            profilePicture.src = "img/default_user.png";
+          } else {
+            console.error("Error fetching profile picture:", error);
+          }
         }
       }
     } catch (error) {
@@ -220,8 +222,15 @@ const logoutButtonPressed = async () => {
     await signOut(auth);
 
     // RESET FORM FIELDS and ERROR MESSAGES
+    console.log("User signed out successfully!");
+
     email.value = "";
     password.value = "";
+    name.value = "";
+    phone.value = "";
+    profilePicture.src = "";
+
+    console.log(`Resetting form fields...`);
 
     loginErrorMessage.classList.remove(["error", "success"]);
     loginErrorMessage.style.display = "none";
