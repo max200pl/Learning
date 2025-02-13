@@ -16,3 +16,13 @@ react_app.storage_bucket=" " \
 react_app.messaging_sender_id=" " \
 react_app.app_id=" "
 ```
+
+## Firebase GET Hosting Secrets
+
+To get secrets in Firebase Hosting, you can use the Firebase CLI. The Firebase CLI allows you to get environment variables for your Firebase project. You can get these variables using the `firebase functions:config:get` command. This command allows you to get environment variables for your Firebase project that can be accessed by your Firebase Functions.
+
+```bash
+firebase functions:config:get
+```
+
+### Firebase GET Secrets in client React from Firebase
