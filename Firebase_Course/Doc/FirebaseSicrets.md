@@ -26,3 +26,72 @@ firebase functions:config:get
 ```
 
 ### Firebase GET Secrets in client React from Firebase
+
+## Config environment variables
+
+<https://firebase.google.com/docs/functions/config-env?gen=1st>
+
+We can use environment variables in our Firebase functions to store sensitive information such as API keys and secrets.
+2. `firebase functions:secrets:set SENSITIVE` - sets environment variables for Firebase functions.
+3. Or we can simply use a .env file in the root of the project.
+
+```TypeScript
+import { onRequest } from "firebase-functions/v2/https";
+import * as admin from "firebase-admin";
+import { defineSecret } from "firebase-functions/params";
+
+// Initialize Firebase Admin SDK
+admin.initializeApp();
+
+// Define secrets
+const apiKey = defineSecret("API_KEY");
+const authDomain = defineSecret("AUTH_DOMAIN");
+const projectId = defineSecret("PROJECT_ID");
+const storageBucket = defineSecret("STORAGE_BUCKET");
+const messagingSenderId = defineSecret("MESSAGING_SENDER_ID");
+const appId = defineSecret("APP_ID");
+
+// Define function
+export const getFirebaseConfig = onRequest(
+    {
+        secrets: [
+            apiKey,
+            authDomain,
+            projectId,
+            storageBucket,
+            messagingSenderId,
+            appId,
+        ],
+    },
+    async (req, res) => {
+        try {
+            // Get token from Authorization header
+            const idToken = req.headers.authorization?.split("Bearer ")[1];
+
+            if (!idToken) {
+                res.status(401).json({
+                    error: "Unauthorized - No token provided",
+                });
+                return;
+            }
+
+            // Verify user token
+            await admin.auth().verifyIdToken(idToken);
+
+            // Send configuration
+            res.json({
+                apiKey: apiKey.value(),
+                authDomain: authDomain.value(),
+                projectId: projectId.value(),
+                storageBucket: storageBucket.value(),
+                messagingSenderId: messagingSenderId.value(),
+                appId: appId.value(),
+            });
+        } catch (error) {
+            console.error("Error verifying token or fetching config:", error);
+            res.status(403).json({ error: "Forbidden - Invalid token" });
+        }
+    }
+);
+
+```
