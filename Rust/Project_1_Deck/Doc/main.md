@@ -8,7 +8,7 @@ This project is a simple project that demonstrates the use of enums in Rust. The
 
 ## Steps to create the project
 
-1. Create a new Rust project using the following command:
+Create a new Rust project using the following command:
 
 ```bash
 # Create a new Rust project

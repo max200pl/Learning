@@ -1,0 +1,15 @@
+# Ignore the target folder where build artifacts are stored
+target/
+
+# Ignore temporary files created by IDEs
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# Ignore temporary system files
+.DS_Store
+Thumbs.db
+
+# Ignore Cargo.lock if this is a library project
+Cargo.lock
