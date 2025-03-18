@@ -1,9 +1,11 @@
+#[derive(Debug)]
+
 struct Deck {
-    cards: Vec<Card>,
+    cards: Vec<String>,
 }
 
 fn main() {
-    let deck = Deck {cards: vec![]};
+    let deck: Deck = Deck { cards: vec![] };
 
-    println!("Heres your deck: {}", deck);
+    println!("Heres your deck: {:?}", deck);
 }
