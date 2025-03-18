@@ -4,8 +4,6 @@
   - [Introduction](#introduction)
   - [Rust Compiler](#rust-compiler)
   - [Cargo](#cargo)
-- [Check if Cargo is installed](#check-if-cargo-is-installed)
-- [Create a new Rust project](#create-a-new-rust-project)
 
 ## Introduction
 
