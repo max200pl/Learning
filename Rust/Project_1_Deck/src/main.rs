@@ -1,10 +1,11 @@
+use rand::{Rng, seq::SliceRandom};
 #[derive(Debug)]
 
 struct Deck {
     cards: Vec<String>,
 }
 
-//* ============= # Example 1 =============
+//* ============= # Example 1 ============= *//
 // fn main() {
 //     // List of suits - Spades, Hearts, Diamonds, Clubs
 //     // List of values - 2-10, J, Q, K, A
@@ -27,7 +28,7 @@ struct Deck {
 //     println!("Heres your deck: {:#?}", deck);
 // }
 
-//* ============= # Example 2 ============= *//
+//* ============= # Example 2 Instance ============= *//
 
 impl Deck {
     fn new() -> Self {
@@ -46,10 +47,14 @@ impl Deck {
 
         Deck { cards } // Implicit return
     }
+
+    fn shufflet(&self) {
+        println!("Shuffling the deck...");
+    }
 }
 
 fn main() {
     let deck = Deck::new();
-
+    deck.shufflet();
     println!("Heres your deck: {:#?}", deck);
 }
