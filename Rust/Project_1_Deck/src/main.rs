@@ -44,11 +44,7 @@ impl Deck {
             }
         }
 
-        let deck: Deck = Deck { cards };
-
-        println!("Heres your deck: {:#?}", deck);
-
-        return deck;
+        Deck { cards } // Implicit return
     }
 }
 

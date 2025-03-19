@@ -40,3 +40,15 @@ let deck = Deck {
     let deck: Deck = Deck {cards: vec![]};
 };
 ```
+
+## Implicit Return
+
+![alt text](./img/ImplicitReturn.png)
+
+```rust
+
+fn function_name() -> i32 {
+    5 // Implicit return
+}
+
+```
