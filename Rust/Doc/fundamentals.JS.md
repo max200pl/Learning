@@ -5,6 +5,9 @@
   - [Rust Compiler](#rust-compiler)
   - [Cargo](#cargo)
   - [Arrays VS Vectors](#arrays-vs-vectors)
+  - [Installing External Crates](#installing-external-crates)
+    - [Rust Standard Library](#rust-standard-library)
+    - [External Crates](#external-crates)
 
 ## Introduction
 
@@ -40,4 +43,31 @@ fn main() {
     // Vector
     let vec = vec![1, 2, 3, 4, 5];
 }
+```
+
+## Installing External Crates
+
+![alt text](./img/InstallingExternalCrates.png)
+
+External crates can be installed using Cargo. Crates are libraries that can be used in Rust projects. Crates can be installed using the `cargo install` command.
+
+```bash
+
+# Install external crate
+cargo install crate_name
+```
+
+### Rust Standard Library
+
+The Rust Standard Library is a collection of modules that provide the core functionality of Rust. The standard library includes modules for common data structures, I/O, networking, and more. The standard library is included with the Rust compiler and does not need to be installed separately.
+
+### External Crates
+
+External crates are libraries that are not included in the Rust Standard Library. External crates can be installed using Cargo and added to a Rust project using the `use` keyword. External crates can be used to add additional functionality to a Rust project.
+
+<https://crates.io/> is the official repository for Rust crates.
+
+```rust
+// Import external crate
+use crate_name;
 ```
