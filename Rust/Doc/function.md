@@ -12,7 +12,7 @@ fn function_name() {
 
 ## Struct Definition like a class in other languages
 
-![alt text](image.png)
+![alt text](./img/StructDefinition.png)
 
 `Deck` always starts with a capital letter
 
@@ -29,8 +29,8 @@ struct Deck {
 
 ## Instance of a struct
 
-![alt text](image-1.png)
-![alt text](image-2.png)
+![alt text](./img/InstanceStruct.png)
+![alt text](./img/InstanceStruct-2.png)
 
 `vec![]` is a macro with an empty vector/array
 same as `Vec::new()`
