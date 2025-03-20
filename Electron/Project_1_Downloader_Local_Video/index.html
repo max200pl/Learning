@@ -4,5 +4,22 @@
   </head>
   <body>
     <h1>Hello World!</h1>
+
+    <form action="#" method="post">
+      <div>
+        <label for="">Select a video</label
+        ><input type="file" accept="video/*" />
+      </div>
+
+      <div>
+        <button type="submit">Get Info</button>
+      </div>
+    </form>
+    <script>
+      document.querySelector("form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const file = document.querySelector("input[type=file]").files[0];
+      });
+    </script>
   </body>
 </html>
