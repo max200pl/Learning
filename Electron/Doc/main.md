@@ -22,3 +22,21 @@ Communication between Main Process and Renderer Process is done through IPC.
 
 - The main process and renderer process can communicate with each other through IPC (Inter-Process Communication).
 - The IPC module provides a channel for sending synchronous and asynchronous messages between the main process and renderer processes.
+
+## Work Process
+
+![alt text](./Img/WorkProcess.png)
+
+- Run at terminal: `npm start`
+- The main process creates a web page and manages the renderer process.
+- The renderer process runs the web page.
+
+## Lifetime Process
+
+![alt text](./Img/LifetimeProcess.png)
+
+- Electron app lifetime process:
+  - Start
+  - Ready
+  - Window All Closed
+  - Quit
