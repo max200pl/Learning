@@ -4,6 +4,8 @@ const { app, BrowserWindow } = electron; // Replace BaseWindow with BrowserWindo
 
 app.on("ready", () => {
   console.log("App is ready");
-  const mainWindow = new BrowserWindow({}); // Replace BaseWindow with BrowserWindow
+  const mainWindow = new BrowserWindow({
+    webPreferences: { nodeIntegration: true, contextIsolation: false },
+  }); // Replace BaseWindow with BrowserWindow
   mainWindow.loadURL(`file://${__dirname}/index.html`);
 });

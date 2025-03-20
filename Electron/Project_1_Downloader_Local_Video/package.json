@@ -4,12 +4,13 @@
   "description": "![alt text](./Doc/Img/MainStructure.png)",
   "main": "index.js",
   "scripts": {
-     "electron": "electron ."
+    "electron": "electron ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "electron": "^35.0.3"
+    "electron": "^35.0.3",
+    "fluent-ffmpeg": "^2.1.3"
   }
 }
