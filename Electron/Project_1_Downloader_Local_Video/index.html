@@ -1,25 +1,27 @@
-<html lang="en">
-  <head>
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>Hello World!</h1>
+<head></head>
+<body>
+  <h1>Video Info</h1>
+  <form>
+    <div>
+      <label>Select a video</label>
+      <input type="file" accept="video/*" />
+    </div>
+    <button type="submit">Get Info</button>
+  </form>
 
-    <form action="#" method="post">
-      <div>
-        <label for="">Select a video</label
-        ><input type="file" accept="video/*" />
-      </div>
+  <h1 id="result"></h1>
 
-      <div>
-        <button type="submit">Get Info</button>
-      </div>
-    </form>
-    <script>
-      document.querySelector("form").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const file = document.querySelector("input[type=file]").files[0];
-      });
-    </script>
-  </body>
-</html>
+  <script>
+    document.querySelector("form").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const { path } = document.querySelector("input").files[0];
+      window.electron.submitVideo(path);
+    });
+
+    window.electron.receiveVideoMetadata((duration) => {
+      document.querySelector(
+        "#result"
+      ).innerHTML = `Video is ${duration} seconds long.`;
+    });
+  </script>
+</body>
