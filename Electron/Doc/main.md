@@ -16,13 +16,6 @@
 
 #### Inter-Process Communication (IPC)
 
-Communication between Main Process and Renderer Process is done through IPC.
-
-![alt text](./Img/IPC.png)
-
-- The main process and renderer process can communicate with each other through IPC (Inter-Process Communication).
-- The IPC module provides a channel for sending synchronous and asynchronous messages between the main process and renderer processes.
-
 ## Work Process
 
 ![alt text](./Img/WorkProcess.png)
@@ -40,3 +33,11 @@ Communication between Main Process and Renderer Process is done through IPC.
   - Ready
   - Window All Closed
   - Quit
+
+## Require Statement in Browser Process
+
+- `require` is used to import modules in Node.js.
+- `import` is used to import modules in ES6.
+
+![RequireLog](./Img/RequireLog.png)
+![RequireStatement](./Img/RequireStatement.png)
