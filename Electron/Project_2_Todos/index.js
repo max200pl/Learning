@@ -1,14 +1,17 @@
-const electron = require("electron");
-
-const { app, BrowserWindow, Menu, ipcMain } = electron;
+const { app, BrowserWindow, Menu, ipcMain } = require("electron");
 
 let mainWindow;
 let addWindow;
 
 app.on("ready", () => {
   mainWindow = new BrowserWindow({
-    webPreferences: { nodeIntegration: true, contextIsolation: false },
+    webPreferences: {
+      nodeIntegration: false,
+      contextIsolation: true,
+      preload: `${__dirname}/preload.js`,
+    },
   });
+
   mainWindow.loadURL(`file://${__dirname}/main.html`);
   mainWindow.on("closed", () => app.quit());
 
@@ -21,8 +24,13 @@ function createAddWindow() {
     width: 300,
     height: 200,
     title: "Add New Todo",
-    webPreferences: { nodeIntegration: true, contextIsolation: false },
+    webPreferences: {
+      nodeIntegration: false,
+      contextIsolation: true,
+      preload: `${__dirname}/preload.js`,
+    },
   });
+
   addWindow.loadURL(`file://${__dirname}/add.html`);
   addWindow.on("closed", () => (addWindow = null));
 }
@@ -45,7 +53,7 @@ const menuTemplate = [
       {
         label: "Clear Todos",
         click() {
-          mainWindow.webContents.send("clear:todos");
+          mainWindow.webContents.send("todo:clear");
         },
       },
       {
@@ -67,9 +75,7 @@ if (process.env.NODE_ENV !== "production") {
   menuTemplate.push({
     label: "View",
     submenu: [
-      {
-        role: "reload",
-      },
+      { role: "reload" },
       {
         label: "Toggle Developer Tools",
         accelerator:

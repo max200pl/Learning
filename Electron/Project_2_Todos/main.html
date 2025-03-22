@@ -1,23 +1,25 @@
-<head></head>
-<body>
-  <h1>My Todos</h1>
-  <ul></ul>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Main</title>
+  </head>
+  <body>
+    <h1>My Todos</h1>
+    <ul></ul>
 
-  <script>
-    const list = document.querySelector("ul");
-    const electron = require("electron");
-    const { ipcRenderer } = electron;
+    <script>
+      const list = document.querySelector("ul");
 
-    ipcRenderer.on("todo:add", (event, todo) => {
-      const li = document.createElement("li");
-      const text = document.createTextNode(todo);
+      window.api.on("todo:add", (todo) => {
+        const li = document.createElement("li");
+        const text = document.createTextNode(todo);
+        li.appendChild(text);
+        list.appendChild(li);
+      });
 
-      li.appendChild(text);
-      list.appendChild(li);
-    });
-
-    ipcRenderer.on("clear:todos", () => {
-      list.innerHTML = "";
-    });
-  </script>
-</body>
+      window.api.on("todo:clear", () => {
+        list.innerHTML = "";
+      });
+    </script>
+  </body>
+</html>
