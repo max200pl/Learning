@@ -10,11 +10,21 @@ app.on("ready", () => {
     },
   });
   mainWindow.loadURL(`file://${__dirname}/main.html`);
+  mainWindow.on("closed", () => app.quit());
 
   const mainMenu = Menu.buildFromTemplate(menuTemplate);
 
   Menu.setApplicationMenu(mainMenu);
 });
+
+function createAddWindow() {
+  addWindow = new BrowserWindow({
+    width: 300,
+    height: 200,
+    title: "Add New Todo",
+  });
+  addWindow.loadURL(`file://${__dirname}/add.html`);
+}
 
 const menuTemplate = [
   {
@@ -23,7 +33,7 @@ const menuTemplate = [
       {
         label: "Add New Todo",
         click() {
-          mainWindow.webContents.send("add-todo");
+          createAddWindow();
         },
       },
       {
