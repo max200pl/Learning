@@ -1,26 +1,19 @@
 const electron = require("electron");
-const { app, BrowserWindow, ipcMain, Menu } = electron;
+
+const { app, BrowserWindow, Menu, ipcMain } = electron;
 
 let mainWindow;
 let addWindow;
 
 app.on("ready", () => {
   mainWindow = new BrowserWindow({
-    webPreferences: {
-      webPreferences: { nodeIntegration: true, contextIsolation: false },
-    },
+    webPreferences: { nodeIntegration: true, contextIsolation: false },
   });
   mainWindow.loadURL(`file://${__dirname}/main.html`);
   mainWindow.on("closed", () => app.quit());
 
   const mainMenu = Menu.buildFromTemplate(menuTemplate);
-
   Menu.setApplicationMenu(mainMenu);
-});
-
-ipcMain.on("todo:add", (event, todo) => {
-  mainWindow.webContents.send("todo:add", todo);
-  //   addWindow.close(); MEMORY LEAK
 });
 
 function createAddWindow() {
@@ -34,18 +27,20 @@ function createAddWindow() {
   addWindow.on("closed", () => (addWindow = null));
 }
 
+ipcMain.on("todo:add", (event, todo) => {
+  mainWindow.webContents.send("todo:add", todo);
+  addWindow.close();
+});
+
 const menuTemplate = [
   {
     label: "File",
     submenu: [
       {
-        label: "Add New Todo",
+        label: "New Todo",
         click() {
           createAddWindow();
         },
-      },
-      {
-        label: "Clear Todos",
       },
       {
         label: "Quit",
@@ -59,15 +54,16 @@ const menuTemplate = [
 ];
 
 if (process.platform === "darwin") {
-  menuTemplate.unshift({});
+  menuTemplate.unshift({ label: "" });
 }
 
 if (process.env.NODE_ENV !== "production") {
-  // "production" or "development" or "staging"
-
   menuTemplate.push({
     label: "View",
     submenu: [
+      {
+        role: "reload",
+      },
       {
         label: "Toggle Developer Tools",
         accelerator:
