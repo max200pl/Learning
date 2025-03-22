@@ -20,7 +20,7 @@ app.on("ready", () => {
 
 ipcMain.on("todo:add", (event, todo) => {
   mainWindow.webContents.send("todo:add", todo);
-  addWindow.close();
+  //   addWindow.close(); MEMORY LEAK
 });
 
 function createAddWindow() {
