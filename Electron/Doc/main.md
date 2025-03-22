@@ -41,3 +41,15 @@
 
 ![RequireLog](./Img/RequireLog.png)
 ![RequireStatement](./Img/RequireStatement.png)
+
+## Platform Support
+
+- Electron supports Windows, macOS, and Linux.
+
+```powershell
+node -v
+node
+    process.platform // 'win32', 'darwin', 'linux'
+    process.arch     // 'x64', 'ia32'
+    process.versions // Node.js, Chrome, Electron
+```
