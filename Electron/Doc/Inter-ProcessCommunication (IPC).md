@@ -15,11 +15,16 @@ Communication between Main Process and Renderer Process is done through IPC.
 - The `ipcMain` module is an event emitter that listens for messages from the renderer process.
 
 ```javascript
+const {ipcRenderer} = require('electron')
 
+ipcRenderer.send('video:submit', path)
+```
+
+```javascript
 const { ipcMain } = require('electron')
 
 
 ipcMain.on("video:submit", (event, path) => {
-  console.log(path)
+   mainWindow.webContents.send('video:submit', path)
 })
 ```

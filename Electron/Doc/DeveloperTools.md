@@ -21,7 +21,3 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 ```
-
-## When New Window open Restoring the Developer Tools
-
-[IPC Process](../Doc/diagrams/002%20-%20ipc%20.png)
