@@ -1,3 +1,9 @@
+# Electron Tasky App
+
+## Arhitecure Diogramm
+
+![alt text](./Doc/ArhitecureDiogramm.png)
+
 ### Getting started
 
 `npm install`
