@@ -1,4 +1,7 @@
-### Getting started
+
+# Getting started
+
+![Tray Window](./Doc/Img/tray%20windows.png)
 
 `npm install`
 
