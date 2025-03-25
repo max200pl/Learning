@@ -38,3 +38,27 @@ function createChildWindow() {
     childWindow.on("closed", () => childWindow = null);
 }
 ```
+
+## On Blue Window
+
+1. `doc` is a reference to the document object in the main window.
+2. `doc.hide` is a function that hides the document object.
+
+```javascript
+
+app.on("ready", () => {
+    app.doc.hide();
+
+    mainWindow = new BrowserWindow({
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+        },
+    });
+
+
+    mainWindow.on("blur", () => {
+        mainWindow.hide();
+    });
+});
+```
