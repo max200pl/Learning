@@ -1,27 +1,17 @@
 const electron = require("electron");
 const path = require("path");
 const TimerTray = require("./app/timer_tray");
+const MainWindow = require("./app/main_window");
 
-const { app, BrowserWindow } = electron;
+const { app } = electron;
 
 let mainWindow;
 let tray; // Avoid garbage collection!!
 
 app.on("ready", () => {
-  app.dock.hide(); // Hide the dock icon on macOS
+  process.platform === "win32" ? null : app.dock.hide(); // Hide the dock icon on macOS
 
-  mainWindow = new BrowserWindow({
-    height: 500,
-    width: 300,
-    frame: false,
-    resizable: false,
-    show: false,
-  });
-  mainWindow.loadURL(`file://${__dirname}/src/index.html`);
-
-  mainWindow.on("blur", () => {
-    mainWindow.hide();
-  });
+  mainWindow = new MainWindow(`file://${__dirname}/src/index.html`);
 
   const iconName =
     process.platform === "win32" ? "windows-icon.png" : "iconTemplate.png";
