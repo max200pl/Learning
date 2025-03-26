@@ -46,9 +46,13 @@ class App extends Component {
 
   onAppClose = () => {};
 
-  updateTrayText = (title) => {};
+  updateTrayText = (title) => {
+    ipcRenderer.send("update-timer", title);
+  };
 
-  timerHasExpired = () => {};
+  timerHasExpired = () => {
+    ipcRenderer.send("timer-expired", "");
+  };
 
   // -------- end of electron event handerls ----------
 
