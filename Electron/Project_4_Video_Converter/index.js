@@ -34,7 +34,7 @@ ipcMain.on("videos:added", (event, videos) => {
   });
 });
 
-ipcMain.on("convert:start", (event, videos) => {
+ipcMain.on("conversion:start", (event, videos) => {
   _.each(videos, (video) => {
     const outputDirectory = video.path.split(video.name)[0];
     const outputName = video.name.split(".")[0];
@@ -46,7 +46,7 @@ ipcMain.on("convert:start", (event, videos) => {
     ffmpeg(video.path)
       .output(outputPath)
       .on("end", () => {
-        console.log("Conversion finished");
+        mainWindow.webContents.send("conversion:end", { video, outputPath });
       })
       .run();
   });
