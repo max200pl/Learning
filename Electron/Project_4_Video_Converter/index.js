@@ -43,8 +43,13 @@ ipcMain.on("conversion:start", (event, videos) => {
 
     console.log(outputDirectory, outputName);
 
-    ffmpeg(video.path)
-      .output(outputPath)
+    ffmpeg(video.path).output(outputPath);
+    on("progress", ({ timemark }) => {
+      mainWindow.webContents.send("conversion:progress", {
+        video,
+        timemark,
+      });
+    })
       .on("end", () => {
         mainWindow.webContents.send("conversion:end", { video, outputPath });
       })
