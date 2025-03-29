@@ -55,10 +55,20 @@ impl Deck {
 
         self.cards.shuffle(&mut rng);
     }
+
+    fn deal(&mut self, num_cards: usize) -> Vec<String> {
+        self.cards.split_off(self.cards.len() - num_cards)
+    }
 }
 
 fn main() {
     let mut deck = Deck::new();
-    deck.shufflet();
+    // deck.shufflet();
+
+    // Probable need to add error handling here
+    // to check if the deck has enough cards to deal
+    let cards = deck.deal(3);
+
+    println!("Heres your hand: {:#?}", cards);
     println!("Heres your deck: {:#?}", deck);
 }
