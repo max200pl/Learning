@@ -29,7 +29,7 @@ cargo --version
 
 ## Arrays VS Vectors
 
-![alt text](./img/Arrays VS Vectors.png)
+![alt text](./img/ArraysVSVectors.png)
 
 Arrays and vectors are both used to store multiple values in Rust. However, there are some differences between the two.
 
