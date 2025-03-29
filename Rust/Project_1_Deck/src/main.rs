@@ -1,4 +1,4 @@
-use rand::{Rng, seq::SliceRandom};
+use rand::{rng, seq::SliceRandom};
 #[derive(Debug)]
 
 struct Deck {
@@ -48,13 +48,17 @@ impl Deck {
         Deck { cards } // Implicit return
     }
 
-    fn shufflet(&self) {
+    fn shufflet(&mut self) {
         println!("Shuffling the deck...");
+
+        let mut rng = rng();
+
+        self.cards.shuffle(&mut rng);
     }
 }
 
 fn main() {
-    let deck = Deck::new();
+    let mut deck = Deck::new();
     deck.shufflet();
     println!("Heres your deck: {:#?}", deck);
 }
