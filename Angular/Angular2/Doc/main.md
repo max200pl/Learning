@@ -31,3 +31,19 @@ npm start
 ```
 
 ![Start the development server](./img/StartServer.png)
+
+## Creating components
+
+Components are the building blocks of an Angular application. You can create a new component using the `ng generate component` command followed by the name of the component. For example:
+
+```bash
+ng g c user
+```
+
+## Attributes Binding
+
+Attributes binding in Angular allows you to bind data from your component to the attributes of HTML elements in your template. This is done using square brackets `[]` around the attribute name. For example, if you have a component property called `imageUrl`, you can bind it to the `src` attribute of an `<img>` tag like this:
+
+```html
+<img [src]="imageUrl" alt="Image" />
+```
