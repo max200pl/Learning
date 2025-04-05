@@ -36,3 +36,32 @@ export class UserFormComponent {
   };
 }
 ```
+
+## Preventing Default Form Submission
+
+In Angular, when using forms, the default behavior of the form submission can be prevented by using the `ngSubmit` directive. This is useful when you want to handle form submission with custom logic instead of the default behavior.
+
+```html
+<form (ngSubmit)="onSubmit()">
+  <label for="name">Name:</label>
+  <input type="text" id="name" [(ngModel)]="user.name" name="name">
+  <button type="submit">Submit</button>
+</form>
+```
+
+In this example, the `ngSubmit` directive is used to call the `onSubmit()` method when the form is submitted. This prevents the default form submission behavior and allows you to handle the submission in your component.
+
+```ts
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-user-form',
+  template: `
+    <form (ngSubmit)="onSubmit()">
+      <label for="name">Name:</label>
+      <input type="text" id="name" [(ngModel)]="user.name" name="name">
+      <button type="submit">Submit</button>
+    </form>
+  `,
+})
