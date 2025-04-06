@@ -3,6 +3,7 @@ import { TaskComponent } from './task/task.component';
 import { dummyTasks } from '../dummy-tasks';
 import { NewTaskComponent } from './new-task/new-task.component';
 import { NewTaskData } from './new-task/new-task.mode';
+import { TaskService } from './tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -16,43 +17,21 @@ export class TasksComponent {
   @Input({ required: true }) name!: string;
   isAddingTask = false;
 
-  tasks = dummyTasks;
+  constructor(private taskServices: TaskService) {}
 
   get selectedUserTasks() {
-    return this.tasks.filter((task) => task.userId === this.userId);
+    return this.taskServices.getUserTasks(this.userId);
   }
 
-  onCompleteTasks(id: string) {
-    console.log('Task Completed:', id);
-
-    this.tasks = this.tasks.filter((task) => task.id !== id);
-  }
+  onCompleteTasks(id: string) {}
 
   onStartAddTask() {
     console.log('Add Task Clicked');
     this.isAddingTask = true;
   }
 
-  onCancelAddTask() {
+  onCloseAddTask() {
     console.log('Cancel Add Task Clicked');
-    this.isAddingTask = false;
-  }
-
-  onAddTask(taskData: NewTaskData) {
-    console.log(
-      'Task Created:',
-      taskData.title,
-      taskData.summary,
-      taskData.date
-    );
-
-    this.tasks.unshift({
-      id: new Date().getTime().toString(),
-      userId: this.userId,
-      title: taskData.title,
-      summary: taskData.summary,
-      dueDate: taskData.date,
-    });
     this.isAddingTask = false;
   }
 }
