@@ -28,7 +28,7 @@ export class TaskService {
       dueDate: taskData.date,
     });
 
-    this.saveTasks();
+    this.();
   }
 
   removeTask(id: string) {
