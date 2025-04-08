@@ -1,6 +1,7 @@
-import { Component, EventEmitter, output, Output, signal } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { InvestmentInput } from '../investment-input.model';
+import { InvestmentService } from '../investment.service';
 
 @Component({
   selector: 'app-user-input',
@@ -17,10 +18,15 @@ export class UserInputComponent {
   enteredExpectedReturn = signal('0');
   enteredDuration = signal('0');
 
+  constructor(private investmentService: InvestmentService) {}
   onSubmit() {
-    console.log('Form submitted!');
-
-    this.calculate.emit({
+    /**
+     * * This function is called when the form is submitted.
+     * * It retrieves the values from the input fields, converts them to numbers, and passes them to the investment service for calculation.
+     * * * After the calculation, it resets the input fields to their default values.
+     * * The default values are set to 0 for initial and annual investments, 5% for expected return, and 10 years for duration.
+     */
+    this.investmentService.calculateInvestmentResults({
       initialInvestment: +this.enteredInitialInvestment(),
       annualInvestment: +this.enteredAnnualInvestment(),
       expectedReturn: +this.enteredExpectedReturn(),
