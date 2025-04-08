@@ -1,10 +1,26 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-input',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './user-input.component.html',
   styleUrl: './user-input.component.css',
 })
-export class UserInputComponent {}
+export class UserInputComponent {
+  enteredInitialInvestment: string = '0';
+  enteredAnnualInvestment: string = '0';
+  enteredExpectedReturn: string = '0';
+  enteredDuration: string = '0';
+
+  onSubmit() {
+    console.log('Form submitted!');
+    console.log(`
+      Initial Investment: ${this.enteredInitialInvestment},
+      Annual Investment: ${this.enteredAnnualInvestment},
+      Expected Return: ${this.enteredExpectedReturn},
+      Duration: ${this.enteredDuration}
+    `);
+  }
+}
