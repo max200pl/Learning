@@ -111,3 +111,28 @@ if  you use the `ng-content` directive without any selector, it will match all c
   <ng-content select="icon"> + </ng-content>
 </ng-content>
 ```
+
+### multiple ng-content define by coma (NEW Feature)
+
+- You can use multiple `ng-content` directives in a component to project different types of content into different areas of the component. This allows you to create more complex and flexible components that can accept various types of content.
+
+```typescript
+
+@Component ({
+  selector: 'button[appButton], a[appButton]',
+  standalone: true,
+  imports: [CommonModule],
+})
+
+
+export class ChildComponent {
+    title = 'Hello World!';
+}
+```
+
+```html
+<p>
+    {{title}}
+    <ng-content select="input, textarea" />
+</p>
+```
