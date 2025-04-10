@@ -86,3 +86,28 @@ export class ChildComponent {
 ```
 
 - In this example, the `ngProjectAs` directive is used to specify that the projected content with the class `icon` should be treated as a `<span>` element. This allows you to control how the projected content behaves and interacts with the component.
+
+### ng-content if not selected content (NEW Feature)
+
+- If the projected content is not selected by any `ng-content` directive, it will be rendered in the default slot of the component. The default slot is the area where content is projected if it does not match any specific selector.
+
+```typescript
+
+@Component({
+  selector: 'button[appButton]',
+  standalone: true,
+  imports: [CommonModule],
+})
+export class ChildComponent {
+}
+```
+
+if  you use the `ng-content` directive without any selector, it will match all content that is not selected by any other `ng-content` directive.
+
+```html
+<span> <ng-content /> </span>
+<ng-content select="icon">
+    <!-- if not selected content show +  -->
+  <ng-content select="icon"> + </ng-content>
+</ng-content>
+```
