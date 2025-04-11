@@ -92,3 +92,39 @@ export class ExampleComponent {
   }
 }
 ```
+
+### Style Binding
+
+You can also bind styles directly to elements in your templates using Angular's style binding syntax. This allows you to apply inline styles conditionally based on component properties.
+
+```html
+<!-- example.component.html -->
+
+<div
+    [style]="{'background-color': isActive ? 'blue' : 'red', 'font-size': fontSize + 'px'}"
+    [style.fontSize.px]="fontSize"
+>
+    <h1>Example Component</h1>
+    <ng-content></ng-content>
+</div>
+
+```
+
+```typescript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-example',
+  templateUrl: './example.component.html',
+  styleUrls: ['./example.component.css']
+})
+
+export class ExampleComponent {
+  isActive = true; // Style binding condition
+  fontSize = 16; // Font size in pixels
+
+  toggleActive() {
+    this.isActive = !this.isActive; // Toggle the active style
+  }
+}
+```
