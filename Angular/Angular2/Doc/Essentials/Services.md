@@ -40,3 +40,30 @@ export class ExampleComponent2 {
     data: string = this.apiService.getData();
 }
 ```
+
+### Injection of ElementRef
+
+It's also possible to inject `ElementRef` into a service. This allows you to access the DOM element associated with the component or directive that is using the service.
+
+![Injection of ElementRef](../img/InjectionOfElementRef.png)
+
+```typescript
+import { Injectable, ElementRef } from '@angular/core';
+
+import { inject } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
+
+@Component({
+  selector: 'app-example',
+  template: `
+    <div #myElement>My Element</div>
+  `,
+})
+export class ExampleComponent {
+  private el = inject(ElementRef); // Access to the Host Component
+
+  onClick() {
+    console.log(this.el); // Access the DOM element
+  }
+}
+```
