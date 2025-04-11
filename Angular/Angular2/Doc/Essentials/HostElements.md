@@ -34,5 +34,24 @@ export class NameComponent implements OnInit {
     display: block;
     background-color: lightblue;
 }
-
 ```
+
+## configuration property : `host`
+
+![Host Property](../img/HostProperty.png)
+
+The `host` property in the component decorator allows you to define styles and attributes for the host element. This is useful for applying styles or behaviors directly to the host element without affecting other elements in the component's template.
+
+```typescript
+
+import { Component } from '@angular/core';
+
+@Component ({
+    selector: 'app-example',
+    templateUrl: './example.component.html',
+    hast: {
+        class: 'control', // Add a class to the host element
+        '[attr.aria-label]': 'ariaLabel', // Bind an attribute to the host element
+    }
+    styleUrls: ['./example.component.css']
+})
