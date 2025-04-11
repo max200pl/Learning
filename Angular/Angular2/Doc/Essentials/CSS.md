@@ -1,4 +1,4 @@
-# Styles in Angular
+# CSS in Angular
 
 Angular provides a powerful way to style your components using CSS. You can apply styles globally or locally to specific components. Here’s a breakdown of how to manage styles in Angular applications.
 
@@ -53,3 +53,42 @@ export class ExampleComponent {
     <h1>Example Component</h1>
     <ng-content></ng-content>
 </div>
+
+```
+
+### Class Binding
+
+You can dynamically add or remove classes from elements in your templates using Angular's class binding syntax. This allows you to apply styles conditionally based on component properties.
+
+```html
+
+<!-- example.component.html -->
+
+<div [class]="{'control': true, 'active': isActive, 'disabled-status': isDisabled}">
+    <div >
+        <h1>Example Component</h1>
+        <ng-content></ng-content>
+    </div>
+    <h1>Example Component</h1>
+    <ng-content></ng-content>
+</div>
+```
+
+```typescript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-example',
+  templateUrl: './example.component.html',
+  styleUrls: ['./example.component.css']
+})
+
+export class ExampleComponent {
+  isActive = true; // Class binding condition
+  isDisabled = false; // Class binding condition
+
+  toggleActive() {
+    this.isActive = !this.isActive; // Toggle the active class
+  }
+}
+```
