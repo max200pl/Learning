@@ -105,6 +105,39 @@ export class ExampleComponent implements OnDestroy {
 }
 ```
 
+#### Special vel destroyRef (Angular 16+)
+
+- **Description**: The `destroyRef` property is a special property that allows you to access the `DestroyRef` instance associated with the component. This can be used to manage the component's destruction and perform cleanup tasks.
+- **When to Use**: Use `destroyRef` when you need to manage the component's destruction and perform cleanup tasks. This is typically where you would unsubscribe from observables or detach event listeners to prevent memory leaks.
+- **Example**:
+
+```typescript
+import { Component, OnDestroy, inject } from '@angular/core';
+
+import { DestroyRef } from '@angular/core';
+import { Subscription } from 'rxjs';
+
+@Component({
+  selector: 'app-example',
+  template: '<p>Example component</p>'
+})
+export class ExampleComponent implements OnDestroy {
+    private subscription: Subscription;
+    private destroyRef = inject(DestroyRef);
+
+    constructor(private dataService: DataService) {
+        this.subscription = this.dataService.getData().subscribe(data => {
+        // Handle data
+        });
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
+        this.destroyRef.destroy(); // Clean up resources
+    }
+}
+```
+
 ### Hook `ngDoCheck`
 
 - **Description**: Called during every change detection run. This allows you to implement custom change detection logic.
