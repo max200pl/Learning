@@ -11,4 +11,16 @@ import { Ticket } from './ticket/ticket.mode';
 })
 export class TicketsComponent {
   tickets: Ticket[] = [];
+
+  onAdd(ticketData: { title: string; text: string }) {
+    const ticket: Ticket = {
+      id: this.tickets.length + 1,
+      title: ticketData.title,
+      request: ticketData.text,
+      status: 'open',
+    };
+
+    this.tickets.push(ticket);
+    console.log('Ticket added:', ticket);
+  }
 }

@@ -2,6 +2,9 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  EventEmitter,
+  output,
+  Output,
   ViewChild,
   viewChild,
 } from '@angular/core';
@@ -40,6 +43,10 @@ export class NewTicketComponent implements AfterViewInit {
   //* EXAMPLE 3: Using Angular Forms with ViewChild
   @ViewChild('form') form?: ElementRef<HTMLFormElement>; // #form
 
+  // @Output() add = new EventEmitter<{ title: string; text: string }>();
+
+  add = output<{ title: string; text: string }>();
+
   ngAfterViewInit(): void {
     // This method is called after the view has been initialized
     // You can perform any additional setup here if needed
@@ -52,6 +59,8 @@ export class NewTicketComponent implements AfterViewInit {
   onSubmit(title: string, ticketText: string) {
     console.log('Ticket submitted:', { title, ticketText });
     // Here you would typically send the ticket data to a server or perform some action
+
+    this.add.emit({ title, text: ticketText }); // Emit the event with the ticket data
 
     // Reset the form after submission
     this.form?.nativeElement.reset();
