@@ -102,3 +102,32 @@ export class ParentComponent {
   }
 }
 ```
+
+## `@ContentChild` and `@ContentChildren`
+
+- `@ContentChild` and `@ContentChildren` are similar to `@ViewChild` and `@ViewChildren`, but they are used to access projected content (ng-content) in a component. They allow you to interact with child components or elements that are projected into the component's template.
+
+- `@ContentChild` is used to get a reference to a single projected child component or DOM element.
+
+- `@ContentChildren` is used to get a reference to multiple projected child components or DOM elements.
+
+- These decorators are useful when you want to access or manipulate the content that is projected into a component using `<ng-content>`.
+
+```ts
+
+import { Component, ContentChild, AfterContentInit } from '@angular/core';
+
+@Component ({
+  selector: 'app-parent',
+  template: `
+    <ng-content></ng-content>
+  `,
+})
+export class ParentComponent implements AfterContentInit {
+  @ContentChild('child') childComponent: ChildComponent; // #child
+
+  ngAfterContentInit() {
+    this.childComponent.someMethod(); // Accessing a method of the projected child component
+  }
+}
+```

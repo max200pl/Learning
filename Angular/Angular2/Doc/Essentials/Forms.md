@@ -98,3 +98,33 @@ export class UserFormComponent {
   }
 }
 ```
+
+## ViewChild and ViewChildren
+
+`@ViewChild` and `@ViewChildren` are decorators in Angular that allow you to access child components or DOM elements from a parent component. They are useful for interacting with child components, accessing their properties and methods, or manipulating the DOM directly.
+
+### `@ViewChild`
+
+- `@ViewChild` is used to get a reference to a single child component or DOM element in the template. It allows you to access properties and methods of the child component.
+
+```ts
+@Component({
+  selector: 'app-parent',
+  template: `
+    <form #form>
+      <app-child #child></app-child>
+    </form>
+  `,
+})
+
+export class ParentComponent implements AfterViewInit {
+  @ViewChild('form') form?: ElementRef<HTMLFormElement>; // #form
+  @ViewChild('child') childComponent?: ChildComponent; // #child
+
+  ngAfterViewInit() {
+    this.childComponent?.someMethod(); // Accessing a method of the child component
+    this.form?.nativeElement.submit(); // Accessing the form element
+  }
+}
+```
+

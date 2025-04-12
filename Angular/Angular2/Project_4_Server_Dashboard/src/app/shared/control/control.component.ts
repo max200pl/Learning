@@ -1,5 +1,7 @@
 import {
   Component,
+  contentChild,
+  ContentChild,
   ElementRef,
   HostBinding,
   inject,
@@ -25,8 +27,22 @@ export class ControlComponent {
 
   private el = inject(ElementRef);
 
+  //* Example 1: Old approach
+  /*
+      @ContentChild('input') private control?: ElementRef<
+          HTMLInputElement | HTMLTextAreaElement
+      >;
+  */
+
+  //* Example 2: New approach (Angular 17.3)
+  private control =
+    contentChild<ElementRef<HTMLInputElement | HTMLTextAreaElement>>(
+      'input, textarea'
+    );
+
   onClick() {
     console.log('Control clicked!');
     console.log(this.el);
+    console.log(this.control());
   }
 }
