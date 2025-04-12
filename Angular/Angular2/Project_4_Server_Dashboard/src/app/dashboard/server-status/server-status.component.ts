@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-server-status',
@@ -7,13 +7,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './server-status.component.html',
   styleUrl: './server-status.component.css',
 })
-export class ServerStatusComponent implements OnInit {
+export class ServerStatusComponent implements OnInit, AfterViewInit, OnDestroy {
   currentStatus: 'online' | 'offline' | 'unknown' = 'online';
+  private intervalId?: NodeJS.Timeout; // To store the interval ID for cleanup
 
   constructor() {}
 
   ngOnInit() {
-    setInterval(() => {
+    this.intervalId = setInterval(() => {
       const rnd = Math.random(); // 0 to 1
       if (rnd < 0.5) {
         this.currentStatus = 'online';
@@ -23,5 +24,25 @@ export class ServerStatusComponent implements OnInit {
         this.currentStatus = 'unknown';
       }
     }, 5000);
+  }
+
+  ngAfterViewInit() {
+    // This method is called after the view has been initialized
+    // You can perform any additional setup here if needed
+
+    console.log('ServerStatusComponent view initialized');
+    // For example, you can access child components or DOM elements here
+  }
+
+  ngOnDestroy() {
+    // This method is called just before the component is destroyed
+    // You can perform any cleanup here if needed
+
+    console.log('ServerStatusComponent destroyed');
+    // For example, you can unsubscribe from observables or detach event listeners here
+    // clearInterval(this.intervalId); // If you have an interval running, clear it here
+    // this.intervalId = null; // Set the intervalId to null to avoid memory leaks
+
+    clearTimeout(this.intervalId); // Clear the interval to prevent memory leaks
   }
 }
