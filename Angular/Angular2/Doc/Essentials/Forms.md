@@ -127,4 +127,3 @@ export class ParentComponent implements AfterViewInit {
   }
 }
 ```
-
