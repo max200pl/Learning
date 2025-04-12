@@ -57,3 +57,48 @@ export class ChildComponent {
   }
 }
 ```
+
+## @ViewChild and @ViewChildren
+
+- **@ViewChild**: Used to get a reference to a single child component or DOM element in the template. It allows you to access properties and methods of the child component.
+
+```typescript
+import { Component, ViewChild } from '@angular/core';
+
+import { ChildComponent } from './child.component';
+
+@Component({
+  selector: 'app-parent',
+  template: `<form #form><app-child #child></app-child></form>`
+})
+export class ParentComponent {
+  @ViewChild('form') form?: ElementRef<HTMLFormElement>; // #form
+
+
+  ngAfterViewInit() {
+    this.childComponent.someMethod();
+
+    this.form?.nativeElement.submit(); // Accessing the form element
+  }
+}
+```
+
+- **@ViewChildren**: Used to get a reference to multiple child components or DOM elements in the template. It returns a `QueryList` of the referenced components or elements.
+
+```typescript
+import { Component, ViewChildren, QueryList } from '@angular/core';
+
+import { ChildComponent } from './child.component';
+
+@Component({
+  selector: 'app-parent',
+  template: `<app-child *ngFor="let child of children" #child></app-child>`
+})
+export class ParentComponent {
+  @ViewChildren('child') childComponents: QueryList<ChildComponent>;
+
+  ngAfterViewInit() {
+    this.childComponents.forEach(child => child.someMethod());
+  }
+}
+```
