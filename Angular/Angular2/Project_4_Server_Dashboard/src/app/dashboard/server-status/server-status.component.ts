@@ -2,9 +2,11 @@ import {
   AfterViewInit,
   Component,
   DestroyRef,
+  effect,
   inject,
   OnDestroy,
   OnInit,
+  signal,
 } from '@angular/core';
 
 @Component({
@@ -54,19 +56,24 @@ import {
   }
 } */
 export class ServerStatusComponent implements OnInit {
-  currentStatus: 'online' | 'offline' | 'unknown' = 'online';
+  currentStatus = signal<'online' | 'offline' | 'unknown'>('online'); // Using signal to track the current status
   private destroyRef = inject(DestroyRef); // Inject the DestroyRef service
-  constructor() {}
+  constructor() {
+    effect(() => {
+      // This effect will run whenever currentStatus changes
+      console.log('Current status:', this.currentStatus()); // Log the current status whenever it changes
+    });
+  }
 
   ngOnInit() {
     const intervalId = setInterval(() => {
       const rnd = Math.random(); // 0 to 1
       if (rnd < 0.5) {
-        this.currentStatus = 'online';
+        this.currentStatus.set('online');
       } else if (rnd < 0.9) {
-        this.currentStatus = 'offline';
+        this.currentStatus.set('offline');
       } else {
-        this.currentStatus = 'unknown';
+        this.currentStatus.set('unknown');
       }
     }, 5000);
 
