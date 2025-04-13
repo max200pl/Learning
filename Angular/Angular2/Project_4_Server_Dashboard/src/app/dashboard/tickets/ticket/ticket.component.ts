@@ -9,6 +9,10 @@ import { Ticket } from './ticket.mode';
   styleUrl: './ticket.component.css',
 })
 export class TicketComponent {
+  // Using input decorator to receive data from parent component
+  // data = input.required<Ticket>({
+  //   alias: 'ticket',
+  // });
   data = input.required<Ticket>();
   close = output();
   detailsVisible = signal(false);
