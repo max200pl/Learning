@@ -2,7 +2,9 @@
   <ul>
     @for (ticket of tickets; track ticket.id) {
     <li>
-      <app-ticket [data]="ticket" /> - {{ $first }} - {{ $last }} - {{ $count }}
+      <app-ticket [data]="ticket" (close)="onCloseTicket(ticket.id)" /> -
+      <!-- {{ $first }} - {{ $last }} -
+      {{ $count }} -->
     </li>
     } @empty {
     <li>No tickets available</li>
