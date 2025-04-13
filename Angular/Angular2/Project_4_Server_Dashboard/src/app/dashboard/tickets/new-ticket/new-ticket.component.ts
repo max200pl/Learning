@@ -56,15 +56,15 @@ export class NewTicketComponent implements AfterViewInit {
     console.log(this.form?.nativeElement); // This will log the form element reference
   }
 
-  onSubmit(title: string, ticketText: string) {
-    console.log('Ticket submitted:', { title, ticketText });
-    // Here you would typically send the ticket data to a server or perform some action
+  // onSubmit(title: string, ticketText: string) {
+  //   console.log('Ticket submitted:', { title, ticketText });
+  //   // Here you would typically send the ticket data to a server or perform some action
 
-    this.add.emit({ title, text: ticketText }); // Emit the event with the ticket data
+  //   this.add.emit({ title, text: ticketText }); // Emit the event with the ticket data
 
-    // Reset the form after submission
-    this.form?.nativeElement.reset();
-  }
+  //   // Reset the form after submission
+  //   this.form?.nativeElement.reset();
+  // }
 
   //* EXAMPLE 4: (New From 17.3) Using Angular Forms with viewChild and ElementRef
   /*
@@ -78,4 +78,18 @@ export class NewTicketComponent implements AfterViewInit {
       this.form()?.reset();
     }
   */
+
+  //* EXAMPLE 5:
+  enteredTitle = '';
+  enteredText = '';
+
+  onSubmit() {
+    this.add.emit({ title: this.enteredTitle, text: this.enteredText }); // Emit the event with the ticket data
+
+    // Reset the form after submission
+    // this.form?.nativeElement.reset();
+
+    this.enteredTitle = ''; // We use two-way data binding to reset the form
+    this.enteredText = ''; // We use two-way data binding to reset the form
+  }
 }
