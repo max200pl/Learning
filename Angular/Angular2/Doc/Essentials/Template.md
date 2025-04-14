@@ -43,3 +43,9 @@ export class MyDirective {
 <ng-template #myTemplate let-item="item">
   <div>{{ item }}</div>
 </ng-template>
+```
+
+```html
+<p  *ngIf="isVisible">This is visible</p>
+<p *ngIf="!isVisible">This is not visible</p>
+```
