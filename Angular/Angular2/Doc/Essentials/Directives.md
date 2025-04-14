@@ -12,6 +12,13 @@ Directives are special tokens in the markup that tell the library to do somethin
 
 ### Structural Directives
 
+- `*ngIf`: Conditionally includes a template based on the value of an expression. If the expression evaluates to true, the template is rendered; otherwise, it is not included in the DOM.
+        Example:
+            ```html
+                <div *ngIf="isVisible">This is visible</div>
+            ```
+- `*ngFor`: Iterates over a collection and renders a template for each item in the collection. It is similar to a loop in programming languages.
+
 ### Built-in Directives
 
 ### Custom Directives
