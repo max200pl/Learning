@@ -7,4 +7,5 @@
 3. Higher-Order Components (HOCs)
 4. Recursive Components
 5. Partial components
-6. Composition
+6. Composition components
+7. Compound components
