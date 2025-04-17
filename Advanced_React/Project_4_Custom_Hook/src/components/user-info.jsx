@@ -1,7 +1,29 @@
-import { useResource } from "./resource.hook";
+import { useCallback } from "react";
+import { useDataSource } from "./data-source.hook";
+
+const fetchFromServer = (resourceUrl) => async () => {
+  const response = await axios.get(resourceUrl);
+  return response.data;
+};
+
+const getDataFromLocalStorage = (key) => () => {
+  const data = localStorage.getItem(key);
+  return data ? JSON.parse(data) : null;
+};
 
 export const UserInfo = ({ userId }) => {
-  const user = useResource("/current-user" + userId);
+  //   const user = useResource("/current-user" + userId);
+
+  const fetchUser = useCallback(
+    () => fetchFromServer("/current-user" + userId),
+    [userId]
+  );
+
+  const fetchMessage = useCallback(() => fetchFromServer("/message"), []);
+
+  const user = useDataSource(fetchUser);
+  const message = useDataSource(fetchMessage);
+
   const { name, age, country, books } = user || {};
   return user ? (
     <>
