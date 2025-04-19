@@ -1,5 +1,11 @@
 # Hook.useDeferredValue() in React
 
+Can help us separate the renders of our components into a prioritized or immediately updates and other delayed or not immediate updates.
+So not immediate updates are going to wait until all the other renders take place.
+
+Короче говоря когда у нас есть инпут и мы вводим в него текст, то мы можем отложить обновление состояния инпута и отложить обновление состояния компонента, который зависит от этого состояния инпута.
+Это позволяет нам избежать лишних рендеров и сделать приложение более отзывчивым.
+
 ## What is useDeferredValue?
 
 The `useDeferredValue` hook is a built-in React hook that allows you to defer the rendering of a value until the browser is idle. It is useful for optimizing performance in applications where you want to prioritize user interactions over rendering updates.
