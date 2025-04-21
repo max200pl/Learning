@@ -2,6 +2,8 @@
 
 ## Use Custom Hook with API Layer
 
+### Prepare Api Statuses
+
 ```javascript
 
 export const IDLE = "IDLE";
@@ -23,8 +25,8 @@ const capitalize  = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-const prepareApiStatus = (currentStatus) => {
-    const statuses  ={}
+const prepareStatuses = (currentStatus) => {
+    const statuses = {}
     for (const status of defaultApiStatuses) {
         const normalizedStatus = capitalize(status.toLowerCase()); // "Error" >> "error"
         const normalizedStatusKey = `is${normalizedStatus}`; // "isError"
@@ -48,29 +50,55 @@ export const useApiStatus = (currentStatus = IDLE) => {
   };
 };
 
+```
+
+### Create Custom Hook UseApi()
+
+```javascript
+
+export function useApi(fn, config = {}){
+    const {initialData} = config;
+    const [ data, setData] = useState();
+    const [ error, setError] = useState(null);
+    const {status, setStatus, ...normalizeStatuses} = useApiStatus(IDLE);
+
+    const exec  =async (...args) => {
+        try {
+            setStatus(PENDING);
+            const data = await fn(...args);
+            setData(data);
+            setStatus(SUCCESS);
+            return {
+                data,
+                error: null,
+            }
+        } catch (error) {
+            setError(error);
+            setStatus(ERROR);
+            return {
+                data: null,
+                error,
+            }
+        }
+    }
+
+    return {
+        data,
+        setData,
+        status,
+        exec,
+        ...normalizeStatuses,
+    }
+}
+```
+
+### Fetch Data
+
+```javascript
+
 const useFetchData = () => {
-   const [data, setData] = useState(null);
-   const {
-    status: fetchDataStatus,
-    setStatus: setFetchDataStatus,
-    isFetchDataStatusIdle,
-    isFetchDataStatusPending,
-    isFetchDataStatusSuccess,
-    isFetchDataStatusError
-  } = useApiStatus(IDLE);
+    const { data, exec: initGetData, status: fetchDataStatus,  isIdle:isFetchDataStatusIdle  , isPending:isFetchDataStatusPending, isSuccess:isFetchDataStatusSuccess, isError:isFetchDataStatusError } = useApi( ()=> fetchData().then((res) => res.data) );
 
-   const initGetData = async ()=>{
-       setFetchDataStatus(PENDING);
-
-       const { response, error } = await withAsync(() => useGetData());
-
-       if (error) {
-           setFetchDataStatus(ERROR);
-       } else {
-           setFetchDataStatus(SUCCESS);
-           setData(response.data);
-       }
-   }
 
    return {
     data,
@@ -104,8 +132,6 @@ const DataComponent = () => {
   useEffect(() => {
      initGetData()
   }, [ ])
-
-
 
   return (
     <div>
