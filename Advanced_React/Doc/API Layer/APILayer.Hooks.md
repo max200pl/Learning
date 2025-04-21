@@ -18,9 +18,46 @@ export const apiStatus = {
   ERROR,
 };
 
+// "ERROR" >> "Error"
+const capitalize  = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
+const prepareApiStatus = (currentStatus) => {
+    const statuses  ={}
+    for (const status of defaultApiStatuses) {
+        const normalizedStatus = capitalize(status.toLowerCase()); // "Error" >> "error"
+        const normalizedStatusKey = `is${normalizedStatus}`; // "isError"
+        statuses[normalizedStatusKey] = currentStatus === status; // { isError: true }
+    }
+
+    return statuses;
+};
+
+export const useApiStatus = (currentStatus = IDLE) => {
+  const [status, setStatus] = useState(currentStatus);
+
+  // Set the status to IDLE when the component mounts
+  // Use memo to avoid unnecessary re-renders
+  const statuses = useMemo(() => prepareStatuses(status), [status]);
+
+  return {
+    status,
+    setStatus,
+    ...statuses,
+  };
+};
+
 const useFetchData = () => {
    const [data, setData] = useState(null);
-   const [fetchDataStatus, setFetchDataStatus] = useState(IDLE);
+   const {
+    status: fetchDataStatus,
+    setStatus: setFetchDataStatus,
+    isFetchDataStatusIdle,
+    isFetchDataStatusPending,
+    isFetchDataStatusSuccess,
+    isFetchDataStatusError
+  } = useApiStatus(IDLE);
 
    const initGetData = async ()=>{
        setFetchDataStatus(PENDING);
@@ -35,7 +72,16 @@ const useFetchData = () => {
        }
    }
 
-   return { data, initGetData,  fetchDataStatus };
+   return {
+    data,
+    initGetData,
+    fetchDataStatus,
+    setFetchDataStatus,
+    isFetchDataStatusIdle,
+    isFetchDataStatusPending,
+    isFetchDataStatusSuccess,
+    isFetchDataStatusError
+   };
 };
 
 ```
@@ -44,15 +90,26 @@ const useFetchData = () => {
 
 ```javascript
 const DataComponent = () => {
-  const { data, initGetData, fetchDataStatus } = useFetchData();
+  const {
+    data,
+    initGetData,
+    fetchDataStatus,
+    setFetchDataStatus,
+    isFetchDataStatusIdle,
+    isFetchDataStatusPending,
+    isFetchDataStatusSuccess,
+    isFetchDataStatusError
+   } = useFetchData();
 
   useEffect(() => {
      initGetData()
   }, [ ])
 
 
-  if (fetchDataStatus === PENDING) return <div>Loading...</div>;
-  if (fetchDataStatus === ERROR) return <div>Error: {error.message}</div>;
+    if (isFetchDataStatusPending) return <div>Loading...</div>;
+    if (isFetchDataStatusError) return <div>Error: {error.message}</div>;
+    if (isFetchDataStatusIdle) return <div>Idle...</div>;
+    if (isFetchDataStatusSuccess) return <div>Success...</div>;
 
   return (
     <div>
