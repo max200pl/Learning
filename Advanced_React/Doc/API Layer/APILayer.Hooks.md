@@ -106,15 +106,17 @@ const DataComponent = () => {
   }, [ ])
 
 
-    if (isFetchDataStatusPending) return <div>Loading...</div>;
-    if (isFetchDataStatusError) return <div>Error: {error.message}</div>;
-    if (isFetchDataStatusIdle) return <div>Idle...</div>;
-    if (isFetchDataStatusSuccess) return <div>Success...</div>;
 
   return (
     <div>
       <h1>Data</h1>
-      <buttons onClick={initGetData}>Refresh</button>
+      <buttons onClick={initGetData}>
+        <LayerLoader
+          show={isFetchDataStatusPending}
+          delay={1000} // 1 second delay
+          default={<span>Refresh</span>} // Default button text
+         >
+      </button>
       <ul>
         {data.map((item) => (
           <li key={item.id}>{item.name}</li>
