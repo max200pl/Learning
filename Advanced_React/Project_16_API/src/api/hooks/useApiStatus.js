@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState, useMemo } from "react";
 import { IDLE, defaultApiStatuses } from "../../constants/api-status";
 
 const capitalize = (s) => s.charAt(0).toUpperCase() + s.slice(1);
