@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PaginatedQuotes from "./components/paginated-quotes";
+import InfiniteScrollQuotes from "./components/infinite-scroll-quotes";
 
 const queryClient = new QueryClient();
 
@@ -10,7 +10,7 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <ToastContainer />
-        <PaginatedQuotes />
+        <InfiniteScrollQuotes />
       </QueryClientProvider>
     </>
   );
