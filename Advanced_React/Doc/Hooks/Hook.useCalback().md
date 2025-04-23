@@ -8,6 +8,27 @@ The `useCallback` hook is a built-in React hook that returns a memoized version 
 
 The motivation for the `useCallback` hook is to improve performance in React applications by avoiding unnecessary re-renders of components that depend on callback functions. When a component re-renders, all functions defined inside it are recreated. This can lead to performance issues, especially when passing these functions as props to child components or using them in dependencies of other hooks.
 
+## Example 1 of useCallback
+
+```jsx
+import React, { useCallback, useState } from 'react';
+
+const ParentComponent = () => {
+  const [count, setCount] = useState(0);
+
+  const handleClick = useCallback(() => { /// Memoized function
+    setCount((prevCount) => prevCount + 1);
+  }, []); // The empty dependency array means this function will not change
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <ChildComponent onClick={handleClick} />
+    </div>
+  );
+};
+```
+
 ## Motivation for useCallback as Ref
 
 The motivation for using `useCallback` as a ref is to ensure that the same function reference is used across re-renders, preventing unnecessary updates to child components that depend on that function.
