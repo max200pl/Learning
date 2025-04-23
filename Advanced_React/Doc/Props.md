@@ -2,7 +2,7 @@
 
 ## Using Element Props in React
 
-Проблема: нужно поменять кнопку на лику костамизируя `<Button/>` компонент.
+Problem: Need to change the button to a link while customizing the `<Button/>` component.
 
 ### Example Custom Button from Scratch
 
