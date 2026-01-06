@@ -25,3 +25,11 @@ psql -h localhost -p 5432 -U admin -d ecommerce // to connect to the 'ecommerce'
 ```sql
 \l // list all databases
 ```
+
+### Step 5: Stopping and Removing Containers
+
+```bash
+docker stop <container_id>
+docker rm <container_id>
+docker-compose down // stops and removes all containers defined in the docker-compose file
+```
