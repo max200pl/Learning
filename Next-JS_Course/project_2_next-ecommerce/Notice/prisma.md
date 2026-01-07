@@ -49,3 +49,29 @@ npx prisma migrate dev --name add_category
 ```bash
 npx prisma studio
 ```
+
+## Step 8: Seed the database
+
+Create a `prisma/seed.js` file and add your seed data logic. Then run:
+
+### Step 9: Install dependencies tsx
+
+```bash
+npm i -D tsx
+```
+
+### Step 10: Update package.json
+
+Add the following script to your `package.json`:
+
+```json
+"scripts": {
+  "seed": "tsx prisma/seed.ts"
+}
+```
+
+### Step 11: Run the seed script
+
+```bash
+npm run seed
+```
