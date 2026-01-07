@@ -1,23 +1,38 @@
-import { Product } from "@/lib/mocks";
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { formatPrice } from "@/lib/utils";
+
 import Image from "next/image";
+import { Product } from "./generated/prisma/client";
 
 export function ProductCard({ product }: { product: Product }) {
   return (
-    <div className="border border-gray-200 rounded-lg p-4">
+    <Card className="pt-0 overflow-hidden">
       <div className="relative aspect-video">
-        <Image
-          src={product.image}
-          alt={product.name}
-          className="object-cover"
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
+        {product.image && (
+          <Image
+            src={product.image}
+            alt={product.name}
+            className="object-cover"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        )}
       </div>
 
-      <h2 className="text-lg font-semibold">{product.name}</h2>
-      <p className="text-gray-600">{formatPrice(product.price)}</p>
-      <p className="text-gray-500">{product.description}</p>
-    </div>
+      <CardHeader>
+        <CardTitle>{product.name}</CardTitle>
+        <CardDescription>{product.description}</CardDescription>
+      </CardHeader>
+
+      <CardFooter>
+        <p>{formatPrice(product.price)}</p>
+      </CardFooter>
+    </Card>
   );
 }
