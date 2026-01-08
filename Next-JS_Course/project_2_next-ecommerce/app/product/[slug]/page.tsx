@@ -1,8 +1,10 @@
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { getProductBySlug } from "@/lib/actions";
 import { formatPrice, sleep } from "@/lib/utils";
+import { ShoppingCart } from "lucide-react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -51,7 +53,7 @@ export default async function ProductPage({
     <main className="container mx-auto p-4">
       <Card className="max-w-3xl mx-auto">
         <CardContent className="p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="relative rounded-lg overflow-hidden ">
+          <div className="relative rounded-lg overflow-hidden h-[200px] md:h-[400px]">
             {product.image && (
               <Image
                 src={product.image}
@@ -79,6 +81,39 @@ export default async function ProductPage({
             <div className="space-y-2">
               <h2 className="font-medium">Description</h2>
               <p>{product.description}</p>
+            </div>
+
+            <Separator className="my-4" />
+
+            <div className="space-y-2">
+              <h2 className="font-medium">Availibility</h2>
+
+              <div className="flex items-center gap-2">
+                {product.inventory > 0 ? (
+                  <Badge variant="outline" className="text-green-600">
+                    In stock
+                  </Badge>
+                ) : (
+                  <Badge variant="outline" className="text-red-600">
+                    Out of stock
+                  </Badge>
+                )}
+
+                {product.inventory > 0 && (
+                  <span className="text-xs text-gray-500">
+                    ({product.inventory} items available)
+                  </span>
+                )}
+              </div>
+            </div>
+
+            <Separator className="my-4" />
+
+            <div>
+              <Button disabled={product.inventory === 0} className="w-full">
+                <ShoppingCart className="mr-1 w-4 h-4" />
+                {product.inventory > 0 ? "Add to cart" : "Out of stock"}
+              </Button>
             </div>
           </div>
         </CardContent>

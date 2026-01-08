@@ -42,6 +42,7 @@ model Product {
 ```bash
 npx prisma migrate dev --name add_product
 npx prisma migrate dev --name add_category
+npx prisma generate
 ```
 
 ## Step 7: Open Prisma Studio
