@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ModeToggle } from "@/components/ui/mode-toggle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,18 +26,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        cz-shortcut-listen="true"
       >
-        <ul>
-          <li>
-            <Link href="/">Home</Link>
-
-            <Link href="/products">Products</Link>
-          </li>
-        </ul>
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <>
+            <ul>
+              <li>
+                <Link href="/">Home</Link>
+                <Link href="/products">Products</Link>
+              </li>
+              <li>
+                <ModeToggle />
+              </li>
+            </ul>
+            {children}
+          </>
+        </ThemeProvider>
       </body>
     </html>
   );
