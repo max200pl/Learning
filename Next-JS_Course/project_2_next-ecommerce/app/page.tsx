@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/pagination";
 import { Suspense } from "react";
 import ProductsSkeleton from "./ProductsSkeleton";
+import { sleep } from "@/lib/utils";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
@@ -23,14 +25,16 @@ async function Products({ page }: { page: number }) {
     take: pageSize,
   });
 
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+  await sleep(1000);
 
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
+    <>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </>
   );
 }
 
@@ -42,8 +46,8 @@ export default async function HomePage(props: { searchParams: SearchParams }) {
   const totalPages = Math.ceil(total / pageSize);
 
   return (
-    <main className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-6">Home</h1>
+    <main className="container mx-auto py-4">
+      <Breadcrumbs items={[{ label: "Products", href: "/" }]} />
 
       <Suspense key={page} fallback={<ProductsSkeleton />}>
         <Products page={page} />
@@ -59,7 +63,7 @@ export default async function HomePage(props: { searchParams: SearchParams }) {
             <PaginationItem key={index}>
               <PaginationLink
                 href={`?page=${index + 1}`}
-                className={page === index + 1 ? "active" : ""}
+                isActive={page === index + 1}
               >
                 {index + 1}
               </PaginationLink>
