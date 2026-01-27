@@ -6,8 +6,6 @@ import { sleep } from "@/lib/utils";
 
 export async function CartIndicator() {
   const cart = await getCart();
-
-  await sleep(3000); // Simulate loading time
   const cartSize = cart?.size ?? 0;
 
   return (
