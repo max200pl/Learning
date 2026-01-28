@@ -12,6 +12,7 @@ import { Suspense } from "react";
 import ProductsSkeleton from "./ProductsSkeleton";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ProductListServerWrapper } from "@/components/ProductListServerWrapper";
+import { stripe } from "@/lib/stripe";
 
 type SearchParams = Promise<{ [key: string]: string | string[] | undefined }>;
 
