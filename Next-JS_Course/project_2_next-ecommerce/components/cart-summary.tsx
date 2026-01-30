@@ -38,10 +38,6 @@ export default async function CartSummary() {
           <p className="text-base text-foreground">{formatPrice(total)}</p>
         </div>
       </div>
-
-      <Button size="lg" asChild className="mt-4 w-full">
-        <Link href="/checkout">Proceed to Checkout</Link>
-      </Button>
     </div>
   );
 }
