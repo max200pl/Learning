@@ -1,8 +1,9 @@
 import "dotenv/config";
-import { PrismaClient, Product } from "@/app/generated/prisma/client";
+import { PrismaClient, Product, User } from "@/app/generated/prisma/client";
 
 import { Pool } from "pg";
 import { PrismaPg } from "@prisma/adapter-pg";
+import { hashPassword } from "@/lib/auth";
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
@@ -14,6 +15,7 @@ const prisma = new PrismaClient({ adapter });
 async function main() {
   await prisma.product.deleteMany();
   await prisma.category.deleteMany();
+  await prisma.user.deleteMany();
 
   const electronics = await prisma.category.create({
     data: {
@@ -96,6 +98,39 @@ async function main() {
       data: product,
     });
   }
+
+  const users: User[] = [
+    {
+      id: "1",
+      email: "admin@example.com",
+      password: "password123",
+      name: "Admin User",
+      role: "admin",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      id: "2",
+      email: "user@example.com",
+      password: "password456",
+      name: "Regular User",
+      role: "user",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+  ];
+
+  for (const user of users) {
+    const hashedPassword = await hashPassword(user.password);
+    await prisma.user.create({
+      data: {
+        ...user,
+        password: hashedPassword,
+      },
+    });
+  }
+
+  console.log("Users created");
 }
 
 main()
