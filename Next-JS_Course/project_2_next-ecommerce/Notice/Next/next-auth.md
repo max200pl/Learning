@@ -42,3 +42,11 @@ npm install --save-dev @types/bcryptjs
 ## Step 5: Seed User Data
 
 We will modify our Prisma seed script to include user data with hashed passwords. Update your `prisma/seed.ts` file as follows:
+
+## Step 6: Install Zod
+
+To validate user input, we will use the `zod` library. Install it by running the following command:
+
+```bash
+npm install zod
+```

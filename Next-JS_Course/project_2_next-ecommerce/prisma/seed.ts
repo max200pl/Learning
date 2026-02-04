@@ -13,6 +13,9 @@ const adapter = new PrismaPg(pool);
 const prisma = new PrismaClient({ adapter });
 
 async function main() {
+  // Delete in order of dependencies: child records first
+  await prisma.orderItem.deleteMany();
+  await prisma.order.deleteMany();
   await prisma.product.deleteMany();
   await prisma.category.deleteMany();
   await prisma.user.deleteMany();
@@ -136,12 +139,10 @@ async function main() {
 main()
   .then(async () => {
     console.log("Seeding complete!");
-  })
-  .catch((e) => {
-    console.error(e);
-    process.exitCode = 1;
-  })
-  .finally(async () => {
     await prisma.$disconnect();
-    await pool.end();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
   });
