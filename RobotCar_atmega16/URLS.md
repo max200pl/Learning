@@ -5,3 +5,5 @@
 # Video Tutorial
 
  <https://www.youtube.com/watch?v=MK8if8X6AZo>
+
+![usbasp шлейф](image-1.png)
